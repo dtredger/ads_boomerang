@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822210928) do
+ActiveRecord::Schema.define(version: 20160822213546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160822210928) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "advertiser_id"
+    t.string   "name",          null: false
     t.index ["advertiser_id"], name: "index_campaigns_on_advertiser_id", using: :btree
   end
 
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160822210928) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "advertiser_id"
+    t.string   "name",          null: false
     t.index ["advertiser_id"], name: "index_creatives_on_advertiser_id", using: :btree
   end
 

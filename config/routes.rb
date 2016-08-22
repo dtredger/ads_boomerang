@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
     resource :advertiser
 
-    resources :campaign
-    resources :creative
+    resources :campaigns
+    resources :creatives
   end
 
 

@@ -16,28 +16,28 @@ class AdvertisersController < ApplicationController
     @advertiser = Advertiser.new(advertiser_params)
 
     if @advertiser.save
-      format.html { redirect_to @advertiser, notice: 'Advertiser was successfully created.' }
+      redirect_to @advertiser, notice: 'Advertiser was successfully created.'
     else
-      format.html { render :new }
+      render :new
     end
   end
 
   def update
     if @advertiser.update(advertiser_params)
-      format.html { redirect_to @advertiser, notice: 'Advertiser was successfully updated.' }
+      redirect_to @advertiser, notice: 'Advertiser was successfully updated.'
     else
-      format.html { render :edit }
+      render :edit
     end
   end
 
   def destroy
     @advertiser.destroy
-    format.html { redirect_to advertisers_url, notice: 'Advertiser was successfully destroyed.' }
+    redirect_to advertisers_url, notice: 'Advertiser was successfully destroyed.'
   end
 
   private
     def set_advertiser
-      @advertiser = Advertiser.find(params[:id])
+      @advertiser = current_advertiser
     end
 
     def advertiser_params
