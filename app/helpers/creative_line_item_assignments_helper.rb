@@ -1,0 +1,2 @@
+module CreativeLineItemAssignmentsHelper
+end

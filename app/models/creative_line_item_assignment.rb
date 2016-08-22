@@ -1,0 +1,2 @@
+class CreativeLineItemAssignment < ApplicationRecord
+end

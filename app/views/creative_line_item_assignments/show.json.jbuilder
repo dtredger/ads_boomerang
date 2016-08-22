@@ -1,0 +1,1 @@
+json.partial! "creative_line_item_assignments/creative_line_item_assignment", creative_line_item_assignment: @creative_line_item_assignment

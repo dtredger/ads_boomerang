@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Advertisers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advertisers.each do |advertiser| %>
+      <tr>
+        <td><%= link_to 'Show', advertiser %></td>
+        <td><%= link_to 'Edit', edit_advertiser_path(advertiser) %></td>
+        <td><%= link_to 'Destroy', advertiser, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Advertiser', new_advertiser_path %>

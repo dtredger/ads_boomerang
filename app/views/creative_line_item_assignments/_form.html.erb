@@ -1,0 +1,17 @@
+<%= form_for(creative_line_item_assignment) do |f| %>
+  <% if creative_line_item_assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(creative_line_item_assignment.errors.count, "error") %> prohibited this creative_line_item_assignment from being saved:</h2>
+
+      <ul>
+      <% creative_line_item_assignment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

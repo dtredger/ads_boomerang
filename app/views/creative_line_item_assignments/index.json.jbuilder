@@ -1,0 +1,1 @@
+json.array! @creative_line_item_assignments, partial: 'creative_line_item_assignments/creative_line_item_assignment', as: :creative_line_item_assignment
