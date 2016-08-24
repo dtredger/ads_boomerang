@@ -49,8 +49,11 @@ div {
   }
 }
 
-#notice {
-  color: green;
+.notice {
+  background: green;
+}
+.alert {
+  background: red;
 }
 
 .field_with_errors {

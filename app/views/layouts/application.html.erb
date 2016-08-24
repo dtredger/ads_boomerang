@@ -12,10 +12,16 @@
    <p class="notice"><%= notice %></p>
    <p class="alert"><%= alert %></p>
 
-    <%= yield %>
 
-    <% if Rails.env.development? %>
-        <%= console %>
-    <% end %>
+   <div class="col-xs-12">
+     <div class="row">
+       <%= yield %>
+     </div>
+   </div>
+
+   <% if Rails.env.development? %>
+      <%= console %>
+   <% end %>
+
   </body>
 </html>

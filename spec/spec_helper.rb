@@ -51,9 +51,6 @@ RSpec.configure do |config|
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-  # The settings below are suggested to provide a good initial experience
-  # with RSpec, but feel free to customize to your heart's content.
-
   # This allows you to limit a spec run to individual examples or groups
   # you care about by tagging them with `:focus` metadata. When nothing
   # is tagged with `:focus`, all examples get run. RSpec also provides
@@ -86,7 +83,7 @@ RSpec.configure do |config|
   # Print the 10 slowest examples and example groups at the
   # end of the spec run, to help surface which specs are running
   # particularly slow.
-  config.profile_examples = 10
+  # config.profile_examples = 3
 
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
@@ -100,5 +97,21 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
+
+  # Clear out test Carrierwave files
+  # https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Cleanup-after-your-Rspec-tests
+  # config.after(:all) do
+  #   # Get rid of the linked images
+  #   if Rails.env.test? || Rails.env.cucumber?
+  #     tmp = Factory(:brand)
+  #     store_path = File.dirname(File.dirname(tmp.logo.url))
+  #     temp_path = tmp.logo.cache_dir
+  #     FileUtils.rm_rf(Dir["#{Rails.root}/public/#{store_path}/[^.]*"])
+  #     FileUtils.rm_rf(Dir["#{temp_path}/[^.]*"])
+  #     # if you want to delete everything under the CarrierWave root that you set in an initializer,
+  #     # you can do this:
+  #     # FileUtils.rm_rf(CarrierWave::Uploader::Base.root)
+  #   end
+  # end
 
 end

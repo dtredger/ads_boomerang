@@ -1,4 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="col-sm-8 col-sm-offset-2">
+  <h4><%= @creative.name %></h4>
 
-<%= link_to 'Edit', edit_creative_path(@creative) %> |
-<%= link_to 'Back', creatives_path %>
+  <%= @creative.inspect %>
+
+  <%= image_tag @creative.creative_asset.url, class: "image-responsive" %>
+  <hr>
+  <%= link_to 'Edit', edit_creative_path(@creative) %> |
+  <%= link_to 'Back', creatives_path %>
+
+</div>

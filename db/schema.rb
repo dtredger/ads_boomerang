@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822213546) do
+ActiveRecord::Schema.define(version: 20160824071254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,10 +46,13 @@ ActiveRecord::Schema.define(version: 20160822213546) do
   end
 
   create_table "creatives", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "advertiser_id"
-    t.string   "name",          null: false
+    t.string   "name",           null: false
+    t.string   "creative_asset"
+    t.integer  "width"
+    t.integer  "height"
     t.index ["advertiser_id"], name: "index_creatives_on_advertiser_id", using: :btree
   end
 

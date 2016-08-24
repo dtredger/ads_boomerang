@@ -1,0 +1,24 @@
+# https://github.com/laserlemon/figaro
+# figaro help heroku:set
+
+
+SECRET_KEY_BASE: f961caeccd8139003ced2c1b0771c4ebfd679af58609eb5ad60c9ede219bbf13ef63e7a08a3308815f35b9967a96706cc53575f38c324e24e81270137efa5092
+GOOGLE_ANALYTICS_KEY:
+
+STRIPE_API_KEY:
+
+AWS_S3_SECRET:
+AWS_S3_KEY:
+
+BEESWAX_KEY:
+
+test:
+  GOOGLE_ANALYTICS_KEY: ~
+  STRIPE_KEY: ~
+  AWS_S3_SECRET: ~
+  AWS_S3_KEY: ~
+  BEESWAX_KEY: ~
+
+
+production:
+  RAILS_LOG_TO_STDOUT: true
