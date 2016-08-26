@@ -2,6 +2,7 @@
 
 class CreativeAssetUploader < CarrierWave::Uploader::Base
 
+
   process :store_dimensions
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

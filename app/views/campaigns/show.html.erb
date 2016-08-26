@@ -1,4 +1,16 @@
-<p id="notice"><%= notice %></p>
+<i>Campaigns/show</i>
+<br>
+
+<h4><%= @campaign.name %></h4>
+<%= @campaign.inspect %>
+<hr>
+
+<h4>Line-Items</h4>
+<% @campaign.line_items.each do |line_item| %>
+  <%= line_item.inspect %>
+  <br>
+<% end %>
+<hr>
 
 <%= link_to 'Edit', edit_campaign_path(@campaign) %> |
 <%= link_to 'Back', campaigns_path %>

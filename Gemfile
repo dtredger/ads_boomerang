@@ -11,16 +11,15 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'bootstrap-sass'
-
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
-# gem 'jbuilder', '~> 2.5'
 
 gem 'carrierwave'
 # gem 'mercury-rails' TODO - rails generate mercury:install
 # gem 'phrasing_plus'
 
-
+gem 'httparty'
+gem 'httmultiparty'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -33,9 +32,10 @@ gem 'annotate'
 
 gem 'high_voltage', github: 'thoughtbot/high_voltage'
 
+gem 'payola-payments'
+gem 'money-rails'
+
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'byebug', platform: :mri
   gem 'rspec'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
@@ -47,6 +47,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'simplecov', require: false
   gem "awesome_print", require:"ap"
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do

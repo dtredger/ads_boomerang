@@ -7,6 +7,8 @@
 #  updated_at    :datetime         not null
 #  advertiser_id :integer
 #  name          :string           not null
+#  start_date    :datetime
+#  end_date      :datetime
 #
 # Indexes
 #
@@ -15,6 +17,8 @@
 
 FactoryGirl.define do
   factory :campaign do
-    
+    sequence(:name) { |x| "campaign_#{x}" }
+
+	  advertiser
   end
 end

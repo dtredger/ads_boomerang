@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Payola::Engine => '/payola', as: :payola
+
   devise_for :advertisers
 
   # authenticated :admin do
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
 
     resources :campaigns
     resources :creatives
+  
   end
 
   # root to: 'pages#home' # set in initializers/high_voltage

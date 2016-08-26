@@ -11,8 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require payola
 //= require jquery_ujs
 // bootstrap-sprockets and bootstrap should not both be included in application.js.
 //= require bootstrap-sprockets
-//= require turbolinks
+// Payola does not work with turbolinks - https://github.com/peterkeen/payola
+// require turbolinks
 //= require_tree .

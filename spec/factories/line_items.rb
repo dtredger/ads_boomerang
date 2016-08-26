@@ -2,9 +2,11 @@
 #
 # Table name: line_items
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :integer          not null, primary key
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  inventory_source :integer          not null
+#  campaign_id      :integer          not null
 #
 
 FactoryGirl.define do
