@@ -10,11 +10,13 @@ Rails.application.routes.draw do
   authenticated :advertiser do
     root to: 'advertisers#show', as: :authenticated_advertiser
 
-    resource :advertiser
+    resource :advertiser, path: "account"
+
+    resources :subscription_plans, path: "subscriptions"
 
     resources :campaigns
     resources :creatives
-  
+
   end
 
   # root to: 'pages#home' # set in initializers/high_voltage

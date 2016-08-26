@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
+gem 'figaro'
+
 ruby '2.3.1'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
-# gem 'redis', '~> 3.0'
+gem 'redis'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -27,7 +29,6 @@ gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'figaro'
 gem 'annotate'
 
 gem 'high_voltage', github: 'thoughtbot/high_voltage'
