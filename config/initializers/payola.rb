@@ -34,31 +34,32 @@ Payola.configure do |config|
     sale.refund!
   end
 
-	config.subscribe('payola.subscription.active') do |sub|
-		advertiser = Advertiser.find_by(email: sub.email)
-
-		Rails.logger.debug "********************************"
-		Rails.logger.debug sub
-		Rails.logger.debug advertiser
-		Rails.logger.debug "********************************"
-
-		if advertiser.nil?
-			raw_token, enc_token = Devise.token_generator.generate(Advertiser, :reset_password_token)
-			password = SecureRandom.hex(32)
-
-			advertiser = Advertiser.create!(
-					email: sub.email,
-					password: password,
-					password_confirmation: password,
-					reset_password_token: enc_token,
-					reset_password_sent_at: Time.now
-			)
-			# TODO - this would bill someone not already in database, then email
-			# WhateverYourPasswordMailerIsNamed.whatever_the_mail_method_is(advertiser, raw_token).deliver
-		end
-		sub.owner = advertiser
-		sub.save!
-	end
+	# --- This won't work because the subscription has to have the advertiser set to be saved at all ---
+	# config.subscribe('payola.subscription.active') do |sub|
+	# 	advertiser = Advertiser.find_by(email: sub.email)
+	#
+	# 	Rails.logger.debug "********************************"
+	# 	Rails.logger.debug sub
+	# 	Rails.logger.debug advertiser
+	# 	Rails.logger.debug "********************************"
+	#
+	# 	if advertiser.nil?
+	# 		raw_token, enc_token = Devise.token_generator.generate(Advertiser, :reset_password_token)
+	# 		password = SecureRandom.hex(32)
+	#
+	# 		advertiser = Advertiser.create!(
+	# 				email: sub.email,
+	# 				password: password,
+	# 				password_confirmation: password,
+	# 				reset_password_token: enc_token,
+	# 				reset_password_sent_at: Time.now
+	# 		)
+	# 		# TODO - this would bill someone not already in database, then email
+	# 		# WhateverYourPasswordMailerIsNamed.whatever_the_mail_method_is(advertiser, raw_token).deliver
+	# 	end
+	# 	sub.owner = advertiser
+	# 	sub.save!
+	# end
 
 	config.charge_verifier = lambda do |sale, custom|
 		Rails.logger.debug "--------------------------------------"

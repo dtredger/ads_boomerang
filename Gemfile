@@ -9,6 +9,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'redis'
 
+
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -23,6 +24,11 @@ gem 'carrierwave'
 gem 'httparty'
 gem 'httmultiparty'
 
+# TODO - required for sidekiq/web - https://github.com/mperham/sidekiq/issues/2960
+gem 'sinatra', github: 'sinatra', require: false
+# gem 'rack-protection', github: 'sinatra/rack-protection', require: false
+gem 'sidekiq'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
@@ -35,6 +41,8 @@ gem 'high_voltage', github: 'thoughtbot/high_voltage'
 
 gem 'payola-payments'
 gem 'money-rails'
+
+gem 'letsencrypt_plugin'
 
 group :development, :test do
   gem 'rspec'

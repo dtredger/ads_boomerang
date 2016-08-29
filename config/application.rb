@@ -27,6 +27,7 @@ module AdsDash
       g.routing_specs false
     end
 
+    # overridden in development and production
     config.active_job.queue_adapter = :inline
   end
 end

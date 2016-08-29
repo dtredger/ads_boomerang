@@ -1,4 +1,13 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+
+	Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+		username == "cats" && password == "dogs"
+	end if Rails.env.production?
+	mount Sidekiq::Web => '/sidekiq'
+
+	mount LetsencryptPlugin::Engine, at: '/'
   mount Payola::Engine => '/payola', as: :payola
 
   devise_for :advertisers

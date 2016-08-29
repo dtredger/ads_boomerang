@@ -1,33 +1,45 @@
-<i>advertisers/show</i>
 
-<h4>this is the advertisers/show page</h4>
-<p>This should be the homepage for an advertiser (regular user)</p>
+<div class="col-sm-8 col-sm-offset-2">
 
-<hr>
-<h4>Email:</h4><%= @advertiser.email %>
-<h4>Signed up at:</h4><%= @advertiser.created_at %>
-<hr>
-<h4>Campaigns</h4>
-<% if @advertiser.campaigns.any? %>
+  <div class="text-center">
+    <h4>this is the advertisers/show page</h4>
+    <p>This should be the homepage for an advertiser (regular user)</p>
+  </div>
+
+  <hr>
+  <h4>Email:</h4><%= @advertiser.email %>
+  <h4>Signed up at:</h4><%= @advertiser.created_at %>
+  <hr>
+  <h4>Subscription</h4>
+  <% if @advertiser.subscription %>
+    <%= @advertiser.subscription.inspect %>
+  <% else %>
+    <%= link_to "Create a subscription", subscription_plans_path %>
+  <% end %>
+  <hr>
+  <h4>Campaigns</h4>
+  <% if @advertiser.campaigns.any? %>
     <% @advertiser.campaigns.each do |campaign| %>
-        <%= link_to campaign.name, campaign_path(campaign)  %>
+      <%= link_to campaign.name, campaign_path(campaign)  %>
     <% end %>
-<% else %>
+  <% else %>
     <p>No Campaigns!</p>
-<% end %>
-<%= link_to "Create a new Campaign", new_campaign_path %>
-<hr>
+  <% end %>
+  <%= link_to "Create a new Campaign", new_campaign_path %>
+  <hr>
 
-<h4>Creatives</h4>
-<% if @advertiser.creatives.any? %>
+  <h4>Creatives</h4>
+  <% if @advertiser.creatives.any? %>
     <% @advertiser.creatives.each do |creative| %>
-        <%= link_to creative.name, creative_path(creative)  %>
+      <%= link_to creative.name, creative_path(creative)  %>
     <% end %>
-<% else %>
+  <% else %>
     <p>No Creatives!</p>
-<% end %>
-<%= link_to "Upload a new Creative", new_creative_path %>
+  <% end %>
+  <%= link_to "Upload a new Creative", new_creative_path %>
 
-<hr>
-<%= link_to 'Edit', edit_advertiser_path %>
+  <hr>
+  <%= link_to 'Edit', edit_advertiser_path %>
 
+
+</div>

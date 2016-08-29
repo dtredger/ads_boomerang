@@ -14,9 +14,8 @@
 class SubscriptionPlan < ApplicationRecord
 	include Payola::Plan
 
-	# https://github.com/peterkeen/payola/wiki/Subscriptions
 	def redirect_path(subscription)
-		"/subscriptions/1"
+		"/"
 	end
 
 	def active?

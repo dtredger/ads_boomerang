@@ -9,8 +9,24 @@
   </head>
 
   <body>
-   <p class="notice"><%= notice %></p>
-   <p class="alert"><%= alert %></p>
+
+    <%= render partial: "layouts/alerts" %>
+
+    <div class="nav navbar-nav">
+      <% if advertiser_signed_in? %>
+        <%= link_to('Logout', destroy_advertiser_session_path, :method => :delete) %>
+      <% else %>
+        <%= link_to('Login', new_advertiser_session_path)  %>
+      <% end %>
+      |
+      <% if advertiser_signed_in? %>
+        <%= link_to('Edit registration', edit_advertiser_registration_path) %>
+      <% else %>
+        <%= link_to('Register', new_advertiser_registration_path)  %>
+      <% end %>
+      |
+      <b class="text-center"><%= controller_name %>#<%= action_name %></b>
+    </div>
 
 
    <div class="col-xs-12">

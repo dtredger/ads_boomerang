@@ -1,25 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="col-sm-8 col-sm-offset-2">
+  <h1 class="text-center">Subscription Plans</h1>
 
-<h1>Subscription Plans</h1>
-
-<table>
-  <thead>
+  <table class="table table-striped">
+    <thead>
     <tr>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @subscription_plans.each do |subscription_plan| %>
       <tr>
+        <td><b><%= subscription_plan.name %></b></td>
+        <td><%= subscription_plan.interval %></td>
+        <td><%= Money.new(subscription_plan.amount) %></td>
         <td><%= link_to 'Show', subscription_plan %></td>
         <td><%= link_to 'Edit', edit_subscription_plan_path(subscription_plan) %></td>
         <td><%= link_to 'Destroy', subscription_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Subscription Plan', new_subscription_plan_path %>
+  <%= link_to 'New Subscription Plan', new_subscription_plan_path %>
+
+</div>

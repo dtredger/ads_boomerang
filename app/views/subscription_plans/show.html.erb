@@ -3,13 +3,9 @@
 
     <h4><%= @subscription_plan.name %></h4>
     <%= render 'payola/subscriptions/checkout', plan: @subscription_plan,
-               button_text: "click me!",
-               button_class: "btn btn-success",
-               quantity: 21,
-               name: "name yo'",
-               description: 'do dee do',
+               name: "Beta Plan",
+               description: 'The limited-time ads_dash beta plan',
                plan_image_path: image_path("spacepup_91x90.png"),
-               panel_label: 'buy this things',
                allow_remember_me: false,
                email: current_advertiser.email %>
 

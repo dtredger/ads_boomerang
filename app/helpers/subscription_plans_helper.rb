@@ -29,8 +29,6 @@ module Payola
 				s.amount = plan.amount
 			end
 
-			byebug
-
 			if sub.save
 				Payola.queue!(Payola::ProcessSubscription, sub.guid)
 			end
@@ -40,3 +38,4 @@ module Payola
 	end
 end
 
+Payola::Worker::ActiveJob

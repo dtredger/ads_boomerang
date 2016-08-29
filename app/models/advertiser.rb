@@ -15,6 +15,7 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  subscription_plan_id   :integer
 #
 # Indexes
 #
@@ -31,4 +32,10 @@ class Advertiser < ApplicationRecord
   has_many :campaigns
   has_many :creatives
 
+	has_one :subscription, class_name: "Payola::Subscription", foreign_key: "owner_id"
+
+
+	def send_devise_notification(notification, *args)
+		devise_mailer.send(notification, self, *args).deliver_later
+	end
 end
