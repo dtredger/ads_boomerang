@@ -4,6 +4,10 @@
     <title>AdsDash</title>
     <%= csrf_meta_tags %>
 
+    <% if Rails.env.production? %>
+      <%= javascript_include_tag 'rollbar' %>
+    <% end %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>

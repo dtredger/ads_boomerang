@@ -80,6 +80,9 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
+    clockwork (2.0.0)
+      activesupport
+      tzinfo
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -259,6 +262,8 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rollbar (2.12.0)
+      multi_json
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -356,6 +361,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   carrierwave
+  clockwork
   coffee-rails (~> 4.2)
   database_cleaner
   devise
@@ -378,6 +384,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing
   redis
+  rollbar
   rspec
   rspec-rails
   sass-rails (~> 5.0)

@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'figaro'
-
 ruby '2.3.1'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -28,6 +26,7 @@ gem 'httmultiparty'
 gem 'sinatra', github: 'sinatra', require: false
 # gem 'rack-protection', github: 'sinatra/rack-protection', require: false
 gem 'sidekiq'
+gem 'clockwork'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -42,7 +41,10 @@ gem 'high_voltage', github: 'thoughtbot/high_voltage'
 gem 'payola-payments'
 gem 'money-rails'
 
+
+gem 'figaro'
 gem 'letsencrypt_plugin'
+gem 'rollbar'
 
 group :development, :test do
   gem 'rspec'
