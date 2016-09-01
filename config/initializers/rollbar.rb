@@ -5,7 +5,7 @@ Rollbar.configure do |config|
   config.access_token = ENV["ROLLBAR_SERVER_ACCESS_TOKEN"]
 
   # Here we'll disable in 'test':
-  if Rails.env.test?
+  unless Rails.env.production?
     config.enabled = false
   end
 
@@ -15,7 +15,7 @@ Rollbar.configure do |config|
   config.person_method = "current_advertiser"
   # config.person_id_method = "my_id"
   # config.person_username_method = "my_username"
-  config.person_email_method = "my_email"
+  # config.person_email_method = "my_email"
 
   # ---- Heroku Deployment Hook ----
   # heroku addons:create deployhooks:http --url="https://api.rollbar.com/api/1/deploy/?access_token=ENV["ROLLBAR_SERVER_ACCESS_TOKEN"]&environment=production"

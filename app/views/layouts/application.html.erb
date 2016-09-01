@@ -30,6 +30,10 @@
       <% end %>
       |
       <b class="text-center"><%= controller_name %>#<%= action_name %></b>
+      |
+      <% if advertiser_signed_in? %>
+        <%= link_to current_advertiser.email, edit_advertiser_registration_path %>
+      <% end %>
     </div>
 
 
