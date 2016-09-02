@@ -1,0 +1,54 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+//= require bootstrap.min.css
+
+//= require pe-icon-7-stroke.css
+//= require helper.css
+//= require style.green.css
+//= require owl.carousel.css
+//= require owl.theme.css
+//= require simpletextrot.css
+//= require custom.css
+
+
+
+//
+//<!-- Bootstrap-->
+//<%= stylesheet_link_tag "pages/bootstrap.min" %>
+//<!-- Google fonts - Open Sans-->
+//<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,400italic">
+//<!-- Stroke 7 font by Pixeden (http://www.pixeden.com/icon-fonts/stroke-7-icon-font-set)-->
+//<%= stylesheet_link_tag "pages/pe-icon-7-stroke" %>
+//<%= stylesheet_link_tag "pages/helper" %>
+//<!-- theme stylesheet-->
+//<%= stylesheet_link_tag "pages/style.green.css" %>
+//<!-- owl carousel-->
+//<%= stylesheet_link_tag "pages/owl.carousel" %>
+//<%= stylesheet_link_tag "pages/owl.theme" %>
+//<!-- plugins-->
+//<%= stylesheet_link_tag "pages/simpletextrot" %>
+//<!-- Custom stylesheet - for your changes-->
+//<%= stylesheet_link_tag "pages/custom" %>
+//<!-- Favicon-->
+//<link rel="shortcut icon" href="favicon.png">
+//<!-- Tweaks for older IEs-->
+//<!--[if lt IE 9]>
+//<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+//<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+//<![endif]-->
