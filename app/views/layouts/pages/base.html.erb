@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <title>AdsDash</title>
+
+    <meta name="description" content="AdsDash">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag "pages/base" %>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-target="#navigation" data-offset="120">
+
+    <%= javascript_include_tag "pages/base" %>
+    <%= javascript_include_tag "pages/main.js" %>
+    <%= javascript_include_tag "pages/front.js" %>
+
+    <% if Rails.env.production? %>
+      <%= javascript_include_tag 'rollbar' %>
+    <% end %>
+
+    <!-- navbar-->
+    <%= render "pages/partials/header" %>
+
+    <%= yield %>
+
+  </body>
+</html>
