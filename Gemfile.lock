@@ -71,6 +71,9 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bourbon (4.2.7)
+      sass (~> 3.4)
+      thor (~> 0.19)
     builder (3.2.2)
     byebug (9.0.5)
     callsite (0.0.11)
@@ -359,6 +362,7 @@ DEPENDENCIES
   annotate
   awesome_print
   bootstrap-sass
+  bourbon
   byebug
   carrierwave
   clockwork

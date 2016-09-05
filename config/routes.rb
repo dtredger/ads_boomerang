@@ -10,11 +10,12 @@ Rails.application.routes.draw do
 	mount LetsencryptPlugin::Engine, at: '/'
   mount Payola::Engine => '/payola', as: :payola
 
-  devise_for :advertisers
 
   # authenticated :admin do
   #   root to: 'advertisers#index', as: :authenticated_admin
   # end
+
+	devise_for :advertisers, path: ""
 
   authenticated :advertiser do
     root to: 'advertisers#show', as: :authenticated_advertiser
@@ -28,7 +29,9 @@ Rails.application.routes.draw do
 
   end
 
-  # root to: 'pages#home' # set in initializers/high_voltage
+	get '/faq' => 'high_voltage/pages#show', id: 'faq'
+	get '/pricing' => 'high_voltage/pages#show', id: 'pricing', as: :pricing
 
+  # root to: 'pages#home' # set in initializers/high_voltage
   get '*path' => redirect('/')
 end

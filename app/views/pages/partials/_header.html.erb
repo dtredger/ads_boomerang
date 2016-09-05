@@ -1,12 +1,15 @@
+<!-- sign-in and register modals -->
+<%= render "pages/partials/forms" %>
+
 <header class="header">
   <div role="navigation" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <a href="#all" class="navbar-brand scroll-to">
+        <%= link_to root_path, class: "navbar-brand scroll-to" do %>
           <%= image_tag "pages/logo.png", alt: "logo", class: "hidden-xs hidden-sm" %>
           <%= image_tag "pages/logo-small.png", alt:"logo", class:"visible-xs visible-sm" %>
           <span class="sr-only">Go to homepage</span>
-        </a>
+        <% end %>
         <div class="navbar-buttons">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle navbar-btn">
             Menu<i class="pe-7s-menu"></i>
@@ -26,8 +29,8 @@
           Sign In
           <i class="glyphicon glyphicon-lock"></i>
         </a>
-        <a href="#" data-toggle="modal" data-target="#register" class="btn navbar-btn btn-primary">Start your free
-          Trial</a>
+        <%= link_to "Start your free Trial", pricing_path, class: "btn btn-primary" %>
+
       </div>
     </div>
   </div>
