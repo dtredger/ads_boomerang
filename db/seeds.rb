@@ -29,3 +29,7 @@ g = Payola::Sale.create(email:s.email,
                       currency:s.currency,
                       owner_type:s.owner.class,
                       coupon:Payola::Coupon.first_or_create)
+
+
+
+# {advertiser_id: 38522, campaign_name: "test campaign name", campaign_budget:  1000.00, daily_budget: 10.00, budget_type: "spend", start_date:  Time.now, end_date: (Time.now + 100000), notes: "test notes", active: true}
