@@ -58,4 +58,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   config.active_job.queue_adapter = :sidekiq
+
+  host = ENV.fetch('HOST', 'localhost')
+  port = ENV.fetch('PORT', '3000')
+  config.action_cable.allowed_request_origins = ["http://#{host}:#{port}", "https://#{host}:#{port}"]
+
 end

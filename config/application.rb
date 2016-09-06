@@ -29,6 +29,8 @@ module AdsDash
       g.view_specs false
       g.request_specs false
       g.routing_specs false
+
+      g.javascript_engine :js
     end
 
     # overridden in development and production
