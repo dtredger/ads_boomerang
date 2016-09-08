@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>AdsDash</title>
@@ -10,42 +10,24 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
   </head>
-
   <body>
+    <div class="wrapper">
+      <%= render "layouts/dashboard/sidebar" %>
 
-    <%= render partial: "layouts/alerts" %>
+      <div class="main-panel">
+        <%= render "layouts/dashboard/navbar" %>
 
-    <div class="nav navbar-nav">
-      <% if advertiser_signed_in? %>
-        <%= link_to('Logout', destroy_advertiser_session_path, :method => :delete) %>
-      <% else %>
-        <%= link_to('Login', new_advertiser_session_path)  %>
-      <% end %>
-      |
-      <% if advertiser_signed_in? %>
-        <%= link_to('Edit registration', edit_advertiser_registration_path) %>
-      <% else %>
-        <%= link_to('Register', new_advertiser_registration_path)  %>
-      <% end %>
-      |
-      <b class="text-center"><%= controller_name %>#<%= action_name %></b>
-      |
-      <% if advertiser_signed_in? %>
-        <%= link_to current_advertiser.email, edit_advertiser_registration_path %>
-      <% end %>
+        <%= yield %>
+
+        <%= render "layouts/dashboard/footer" %>
+
+        <% if Rails.env.development? %>
+          <%= console %>
+        <% end %>
+      </div>
     </div>
-
-
-   <div class="col-xs-12">
-     <div class="row">
-       <%= yield %>
-     </div>
-   </div>
-
-   <% if Rails.env.development? %>
-      <%= console %>
-   <% end %>
-
   </body>
 </html>

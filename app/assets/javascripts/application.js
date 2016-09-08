@@ -17,4 +17,14 @@
 //= require bootstrap-sprockets
 // Payola does not work with turbolinks - https://github.com/peterkeen/payola
 // require turbolinks
+// require_tree .
+//= require modernizr
+//= require bootstrap-checkbox-radio-switch
+//= require bootstrap-notify
+//= require bootstrap-select
+//= require chartist.min
+
+//= require dashboard/demo
+//= require dashboard/light-bootstrap-dashboard
+
 //= require_tree .

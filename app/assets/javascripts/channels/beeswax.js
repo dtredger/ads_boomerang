@@ -1,14 +1,36 @@
 App.beeswax = App.cable.subscriptions.create("BeeswaxChannel", {
   connected: function() {
-    $('#events').prepend("<h4>CONNECT</h4>")
+    //showNotification();
+    //$('#events').prepend("<h4>CONNECT</h4>")
+    showNotification("info", "Connected to AdsDash");
   },
 
   disconnected: function() {
-    $('#events').prepend("<h4>DISCONNECT</h4>")
+    showNotification("warning", "Disconnected from AdsDash");
   },
 
   received: function(data) {
     // Called when there's incoming data on the websocket for this channel
-    $('#events').prepend("<h4>"+ data.message + "</h4>")
+    showNotification("info", data.message);
   }
+
 });
+
+//var type = ['','info','success','warning','danger'];
+var showNotification = function(type, message){
+  $.notify({
+        icon: 'pe-7s-gift',
+        message: message
+      },{
+        type: type,
+        timer: 2000,
+        placement: { from: "top", align: "center" }
+      }
+  );
+};
+
+
+
+
+
+
