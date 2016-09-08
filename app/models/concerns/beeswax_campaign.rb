@@ -11,7 +11,7 @@ module BeeswaxCampaign
 
 	def authenticate_beeswax
 		Beeswax.api_user = ENV["BEESWAX_API_USER"]
-		Beeswax.api_password = ["BEESWAX_API_PASSWORD"]
+		Beeswax.api_password = ENV["BEESWAX_API_PASSWORD"]
 		Beeswax.authenticate
 	end
 
@@ -40,6 +40,7 @@ module BeeswaxCampaign
 				frequency_cap: frequency_cap,
 				notes: notes,
 				active: false )
+
 		if response[:id].present?
 			self.beeswax_id = response[:id]
 			true
@@ -50,11 +51,33 @@ module BeeswaxCampaign
 	end
 
 	def update_on_beeswax
-		byebug
+
 	end
 
 	def activate_campaign
+		response = Beeswax::Campaign.create(
+				advertiser_id: advertiser.beeswax_id,
+				active: true )
+		if response[:id].present?
+			self.beeswax_id = response[:id]
+			true
+		else
+			add_beeswax_error
+			false
+		end
+	end
 
+	def deactivate_campaign
+		response = Beeswax::Campaign.create(
+				advertiser_id: advertiser.beeswax_id,
+				active: false )
+		if response[:id].present?
+			self.beeswax_id = response[:id]
+			true
+		else
+			add_beeswax_error
+			false
+		end
 	end
 
 	def present_in_beeswax

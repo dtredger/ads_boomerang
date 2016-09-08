@@ -18,6 +18,7 @@
 #  pacing          :integer
 #  notes           :string
 #  active          :boolean
+#  beeswax_id      :integer
 #
 # Indexes
 #
@@ -28,6 +29,7 @@ class Campaign < ApplicationRecord
 	include BeeswaxCampaign
 
 	validates_presence_of :name
+	validates_uniqueness_of :name, scope: :advertiser_id
 
   belongs_to :advertiser
 	has_many :line_items
@@ -37,15 +39,17 @@ class Campaign < ApplicationRecord
 	# 		     impression: 1
 	#      }
 
-	INVENTORY_SOURCES = [
-			:appnexus,
-	    :adx,
-	    :openx,
-			:rubicon,
-	    :pulsepoint,
-	    :pubmatic,
-	    :rtkio
-	]
+	def inventory_sources
+		{
+				appnexus: 9,
+				adx: 0,
+				openx: 10,
+				rubicon: 6,
+				pulsepoint: 5,
+				pubmatic: 11,
+				rtkio: 13
+		}
+	end
 
 	after_create :build_line_items
 
@@ -65,6 +69,14 @@ class Campaign < ApplicationRecord
 		 }]
 	end
 
+	def campaign_budget
+		100.to_f
+	end
+
+	def daily_budget
+		1.to_f
+	end
+
 	def budget_type
 		0
 	end
@@ -78,11 +90,19 @@ class Campaign < ApplicationRecord
 		ENV.fetch("REVENUE_AMOUNT") { 5.00 }.to_f
 	end
 
+	def include_audience_segment
+		"stingersbx-4842"
+	end
+
+	def exclude_audience_segment
+		"stingersbx-4843"
+	end
+
 	private
 
 		def build_line_items
-			INVENTORY_SOURCES.each do |source|
-				self.line_items.create(inventory_source: source)
+			inventory_sources.each do |source_key, source_name|
+				self.line_items.create(name: "#{name}_#{source_name}",inventory_source: source_key)
 			end
 		end
 
