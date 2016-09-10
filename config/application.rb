@@ -23,7 +23,7 @@ module AdsDash
     # -- all .rb files in that directory are automatically loaded.
 
 	  config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
-	  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+	  config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
 
     config.generators do |g|
       g.view_specs false

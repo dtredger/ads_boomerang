@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     resource :advertiser, path: "account"
 
-    resources :subscription_plans, path: "subscriptions"
+    resource :subscription, only: [:new, :create]
 
     resources :campaigns
     resources :creatives
