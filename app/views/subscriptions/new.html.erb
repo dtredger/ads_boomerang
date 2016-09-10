@@ -1,0 +1,78 @@
+<%= render 'payola/transactions/stripe_header' %>
+
+
+<div class="card">
+  <div class="header">
+    <h4 class="title">Payment Details</h4>
+    <p class="category">Set your credit card details </p>
+  </div>
+  <div class="content">
+    <div class="row">
+      <%= form_tag('/subscription',
+                   class: 'payola-onestep-subscription-form',
+                   'data-payola-base-path' => '/payola',
+                   'data-payola-plan-type' => @plan.plan_class,
+                   'data-payola-plan-id' => @plan.id ) do |f| %>
+        <span class="payola-payment-error"></span>
+        <div class="col-sm-3">
+          <label for="">Email:</label>
+          <input class="form-control" type="email" name="stripeEmail"
+                 value="<%= current_advertiser.email %>" data-payola="email" disabled>
+
+          <label for="">Full Name:</label>
+          <input class="form-control" id="name" type="text" placeholder="Full Name">
+
+          <label for="">Card Number</label>
+          <input class="form-control" id="number" type="text" data-stripe="number" placeholder="**** **** **** ****">
+        </div>
+        <div class="col-sm-3">
+          <label for="">Card Expiry (MM/YYYY)</label>
+          <div class="row">
+            <div class="col-xs-4">
+              <input class="form-control" id="exp_month" type="text" data-stripe="exp_month" placeholder="**">
+            </div>
+            <div class="col-xs-8">
+              <input class="form-control" id="exp_year" type="text" data-stripe="exp_year" placeholder="****">
+            </div>
+          </div>
+
+          <label for="">CVC</label>
+          <input class="form-control" id="cvc" type="text" data-stripe="cvc" placeholder="***">
+          <button id="pay-subscription" class="btn btn-primary" type="submit">Activate Account</button>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card-wrapper"></div>
+        </div>
+      <% end %>
+    </div>
+    <div class="footer">
+      <hr>
+      <div class="stats">
+        <i class="fa fa-lock"></i>Payments handled securely via <a href="https://stripe.com/ca/features#seamless-security">Stripe</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script !src="">
+  $('.payola-onestep-subscription-form').card({
+    container: '.card-wrapper',
+    formSelectors: {
+      numberInput: 'input#number',
+      expiryInput: 'input#exp_month, input#exp_year',
+      cvcInput: 'input#cvc',
+      nameInput: 'input#name'
+    }
+  });
+</script>
+
+<style>
+  #pay-subscription {
+    margin: 18px 0;
+  }
+</style>

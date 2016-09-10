@@ -1,0 +1,24 @@
+<!-- render "layouts/dashboard/segments", campaign: @campaign  -->
+
+<div class="col-md-6">
+  <div class="card">
+    <div class="header">
+      <h4 class="title">Campaign Segments</h4>
+      <p class="category">HTML tags to create target audiences</p>
+    </div>
+    <div class="content">
+      <h4><b>Campaign: </b><%= campaign.name %></h4>
+      <label for="">Include Tag</label>
+      <%= text_area_tag "Include Tag",campaign.include_segment_tag, class: "form-control" %>
+      <label for="">Exclude Tag</label>
+      <%= text_area_tag "Exclude Tag",campaign.exclude_segment_tag, class: "form-control" %>
+
+      <div class="footer">
+        <hr>
+        <div class="stats">
+          <i class="fa fa-history"></i> Last updated <%= Time.now %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

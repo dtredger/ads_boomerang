@@ -20,7 +20,12 @@
       <div class="main-panel">
         <%= render "layouts/dashboard/navbar" %>
 
-        <%= yield %>
+        <div class="content">
+          <div class="container-fluid">
+            <%= yield %>
+          </div>
+        </div>
+
 
         <%= render "layouts/dashboard/footer" %>
 

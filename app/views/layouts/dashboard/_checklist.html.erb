@@ -1,0 +1,78 @@
+<!--%= render "layouts/dashboard/checklist", advertiser: @advertiser %>-->
+
+<div class="col-md-6">
+  <div class="card ">
+    <div class="header">
+      <h4 class="title">Onboarding Checklist</h4>
+      <p class="category">Tasks to get your account set up</p>
+    </div>
+    <div class="content">
+      <div class="table-full-width">
+        <table class="table">
+          <tbody>
+
+          <tr>
+            <td>
+              <label class="checkbox">
+                <input type="checkbox" value="" data-toggle="checkbox"
+                <% if advertiser.campaigns.any? %>
+                    checked
+                <% end %>
+                >
+              </label>
+            </td>
+            <td><%= link_to "Create a new campaign", new_campaign_path %></td>
+          </tr>
+
+          <tr>
+            <td>
+              <label class="checkbox">
+                <input type="checkbox" value="" data-toggle="checkbox"
+                <% if advertiser %>
+                <% else %>
+                <% end %>
+                >
+              </label>
+            </td>
+            <td>Place HTML tags on your site</td>
+          </tr>
+
+          <tr>
+            <td>
+              <label class="checkbox">
+                <input type="checkbox" value="" data-toggle="checkbox"
+                <% if advertiser %>
+                <% else %>
+                <% end %>
+                >
+              </label>
+            </td>
+            <td>Upload an ad to your dashboard</td>
+          </tr>
+
+          <tr>
+            <td>
+              <label class="checkbox">
+                <input type="checkbox" value="" data-toggle="checkbox"
+                <% if advertiser %>
+                <% else %>
+                <% end %>
+                >
+              </label>
+            </td>
+            <td>Set your payment details</td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footer">
+        <hr>
+        <div class="stats">
+          <i class="fa fa-history"></i> Updated at <%= Time.now.to_formatted_s(:long_ordinal) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
