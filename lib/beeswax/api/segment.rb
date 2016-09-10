@@ -13,4 +13,25 @@ class Beeswax::Segment
     response = Beeswax.request(:post, PATH, opts)
     return response[:payload]
   end
+
+  def self.get(opts={})
+		response = Beeswax.request(:get, PATH, opts)
+		return response[:payload]
+  end
+
+	# {
+	# 		"segment_id": 266,
+	# 		"segment_name": "VisualPing - default segment",
+	# 		"segment_description": "Default segment for VisualPing site visitors",
+	# 		"active": true,
+	# 		"alternative_id": "vp-default",
+	# 		"account_id": 75,
+	# 		"segment_count": 30363,
+	# 		"update_date": "2016-06-08 18:23:00",
+	# 		"create_date": "2016-06-08 17:08:50",
+	# 		"count_update_date": "2016-09-08 18:09:41",
+	# 		"advertiser_id": 440,
+	# 		"buzz_key": "stinger"
+	# }
 end
+
