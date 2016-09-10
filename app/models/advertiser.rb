@@ -34,7 +34,7 @@ class Advertiser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  include BeeswaxAdvertiser
+  include Beeswax::Advertisable
 
   has_many :campaigns
   has_many :creatives

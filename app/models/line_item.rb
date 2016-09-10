@@ -20,7 +20,7 @@
 #
 
 class LineItem < ApplicationRecord
-	include BeeswaxLineItem
+	include Beeswax::LineItemable
 
 	belongs_to :campaign
 

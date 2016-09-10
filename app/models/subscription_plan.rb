@@ -15,6 +15,7 @@ class SubscriptionPlan < ApplicationRecord
 	include Payola::Plan
 
 	def redirect_path(subscription)
+		Rails.logger.debug(subscription)
 		"/"
 	end
 

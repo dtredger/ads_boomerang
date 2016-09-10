@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907174131) do
+ActiveRecord::Schema.define(version: 20160908205832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 20160907174131) do
   end
 
   create_table "campaigns", force: :cascade do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "advertiser_id"
-    t.string   "name",            null: false
+    t.string   "name",               null: false
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "alternative_id"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20160907174131) do
     t.string   "notes"
     t.boolean  "active"
     t.integer  "beeswax_id"
+    t.integer  "include_segment_id"
+    t.integer  "exclude_segment_id"
     t.index ["advertiser_id"], name: "index_campaigns_on_advertiser_id", using: :btree
   end
 
