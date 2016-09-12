@@ -1,6 +1,8 @@
 Payola.configure do |config|
 	config.secret_key = ENV["STRIPE_SECRET_KEY"]
 	config.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
+
+	config.support_email = ENV["ADMIN_EMAIL"]
   # Example subscription:
   #
   # config.subscribe 'payola.package.sale.finished' do |sale|
@@ -27,6 +29,14 @@ Payola.configure do |config|
   # config.charge_verifier = lambda do |sale|
   #   raise "Nope!" if sale.email.includes?('yahoo.com')
   # end
+
+	# # --- event will be a Payola::Subscription
+	# config.charge_verifier = lambda do |event|
+	# 	true
+	# end
+	#
+	# config.subscribe 'invoice.payment_succeeded' do |event|
+	# end
 
   # Keep this subscription unless you want to disable refund handling
   config.subscribe 'charge.refunded' do |event|
@@ -61,10 +71,9 @@ Payola.configure do |config|
 	# 	sub.save!
 	# end
 
-	config.charge_verifier = lambda do |sale, custom|
-		Rails.logger.debug "--------------------------------------"
-		Rails.logger.debug sale
-		Rails.logger.debug custom
-		Rails.logger.debug "--------------------------------------"
-	end
+
 end
+
+# Not required if belongs_to is optional in application.rb
+# require 'extensions/payola/sale'
+# Payola::Sale.include(Extensions::Payola::Sale)

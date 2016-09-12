@@ -35,5 +35,11 @@ module AdsDash
 
     # overridden in development and production
     config.active_job.queue_adapter = :inline
+
+
+	  # Payola::Sales have belongs_to :coupon and :affiliate
+	  # http://blog.michelada.io/whats-new-in-rails-5
+	  config.active_record.belongs_to_required_by_default = false
+
   end
 end
