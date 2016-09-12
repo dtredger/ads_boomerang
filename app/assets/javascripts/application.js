@@ -20,6 +20,7 @@
 //= require bootstrap-select
 //= require chartist.min
 //= require jquery.card
+//= require clipboard
 
 //= require dashboard/demo
 //= require dashboard/light-bootstrap-dashboard
