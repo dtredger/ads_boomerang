@@ -6,12 +6,11 @@ Rails.application.routes.draw do
 		username == "cats" && password == "dogs"
 	end if Rails.env.production?
 	mount Sidekiq::Web => '/sidekiq'
-
 	mount LetsencryptPlugin::Engine, at: '/'
   mount Payola::Engine => '/payola', as: :payola
+	mount ActionCable.server => '/cable'
 
-
-  # authenticated :admin do
+	# authenticated :admin do
   #   root to: 'advertisers#index', as: :authenticated_admin
   # end
 
@@ -22,7 +21,7 @@ Rails.application.routes.draw do
 
     resource :advertiser, path: "account"
 
-    resources :subscription_plans, path: "subscriptions"
+    resource :subscription, only: [:new, :create]
 
     resources :campaigns
     resources :creatives

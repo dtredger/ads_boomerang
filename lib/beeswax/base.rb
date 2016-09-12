@@ -13,7 +13,8 @@ module Beeswax
     attr_writer   :environment
 
     def environment
-      @environment.to_sym == :live ? :live : :sandbox
+			:sandbox
+      # @environment.to_sym == :live ? :live : :sandbox
     end
 
     def host
@@ -152,5 +153,6 @@ require "beeswax/api/segment_tag"
 require "beeswax/api/targeting_template"
 require "beeswax/api/view"
 require "beeswax/constants/geo"
+require "beeswax/constants/iab_category"
 require "httparty"
 require "httmultiparty"

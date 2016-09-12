@@ -1,16 +1,14 @@
-<i>Campaigns/show</i>
-<br>
+<div class="col-md-6">
+  <div class="card">
+    <div class="header">
+      <h4 class="title"><%= @campaign.name %></h4>
+      <p class="category">All info about the campaign</p>
+      <%= link_to 'Edit', edit_campaign_path(@campaign) %>
+    </div>
+    <div class="content">
+      <%= @campaign.inspect %>
+    </div>
+  </div>
+</div>
 
-<h4><%= @campaign.name %></h4>
-<%= @campaign.inspect %>
-<hr>
-
-<h4>Line-Items</h4>
-<% @campaign.line_items.each do |line_item| %>
-  <%= line_item.inspect %>
-  <br>
-<% end %>
-<hr>
-
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %>
+<%= render "layouts/dashboard/segments", campaign: @campaign %>

@@ -24,15 +24,10 @@ $main-green: #6bb2b5;
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,400italic");
 
-// require "pe-icon-7-stroke"
-@import "pe-icon-7-stroke";
-//@import "../../../vendor/assets/stylesheets/pe-icon-7-stroke";
-// require "pe-icon-7-stroke";
-@import "../../../vendor/assets/stylesheets/owl.carousel";
-// require "/owl.carousel";
-@import "../../../vendor/assets/stylesheets/owl.theme";
-// require "/owl.theme";
-@import "../../../vendor/assets/stylesheets/simpletextrotator";
+@import "../../../vendor/assets/stylesheets/pe-icon-7-stroke";
+@import "../../../vendor/assets/stylesheets/owl.carousel.css";
+@import "../../../vendor/assets/stylesheets/owl.theme.css";
+@import "../../../vendor/assets/stylesheets/simpletextrotator.css";
 
 @import "pages/helper.css";
 @import "pages/header";

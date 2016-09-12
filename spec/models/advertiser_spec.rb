@@ -16,6 +16,11 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  subscription_plan_id   :integer
+#  alternative_id         :string
+#  conversion_method_id   :integer
+#  default_click_url      :string
+#  notes                  :string
+#  beeswax_id             :integer
 #
 # Indexes
 #

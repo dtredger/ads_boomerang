@@ -1,0 +1,20 @@
+<form>
+  <input id="number" type="text" name="number">
+  <input id="first-name" type="text" name="first-name"/>
+  <input id="last-name" type="text" name="last-name"/>
+  <input id="expiry" type="text" name="expiry"/>
+  <input id="cvc" type="text" name="cvc"/>
+</form>
+<div class="card-wrapper"></div>
+
+<script !src="">
+  $('form').card({
+    container: '.card-wrapper',
+    formSelectors: {
+      numberInput: 'input#number',
+      expiryInput: 'input#expiry',
+      cvcInput: 'input#cvc',
+      nameInput: 'input#first-name, input#last-name'
+    }
+  });
+</script>

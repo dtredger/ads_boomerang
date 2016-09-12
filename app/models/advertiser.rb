@@ -16,6 +16,11 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  subscription_plan_id   :integer
+#  alternative_id         :string
+#  conversion_method_id   :integer
+#  default_click_url      :string
+#  notes                  :string
+#  beeswax_id             :integer
 #
 # Indexes
 #
@@ -29,6 +34,8 @@ class Advertiser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  include Beeswax::Advertisable
+
   has_many :campaigns
   has_many :creatives
 
@@ -38,4 +45,17 @@ class Advertiser < ApplicationRecord
 	def send_devise_notification(notification, *args)
 		devise_mailer.send(notification, self, *args).deliver_later
 	end
+
+	def name
+		email
+	end
+
+	def default_click_url
+		website
+	end
+
+	def website
+		email.split("@")[1]
+	end
+
 end

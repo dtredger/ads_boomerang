@@ -1,52 +1,56 @@
 
-<div class="col-sm-8 col-sm-offset-2">
+<%= render "layouts/dashboard/subscription", subscription: @advertiser.subscription %>
 
-  <div class="text-center">
-    <h4>this is the advertisers/show page</h4>
-    <p>This should be the homepage for an advertiser (regular user)</p>
+<%= render "layouts/dashboard/checklist", advertiser: @advertiser %>
+
+
+<hr>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="header">
+        <h4 class="title">Email Statistics</h4>
+        <p class="category">Last Campaign Performance</p>
+      </div>
+      <div class="content">
+        <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+
+        <div class="footer">
+          <div class="legend">
+            <i class="fa fa-circle text-info"></i> Open
+            <i class="fa fa-circle text-danger"></i> Bounce
+            <i class="fa fa-circle text-warning"></i> Unsubscribe
+          </div>
+          <hr>
+          <div class="stats">
+            <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <hr>
-  <h4>Email:</h4><%= @advertiser.email %>
-  <h4>Signed up at:</h4><%= @advertiser.created_at %>
-  <hr>
-  <h4>Subscription</h4>
-  <% if @advertiser.subscription %>
-    <p>
-      <b>Plan Details</b>
-      <%= @advertiser.subscription.plan.inspect %>
-    </p>
-    <p>
-      <b>Subscription Details</b>
-      <%= @advertiser.subscription.inspect %>
-    </p>
-  <% else %>
-    <%= link_to "Create a subscription", subscription_plans_path %>
-  <% end %>
-  <hr>
-  <h4>Campaigns</h4>
-  <% if @advertiser.campaigns.any? %>
-    <% @advertiser.campaigns.each do |campaign| %>
-      <%= link_to campaign.name, campaign_path(campaign)  %>
-    <% end %>
-  <% else %>
-    <p>No Campaigns!</p>
-  <% end %>
-  <%= link_to "Create a new Campaign", new_campaign_path %>
-  <hr>
-
-  <h4>Creatives</h4>
-  <% if @advertiser.creatives.any? %>
-    <% @advertiser.creatives.each do |creative| %>
-      <%= link_to creative.name, creative_path(creative)  %>
-    <% end %>
-  <% else %>
-    <p>No Creatives!</p>
-  <% end %>
-  <%= link_to "Upload a new Creative", new_creative_path %>
-
-  <hr>
-  <%= link_to 'Edit', edit_advertiser_path %>
-
-
+  <div class="col-md-8">
+    <div class="card">
+      <div class="header">
+        <h4 class="title">Users Behavior</h4>
+        <p class="category">24 Hours performance</p>
+      </div>
+      <div class="content">
+        <div id="chartHours" class="ct-chart"></div>
+        <div class="footer">
+          <div class="legend">
+            <i class="fa fa-circle text-info"></i> Open
+            <i class="fa fa-circle text-danger"></i> Click
+            <i class="fa fa-circle text-warning"></i> Click Second Time
+          </div>
+          <hr>
+          <div class="stats">
+            <i class="fa fa-history"></i> Updated 3 minutes ago
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

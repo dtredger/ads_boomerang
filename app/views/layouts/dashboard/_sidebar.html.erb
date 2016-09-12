@@ -1,0 +1,31 @@
+<div class="sidebar" data-color="green" data-image="">
+  <div class="sidebar-wrapper">
+    <div class="logo">
+      <%= image_tag "pages/logo-small.png", class: "img-responsive" %>
+      <a href="http://www.creative-tim.com" class="simple-text">
+        AdsDash
+      </a>
+    </div>
+
+    <ul class="nav">
+      <li class="<%= 'active' if controller_name == 'advertisers' %>">
+        <%= link_to root_path do %>
+          <i class="pe-7s-graph"></i>
+          <p>Dashboard</p>
+        <% end %>
+      </li>
+      <li class="<%= 'active' if controller_name == 'campaigns' %>">
+        <%= link_to campaigns_path do %>
+          <i class="pe-7s-note2"></i>
+          <p>Campaigns</p>
+        <% end %>
+      </li>
+      <li class="<%= 'active' if controller_name == 'creatives' %>">
+        <%= link_to creatives_path do %>
+          <i class="pe-7s-news-paper"></i>
+          <p>Creatives</p>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
