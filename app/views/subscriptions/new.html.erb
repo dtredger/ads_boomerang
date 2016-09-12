@@ -13,17 +13,19 @@
                    'data-payola-base-path' => '/payola',
                    'data-payola-plan-type' => @plan.plan_class,
                    'data-payola-plan-id' => @plan.id ) do |f| %>
-        <span class="payola-payment-error"></span>
+        <span class="payola-payment-error text-warning"></span>
         <div class="col-sm-3">
           <label for="">Email:</label>
           <input class="form-control" type="email" name="stripeEmail"
                  value="<%= current_advertiser.email %>" data-payola="email" disabled>
 
+          <label for="">Card Number</label>
+          <input class="form-control" id="number" type="text" data-stripe="number" placeholder="**** **** **** ****">
+
           <label for="">Full Name:</label>
           <input class="form-control" id="name" type="text" placeholder="Full Name">
 
-          <label for="">Card Number</label>
-          <input class="form-control" id="number" type="text" data-stripe="number" placeholder="**** **** **** ****">
+
         </div>
         <div class="col-sm-3">
           <label for="">Card Expiry (MM/YYYY)</label>
@@ -74,5 +76,8 @@
 <style>
   #pay-subscription {
     margin: 18px 0;
+  }
+  .jp-card-number {
+    min-width: 275px;
   }
 </style>

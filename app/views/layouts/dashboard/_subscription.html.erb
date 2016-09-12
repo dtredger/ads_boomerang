@@ -13,7 +13,7 @@
           <p>Signed up on: <%= subscription.plan.created_at.to_date %></p>
           <p><%= subscription.plan.amount.to_money %> / <%= subscription.plan.interval %></p>
         <% else %>
-          <%= link_to "Create a subscription", subscription_plans_path %>
+          <%= link_to "Subscribe to a plan", new_subscription_path %>
         <% end %>
 
         <div class="footer">
@@ -26,30 +26,32 @@
     </div>
   </div>
 
-  <div class="col-md-6">
-    <div class="card">
-      <div class="header">
-        <h4 class="title">Payment Details</h4>
-        <p class="category">Details about your payment history</p>
-      </div>
-      <div class="content">
-        <p>Subscription Status: <%= subscription.state %></p>
+<% if subscription %>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Payment Details</h4>
+          <p class="category">Details about your payment history</p>
+        </div>
+        <div class="content">
+          <p>Subscription Status: <%= subscription.state %></p>
 
-        <p>Card: <%= subscription.card_type %> **** **** **** <%= subscription.card_last4 %></p>
+          <p>Card: <%= subscription.card_type %> **** **** **** <%= subscription.card_last4 %></p>
 
-        <h4>All Sales: </h4>
-        <% subscription.sales.each do |sale| %>
-          <%= sale.inspect %>
-          <hr>
-        <% end %>
+          <h4>All Sales: </h4>
+          <% subscription.sales.each do |sale| %>
+            <%= sale.inspect %>
+            <hr>
+          <% end %>
 
-        <div class="footer">
-          <hr>
-          <div class="stats">
-            <i class="fa fa-check"></i> Data up-to-date as of <%= Time.now.to_s %>
+          <div class="footer">
+            <hr>
+            <div class="stats">
+              <i class="fa fa-check"></i> Data up-to-date as of <%= Time.now.to_s %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
