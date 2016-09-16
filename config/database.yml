@@ -66,5 +66,5 @@ test:
 production:
   <<: *default
   database: dc5gl9hj5il79i
-  username: ryrmneduulcprg
+  username: <%= ENV['ADS_DASH_USERNAME'] %>
   password: <%= ENV['ADS_DASH_DATABASE_PASSWORD'] %>
