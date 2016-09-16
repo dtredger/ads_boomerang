@@ -1,7 +1,7 @@
 <!--%= render "layouts/dashboard/checklist", advertiser: @advertiser %>-->
 
 <div class="col-md-6">
-  <div class="card ">
+  <div class="card">
     <div class="header">
       <h4 class="title">Onboarding Checklist</h4>
       <p class="category">Tasks to get your account set up</p>
@@ -15,8 +15,21 @@
             <td>
               <label class="checkbox">
                 <input type="checkbox" value="" data-toggle="checkbox"
-                <% if advertiser.campaigns.any? %>
+                  <% if advertiser.confirmed? %>
                     checked
+                  <% end %>
+                >
+              </label>
+            </td>
+            <td>Confirm your Email</td>
+          </tr>
+
+          <tr>
+            <td>
+              <label class="checkbox">
+                <input type="checkbox" value="" data-toggle="checkbox"
+                <% if advertiser.campaigns.any? %>
+                  checked
                 <% end %>
                 >
               </label>

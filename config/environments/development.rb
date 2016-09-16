@@ -56,6 +56,15 @@ Rails.application.configure do
 
   # Devise asks for below
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+		  :authentication => :plain,
+		  :address => "smtp.mailgun.org",
+		  :port => 587,
+		  :domain => "sandboxfca99aa2850f4d908f3afa09ef6f3125.mailgun.org",
+		  :user_name => ENV["MAILGUN_LOGIN"],
+		  :password => ENV["MAILGUN_PASSWORD"]
+  }
 
   config.active_job.queue_adapter = :sidekiq
 

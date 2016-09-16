@@ -44,7 +44,6 @@ Payola.configure do |config|
     sale.refund!
   end
 
-	# --- This won't work because the subscription has to have the advertiser set to be saved at all ---
 	# config.subscribe('payola.subscription.active') do |sub|
 	# 	advertiser = Advertiser.find_by(email: sub.email)
 	#

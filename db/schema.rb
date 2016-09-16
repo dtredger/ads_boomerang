@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908205832) do
+ActiveRecord::Schema.define(version: 20160913234315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,10 @@ ActiveRecord::Schema.define(version: 20160908205832) do
     t.string   "default_click_url"
     t.string   "notes"
     t.integer  "beeswax_id"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.index ["confirmation_token"], name: "index_advertisers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_advertisers_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_advertisers_on_reset_password_token", unique: true, using: :btree
   end
@@ -74,6 +78,23 @@ ActiveRecord::Schema.define(version: 20160908205832) do
     t.integer  "width"
     t.integer  "height"
     t.index ["advertiser_id"], name: "index_creatives_on_advertiser_id", using: :btree
+  end
+
+  create_table "dripper_actions", force: :cascade do |t|
+    t.string   "mailer",     null: false
+    t.string   "action",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dripper_messages", force: :cascade do |t|
+    t.string   "drippable_type",    null: false
+    t.integer  "drippable_id",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "dripper_action_id"
+    t.index ["drippable_type", "drippable_id"], name: "index_dripper_messages_on_drippable_type_and_drippable_id", using: :btree
+    t.index ["dripper_action_id"], name: "index_dripper_messages_on_dripper_action_id", using: :btree
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -186,6 +207,7 @@ ActiveRecord::Schema.define(version: 20160908205832) do
     t.text     "customer_address"
     t.text     "business_address"
     t.integer  "setup_fee"
+    t.integer  "tax_percent"
     t.index ["guid"], name: "index_payola_subscriptions_on_guid", using: :btree
   end
 
@@ -198,4 +220,5 @@ ActiveRecord::Schema.define(version: 20160908205832) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "dripper_messages", "dripper_actions"
 end

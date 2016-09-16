@@ -60,4 +60,3 @@ module Beeswax
 
 	end
 end
-
