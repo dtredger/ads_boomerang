@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
-	mount LetsencryptPlugin::Engine, at: '/'
+	# mount LetsencryptPlugin::Engine, at: '/'
   mount ForestLiana::Engine => '/forest'
   mount Payola::Engine => '/payola', as: :payola
 	mount ActionCable.server => '/cable'
