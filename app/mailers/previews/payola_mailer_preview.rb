@@ -1,32 +1,48 @@
 class Payola::MailerPreview < ActionMailer::Preview
 
+	class Advertiser < Payola::MailerPreview
+		def receipt
+			mailer = Payola::ReceiptMailer
+			mailer.receipt(Payola::Sale.last.guid)
+		end
 
-	# won't work because wants a Payola::Sale (with a product)
-	def payola_receipt
-		mailer = Payola::ReceiptMailer.new
-		mailer.receipt(Payola::Sale.last.guid)
+		def refund
+			mailer = Payola::ReceiptMailer
+			mailer.refund(Payola::Sale.last.guid)
+		end
 	end
 
-	def payola_refund
-		mailer = Payola::ReceiptMailer.new
-		mailer.refund(Payola::Sale.last.guid)
-	end
 
-	def payola_admin_receipt
-		mailer = Payola::AdminMailer.new
-		mailer.receipt(Payola::Sale.last.guid)
+	class Admin < Payola::MailerPreview
+		def admin_receipt
+			mailer = Payola::AdminMailer
+			mailer.receipt(Payola::Sale.last.guid)
+		end
+
+		def admin_refund
+			mailer = Payola::AdminMailer
+			mailer.refund(Payola::Sale.last.guid)
+		end
+
+		def admin_dispute
+			mailer = Payola::AdminMailer
+			mailer.dispute(Payola::Sale.last.guid)
+		end
+
+		def admin_failure
+			mailer = Payola::AdminMailer
+			mailer.failure(Payola::Sale.last.guid)
+		end
 	end
 
 end
 
-
-# Payola::ReceiptMailer #', :receipt
-# Payola::ReceiptMailer #', :refund
-# Payola::AdminMailer #',   :receipt
-# Payola::AdminMailer #',   :dispute
-# Payola::AdminMailer #',   :refund
-# Payola::AdminMailer #',   :failure
-# ---
-# refund(sale_guid)
-# dispute(sale_guid)
-# failure(sale_guid)
+# --- from payola.rb ---
+# DEFAULT_EMAILS = {
+# 		receipt:       [ 'payola.sale.finished', 'Payola::ReceiptMailer', :receipt ],
+# 		refund:        [ 'charge.refunded',      'Payola::ReceiptMailer', :refund  ],
+# 		admin_receipt: [ 'payola.sale.finished', 'Payola::AdminMailer',   :receipt ],
+# 		admin_dispute: [ 'dispute.created',      'Payola::AdminMailer',   :dispute ],
+# 		admin_refund:  [ 'payola.sale.refunded', 'Payola::AdminMailer',   :refund  ],
+# 		admin_failure: [ 'payola.sale.failed',   'Payola::AdminMailer',   :failure ],
+# }

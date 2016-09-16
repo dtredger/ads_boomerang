@@ -2,13 +2,14 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
-	Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-		username == "cats" && password == "dogs"
-	end if Rails.env.production?
-	mount Sidekiq::Web => '/sidekiq'
-	mount LetsencryptPlugin::Engine, at: '/'
+	# mount LetsencryptPlugin::Engine, at: '/'
+  mount ForestLiana::Engine => '/forest'
   mount Payola::Engine => '/payola', as: :payola
 	mount ActionCable.server => '/cable'
+	Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+		username == ENV["SIDEKIQ_USERNAME"] && password == ENV["SIDEKIQ_PASSWORD"]
+	end if Rails.env.production?
+	mount Sidekiq::Web => '/sidekiq'
 
 	# authenticated :admin do
   #   root to: 'advertisers#index', as: :authenticated_admin

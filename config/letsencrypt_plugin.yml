@@ -3,7 +3,7 @@
 default: &default
   endpoint: 'https://acme-v01.api.letsencrypt.org/'
   email: <%= ENV['ADMIN_EMAIL'] %>
-  domain: 'cuddlefish.co'
+  domain: 'ads-dash.herokuapp.com'
 
   # in Rails.root, path to private key
   private_key: 'key/keyfile.pem'

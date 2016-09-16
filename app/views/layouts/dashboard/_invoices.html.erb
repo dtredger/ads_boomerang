@@ -1,0 +1,48 @@
+<!--%= render "layouts/dashboard/invoices", invoices: subscription.sales %>-->
+
+<% invoices.each do |invoice| %>
+  <div class="content">
+    <div class="table-full-width">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>guid </td>
+            <td><%= invoice.guid %></td>
+          </tr>
+          <tr>
+            <td>product_id </td>
+            <td><%= invoice.product_id %></td>
+          </tr>
+          <tr>
+            <td>product_type </td>
+            <td><%= invoice.product_type %></td>
+          </tr>
+          <tr>
+            <td>created_at</td>
+            <td><%= invoice.created_at.strftime('%b %d, %Y') %></td>
+          </tr>
+          <tr>
+            <td>stripe_id </td>
+            <td><%= invoice.stripe_id %></td>
+          </tr>
+          <tr>
+            <td>stripe_token </td>
+            <td><%= invoice.stripe_token %></td>
+          </tr>
+          <tr>
+            <td>card_last4 </td>
+            <td><%= invoice.card_last4 %></td>
+          </tr>
+          <tr>
+            <td>card_type </td>
+            <td><%= invoice.card_type %></td>
+          </tr>
+          <tr>
+            <td>amount </td>
+            <td><%= invoice.amount %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

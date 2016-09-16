@@ -21,18 +21,23 @@
 #  default_click_url      :string
 #  notes                  :string
 #  beeswax_id             :integer
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
 #
 # Indexes
 #
+#  index_advertisers_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_advertisers_on_email                 (email) UNIQUE
 #  index_advertisers_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class Advertiser < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   include Beeswax::Advertisable
 

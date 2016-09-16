@@ -15,6 +15,7 @@ gem 'bootstrap-sass'
 gem 'bourbon'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
+gem 'premailer-rails'
 
 gem 'carrierwave'
 # gem 'mercury-rails' TODO - rails generate mercury:install
@@ -28,6 +29,8 @@ gem 'sinatra', github: 'sinatra', require: false
 # gem 'rack-protection', github: 'sinatra/rack-protection', require: false
 gem 'sidekiq'
 gem 'clockwork'
+gem 'forest_liana'
+gem 'customerio'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

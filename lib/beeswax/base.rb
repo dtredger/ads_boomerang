@@ -10,11 +10,10 @@ module Beeswax
   class << self
     attr_accessor :api_user, :api_password, :api_host,
                   :authentication_cookie, :environment
-    attr_writer   :environment
+    attr_writer   :environment, :api_user, :api_password, :api_host
 
     def environment
-			:sandbox
-      # @environment.to_sym == :live ? :live : :sandbox
+	    @environment && @environment.to_sym == :live ? :live : :sandbox
     end
 
     def host

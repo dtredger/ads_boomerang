@@ -26,9 +26,9 @@ class SubscriptionPlan < ApplicationRecord
 	end
 
 
-	def redirect_path(subscription)
-		Rails.logger.debug(subscription.inspect)
-		"/"
+	def redirect_path(sale)
+		Rails.logger.debug(sale.inspect)
+		"/?yes=yup"
 	end
 
 	def active?
@@ -36,15 +36,3 @@ class SubscriptionPlan < ApplicationRecord
 	end
 
 end
-
-# --- Webhooks from Stripe ---
-# "type"=>"customer.source.created"
-# "type"=>"customer.created"
-# "type"=>"plan.deleted"
-# "type"=>"customer.created"
-# "type"=>"invoice.created"
-# "type"=>"customer.subscription.created"
-# "type"=>"customer.source.created"
-# "type"=>"charge.succeeded"
-# "type"=>"customer.updated"
-# "type"=>"invoice.payment_succeeded"

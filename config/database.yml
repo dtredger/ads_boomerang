@@ -65,6 +65,6 @@ test:
 #
 production:
   <<: *default
-  database: ads_dash_production
-  username: ads_dash
+  database: dc5gl9hj5il79i
+  username: <%= ENV['ADS_DASH_USERNAME'] %>
   password: <%= ENV['ADS_DASH_DATABASE_PASSWORD'] %>
