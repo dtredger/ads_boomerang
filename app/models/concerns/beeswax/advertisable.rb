@@ -11,8 +11,6 @@ module Beeswax
 		end
 
 		def authenticate_beeswax
-			Beeswax.api_user = ENV["BEESWAX_API_USER"]
-			Beeswax.api_password = ENV["BEESWAX_API_PASSWORD"]
 			Beeswax.authenticate
 		end
 

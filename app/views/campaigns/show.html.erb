@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-12">
   <div class="card">
     <div class="header">
       <h4 class="title"><%= @campaign.name %></h4>
@@ -6,9 +6,26 @@
       <%= link_to 'Edit', edit_campaign_path(@campaign) %>
     </div>
     <div class="content">
-      <%= @campaign.inspect %>
+
+      name: <%= @campaign.name %>
+      <br>
+      start_dat: <%= @campaign.start_date.to_formatted_s(:rfc822) %>
+      <br>
+      <% if @campaign.end_date %>
+        end_dat: <%= @campaign.end_date.to_formatted_s(:rfc822) %>
+      <% else %>
+        No End date Scheduled
+      <% end %>
+      <br>
+      <%= link_to 'Edit', edit_campaign_path(@campaign) %>
+      |
+      <%= link_to 'Destroy', @campaign, method: :delete, data: { confirm: 'Are you sure?' } %>
+
     </div>
   </div>
 </div>
 
 <%= render "layouts/dashboard/segments", campaign: @campaign %>
+
+
+

@@ -1,6 +1,6 @@
 <!-- render "layouts/dashboard/segments", campaign: @campaign  -->
 
-<div class="col-md-6">
+<div class="col-md-12">
   <div class="card">
     <div class="header">
       <h4 class="title">Campaign Segments</h4>
@@ -8,17 +8,37 @@
     </div>
     <div class="content">
       <h4><b>Campaign: </b><%= campaign.name %></h4>
-      <label for="">Include Tag</label>
-      <%= text_area_tag "Include Tag",campaign.include_segment_tag, class: "form-control" %>
-      <label for="">Exclude Tag</label>
-      <%= text_area_tag "Exclude Tag",campaign.exclude_segment_tag, class: "form-control" %>
+
+        <label for="">Include Tag</label>
+        <div class="input-group">
+          <%= text_field_tag "Include Tag",campaign.include_segment.segment_tag, class: "form-control", type:'text' %>
+          <span class="input-group-btn">
+            <button class="btn btn-default copy-button" type="button" data-clipboard-target="#Include_Tag"><i class="fa
+            fa-clipboard"></i>Copy</button>
+          </span>
+        </div>
+        <p>This campaign has an audience of <%= pluralize campaign.include_segment.segment_count, "person" %></p>
+
+        <label for="">Exclude Tag</label>
+        <div class="input-group">
+          <%= text_field_tag "Exclude Tag",campaign.exclude_segment.segment_tag, class: "form-control" %>
+          <span class="input-group-btn">
+            <button class="btn btn-default copy-button" type="button" data-clipboard-target="#Exclude_Tag"><i class="fa
+            fa-clipboard"></i>Copy</button>
+          </span>
+        </div>
+        <p>This campaign has an audience of <%= pluralize campaign.include_segment.segment_count, "person" %></p>
 
       <div class="footer">
         <hr>
         <div class="stats">
-          <i class="fa fa-history"></i> Last updated <%= Time.now %>
+          <i class="fa fa-history"></i> Last updated <%= campaign.include_segment.updated_at %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  new Clipboard(".copy-button");
+</script>
