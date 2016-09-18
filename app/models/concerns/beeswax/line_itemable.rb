@@ -11,8 +11,6 @@ module Beeswax
 		end
 
 		def authenticate_beeswax
-			Beeswax.api_user = ENV["BEESWAX_API_USER"]
-			Beeswax.api_password = ENV["BEESWAX_API_PASSWORD"]
 			Beeswax.authenticate
 		end
 
@@ -29,10 +27,13 @@ module Beeswax
 
 		def attach_targeting_template
 			# http://docs.beeswax.com/docs/list-of-targeting-modules-and-keys
+			include_seg = campaign.segments.where(audience: :include).first
+			exclude_seg = campaign.segments.where(audience: :exclude).first
+
 			targeting_object = {
 					segment: [
-							{ include: {segment: [campaign.include_segment_key]} },
-							{ exclude: {segment: [campaign.exclude_segment_key]} }
+							{ include: {segment: [include_seg.segment_key]} },
+							{ exclude: {segment: [exclude_seg.segment_key]} }
 					],
 					inventory: [
 							{ include: {inventory_source: [inventory_id]} }
