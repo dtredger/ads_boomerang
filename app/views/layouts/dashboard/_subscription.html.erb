@@ -8,7 +8,7 @@
       <p class="category">Details about your subscription</p>
     </div>
     <div class="content">
-      <% if subscription %>
+      <% if subscription && subscription.plan %>
         <h4><%= subscription.plan.name %></h4>
         <p>Signed up on: <%= subscription.plan.created_at.to_date %></p>
         <p><%= subscription.plan.amount.to_money %> / <%= subscription.plan.interval %></p>
