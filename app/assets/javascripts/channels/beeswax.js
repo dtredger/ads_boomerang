@@ -19,7 +19,7 @@ App.beeswax = App.cable.subscriptions.create("BeeswaxChannel", {
 //var type = ['','info','success','warning','danger'];
 var showNotification = function(type, message){
   $.notify({
-        icon: 'pe-7s-gift',
+        icon: 'pe-7s-speaker',
         message: message
       },{
         type: type,

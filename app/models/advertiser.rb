@@ -42,7 +42,7 @@ class Advertiser < ApplicationRecord
   include Beeswax::Advertisable
 
   has_many :campaigns
-  has_many :creatives
+  has_many :creative_assets
 
 	has_one :subscription, class_name: "Payola::Subscription", foreign_key: "owner_id"
 
@@ -56,11 +56,26 @@ class Advertiser < ApplicationRecord
 	end
 
 	def default_click_url
-		website
+		"#{protocol}://#{website}"
 	end
+
+  def protocol
+	  "http"
+  end
+
+  def domain
+		website
+  end
 
 	def website
 		email.split("@")[1]
+	end
+
+	def beeswax_attributes
+		{ advertiser: {
+				advertiser_domain: ["http://www.adlinks.co"],
+				advertiser_category: ["IAB24"] }
+		}
 	end
 
 end

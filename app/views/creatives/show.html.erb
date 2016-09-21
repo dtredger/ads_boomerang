@@ -1,11 +1,32 @@
-<div class="col-sm-8 col-sm-offset-2">
-  <h4><%= @creative.name %></h4>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
 
-  <%= @creative.inspect %>
+        <div class="card">
+          <div class="header">
+            <h4 class="title"><%= @creative.name %></h4>
+            <p class="category"></p>
+          </div>
+          <div class="content row">
+            <div class="col-sm-6">
+              <h4></h4>
 
-  <%= image_tag @creative.creative_asset.url, class: "image-responsive" %>
-  <hr>
-  <%= link_to 'Edit', edit_creative_path(@creative) %> |
-  <%= link_to 'Back', creatives_path %>
+              <%= @creative.inspect %>
 
+              <hr>
+              <%= link_to 'Edit', edit_creative_path(@creative) %> |
+              <%= link_to 'Back', creatives_path %>
+
+            </div>
+            <div class="col-sm-6">
+              <%= image_tag @creative.creative_asset.url, class: "image-responsive" %>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>

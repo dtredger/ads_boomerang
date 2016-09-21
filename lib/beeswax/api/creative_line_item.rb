@@ -16,3 +16,4 @@ class Beeswax::CreativeLineItem
     return response[:payload]
   end
 end
+

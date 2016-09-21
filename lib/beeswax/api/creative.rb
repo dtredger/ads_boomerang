@@ -3,6 +3,13 @@
 class Beeswax::Creative
   PATH = '/rest/creative'
 
+	# @param creative_id [Integer] Required. Must belong to the same account as the Advertiser and be active
+  def self.get(creative_id)
+	  raise BeeswaxError, "#{self.to_s}.get -> :creative_id required" unless creative_id.is_a?(Integer)
+	  response = Beeswax.request(:get, "#{PATH}/#{creative_id}")
+	  return response[:payload]
+  end
+
   # @param advertiser_id [Integer] Required. Must belong to the same account as the Advertiser and be active
   # @param alternative_id [String] An alternative id to lookup the Creative, if desired
   # @param creative_name [String] Required. Name of the Creative, e.g. "Blue Banner Ad"

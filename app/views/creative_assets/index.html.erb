@@ -1,0 +1,48 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Ad Library</h4>
+            <p class="category">All the ads (creatives) you have uploaded to any campaign</p>
+          </div>
+          <div class="content table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+              <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Created At</th>
+                <th>Size (width x height)</th>
+                <th>Campaigns</th>
+                <th></th>
+              </thead>
+              <tbody>
+              <% @creative_assets.each do |asset| %>
+                <tr>
+                  <td><%= asset.id %></td>
+                  <td><%= link_to asset.name, asset %></td>
+                  <td><%= asset.created_at.to_formatted_s(:long) %></td>
+                  <td><%= asset.width %>x<%= asset.height %></td>
+                  <td>
+                    <% asset.creatives.each do |creative| %>
+                      <%= link_to creative.campaign.name, creative.campaign %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to 'Edit', edit_creative_asset_path(asset) %>
+                    |
+                    <%= link_to 'Delete', asset, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

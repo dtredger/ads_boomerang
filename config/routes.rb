@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     resource :subscription, only: [:new, :create]
 
     resources :campaigns
-    resources :creatives
+
+    resources :creative_assets, path: "ad_library"
 
   end
 

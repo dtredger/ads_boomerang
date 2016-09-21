@@ -10,20 +10,20 @@
     <ul class="nav">
       <li class="<%= 'active' if controller_name == 'advertisers' %>">
         <%= link_to root_path do %>
-          <i class="pe-7s-graph"></i>
+          <i class="pe-7s-note2"></i>
           <p>Dashboard</p>
         <% end %>
       </li>
       <li class="<%= 'active' if controller_name == 'campaigns' %>">
         <%= link_to campaigns_path do %>
-          <i class="pe-7s-note2"></i>
+          <i class="pe-7s-rocket"></i>
           <p>Campaigns</p>
         <% end %>
       </li>
       <li class="<%= 'active' if controller_name == 'creatives' %>">
-        <%= link_to creatives_path do %>
-          <i class="pe-7s-news-paper"></i>
-          <p>Creatives</p>
+        <%= link_to creative_assets_path do %>
+          <i class="pe-7s-albums"></i>
+          <p>Ad Library</p>
         <% end %>
       </li>
     </ul>

@@ -2,25 +2,38 @@
 #
 # Table name: creatives
 #
-#  id             :integer          not null, primary key
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  advertiser_id  :integer
-#  name           :string           not null
-#  creative_asset :string
-#  width          :integer
-#  height         :integer
+#  id                    :integer          not null, primary key
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  name                  :string           not null
+#  width                 :integer
+#  height                :integer
+#  beeswax_creative_id   :integer
+#  beeswax_preview_url   :string
+#  beeswax_preview_token :string
+#  creative_asset_id     :integer
+#  campaign_id           :integer
 #
 # Indexes
 #
-#  index_creatives_on_advertiser_id  (advertiser_id)
+#  index_creatives_on_campaign_id  (campaign_id)
 #
 
 FactoryGirl.define do
   factory :creative do
-    sequence(:name) { |x| "creative_#{x}" }
-    creative_asset { Rack::Test::UploadedFile.new(File.join(Rails.root, "spec/support/level_end_300x250.jpg")) }
+	  campaign
+	  creative_asset
 
-    advertiser
+    sequence(:name) { |x| "creative_#{x}" }
+
+	  factory :creative_728x90 do
+		  sequence(:name) { |x| "728x90_creative_#{x}" }
+		  creative_asset
+	  end
+
+    factory :creative_160x600 do
+	    sequence(:name) { |x| "160x600_creative_#{x}" }
+	    creative_asset
+    end
   end
 end

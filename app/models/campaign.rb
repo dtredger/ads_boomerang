@@ -48,20 +48,6 @@ class Campaign < ApplicationRecord
 	# 		     impression: 1
 	#      }
 
-	def inventory_sources
-		{
-				appnexus: 9,
-				adx: 0,
-				openx: 10,
-				rubicon: 6,
-				pulsepoint: 5,
-				pubmatic: 11,
-				rtkio: 13
-		}
-	end
-
-
-
 
 	# TODO - alternative_id, frequency_cap, budget_type, revenue_type, pacing
 	# 3600=hr, 86400=day, 604800=week
@@ -100,13 +86,17 @@ class Campaign < ApplicationRecord
 		ENV.fetch("REVENUE_AMOUNT") { 5.00 }.to_f
 	end
 
+	def click_url
+		# TODO - allow individual creatives to have click_url?
+
+	end
 
 
 	private
 
 		def create_campaign_line_items
-			inventory_sources.each do |source_key, source_name|
-				self.line_items.create(name: "#{name}_#{source_name}",inventory_source: source_key)
+			LineItem.inventory_source.each do |source_name, source_id|
+				self.line_items.create(name: "#{name}_#{source_name}",inventory_source: source_id)
 			end
 		end
 

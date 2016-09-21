@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917225501) do
+ActiveRecord::Schema.define(version: 20160921052841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,37 +62,34 @@ ActiveRecord::Schema.define(version: 20160917225501) do
     t.index ["advertiser_id"], name: "index_campaigns_on_advertiser_id", using: :btree
   end
 
-  create_table "creative_line_item_assignments", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "creative_assets", force: :cascade do |t|
+    t.integer  "advertiser_id"
+    t.string   "name"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "mounted_asset"
+    t.integer  "beeswax_asset_id"
+    t.string   "beeswax_alternative_id"
+    t.string   "notes"
+    t.boolean  "active"
+    t.integer  "size_bytes"
+    t.string   "beeswax_asset_path"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "creatives", force: :cascade do |t|
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "advertiser_id"
-    t.string   "name",           null: false
-    t.string   "creative_asset"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "name",                  null: false
     t.integer  "width"
     t.integer  "height"
-    t.index ["advertiser_id"], name: "index_creatives_on_advertiser_id", using: :btree
-  end
-
-  create_table "dripper_actions", force: :cascade do |t|
-    t.string   "mailer",     null: false
-    t.string   "action",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "dripper_messages", force: :cascade do |t|
-    t.string   "drippable_type",    null: false
-    t.integer  "drippable_id",      null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "dripper_action_id"
-    t.index ["drippable_type", "drippable_id"], name: "index_dripper_messages_on_drippable_type_and_drippable_id", using: :btree
-    t.index ["dripper_action_id"], name: "index_dripper_messages_on_dripper_action_id", using: :btree
+    t.integer  "beeswax_creative_id"
+    t.string   "beeswax_preview_url"
+    t.string   "beeswax_preview_token"
+    t.integer  "creative_asset_id"
+    t.integer  "campaign_id"
+    t.index ["campaign_id"], name: "index_creatives_on_campaign_id", using: :btree
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -230,5 +227,4 @@ ActiveRecord::Schema.define(version: 20160917225501) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "dripper_messages", "dripper_actions"
 end

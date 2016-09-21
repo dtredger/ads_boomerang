@@ -1,0 +1,17 @@
+<%= form_for(creative_asset) do |f| %>
+  <% if creative_asset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(creative_asset.errors.count, "error") %> prohibited this creative_asset from being saved:</h2>
+
+      <ul>
+      <% creative_asset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -56,6 +56,7 @@ class CreativeAssetUploader < CarrierWave::Uploader::Base
 
   def store_dimensions
     if file && model
+			model.name = file.filename
       model.width, model.height = `identify -format "%wx%h" #{file.path}`.split(/x/)
     end
   end
