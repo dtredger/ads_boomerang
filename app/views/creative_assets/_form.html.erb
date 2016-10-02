@@ -1,17 +1,53 @@
-<%= form_for(creative_asset) do |f| %>
-  <% if creative_asset.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(creative_asset.errors.count, "error") %> prohibited this creative_asset from being saved:</h2>
+<!--%= render "creative_assets/form", creative_asset: CreativeAsset.new, campaign: @campaign %>-->
 
-      <ul>
-      <% creative_asset.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+<%= form_tag "/ad_library", method: :post, class: 'dropzone form', id: 'media-dropzone' do %>
+  <div class="fallback">
+    <%= file_field_tag "mounted_asset", multiple: true %>
   </div>
+
+  <%= hidden_field_tag "creative_asset[campaign_id]", campaign.id %>
+
 <% end %>
+
+
+<script !src="">
+  $(function() {
+    Dropzone.autoDiscover = false;
+
+    $("#media-dropzone").dropzone({
+      maxFilesize: 1,
+      autoQueue: true,
+      addRemoveLinks: false,
+      paramName: "creative_asset[mounted_asset]",
+      acceptedFiles: "image/*, .jpg, .jpeg, .png",
+      thumbnailWidth: null,
+      thumbnailHeight: null,
+      init: function() {
+        this.on("thumbnail", function(file, dataUrl) {
+          $('.dz-image').last().find('img').attr({width: "100%", height: "100%"});
+        }),
+        this.on("success", function(file) {
+          $('.dz-image').css({"width":"100%", "height":"auto"});
+        })
+      },
+      error: function (file, message, xhr) {
+
+      },
+      sending: function (file, xhr, formdata) {
+
+      },
+      success: function (file, response) {
+
+      }
+      //addedfile: function(file) {
+      //  // Hookup the start button
+      //  $(".upload-ads-button").onclick = function () {
+      //    creativeAssetDropzone.enqueueFile(file);
+      //  }
+      //}
+      //removedfile: function(file) {
+      //  debugger;
+      //}
+    });
+  });
+</script>
