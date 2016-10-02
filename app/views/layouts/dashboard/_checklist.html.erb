@@ -1,6 +1,6 @@
 <!--%= render "layouts/dashboard/checklist", advertiser: @advertiser %>-->
 
-<div class="col-md-6">
+<div class="col-md-12">
   <div class="card">
     <div class="header">
       <h4 class="title">Onboarding Checklist</h4>
@@ -11,70 +11,73 @@
         <table class="table">
           <tbody>
 
-          <tr>
-            <td>
-              <label class="checkbox">
-                <input type="checkbox" value="" data-toggle="checkbox"
-                  <% if advertiser.confirmed? %>
-                    checked
-                  <% end %>
-                >
-              </label>
-            </td>
-            <td>Confirm your Email</td>
-          </tr>
+            <% if advertiser.confirmed? %>
+              <tr class="checklist-complete">
+                <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                <td>Email Confirmed</td>
+              </tr>
+            <% else %>
+              <tr>
+                <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
+                <td><%= link_to "Resend Confirmation Email", new_advertiser_confirmation_path %></td>
+              </tr>
+            <% end %>
 
-          <tr>
-            <td>
-              <label class="checkbox">
-                <input type="checkbox" value="" data-toggle="checkbox"
+            <% if advertiser.campaigns.any? %>
+              <tr class="checklist-complete">
+                <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                <td>First Campaign Created</td>
+              </tr>
+            <% else %>
+              <tr>
+                <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
+                <td><%= link_to "Create your first campaign", new_campaign_path %></td>
+              </tr>
+            <% end %>
+
+            <% if advertiser.total_audience > 10 %>
+              <tr class="checklist-complete">
+                <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                <td>Audience Tag Activated</td>
+              </tr>
+            <% else %>
+              <tr>
+                <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
                 <% if advertiser.campaigns.any? %>
-                  checked
-                <% end %>
-                >
-              </label>
-            </td>
-            <td><%= link_to "Create a new campaign", new_campaign_path %></td>
-          </tr>
-
-          <tr>
-            <td>
-              <label class="checkbox">
-                <input type="checkbox" value="" data-toggle="checkbox"
-                <% if advertiser %>
+                  <td><%= link_to "Place your Audience Tags on your site", campaign_path(advertiser.campaigns.last) %></td>
                 <% else %>
-                <% end %>
-                >
-              </label>
-            </td>
-            <td>Place HTML tags on your site</td>
-          </tr>
+                  <td><%= link_to "Create a campaign to generate Audience Tags", new_campaign_path %></td>
+                <% end  %>
+              </tr>
+            <% end %>
 
-          <tr>
-            <td>
-              <label class="checkbox">
-                <input type="checkbox" value="" data-toggle="checkbox"
-                <% if advertiser %>
+            <% if advertiser.creatives.any? %>
+              <tr class="checklist-complete">
+                <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                <td>Creatives Uploaded</td>
+              </tr>
+            <% else %>
+              <tr>
+                <td><label class="checkbox"> <i class="fa fa-square-o"></i></label></td>
+                <% if advertiser.campaigns.any? %>
+                  <td><%= link_to "Upload Creatives to your Campaign", campaign_path(advertiser.campaigns.last) %></td>
                 <% else %>
-                <% end %>
-                >
-              </label>
-            </td>
-            <td>Upload an ad to your dashboard</td>
-          </tr>
+                  <td><%= link_to "Create a Campaign to upload Creatives", new_campaign_path %></td>
+                <% end  %>
+              </tr>
+            <% end %>
 
-          <tr>
-            <td>
-              <label class="checkbox">
-                <input type="checkbox" value="" data-toggle="checkbox"
-                <% if advertiser %>
-                <% else %>
-                <% end %>
-                >
-              </label>
-            </td>
-            <td>Set your payment details</td>
-          </tr>
+            <% if advertiser.subscription && advertiser.subscription.active? %>
+              <tr class="checklist-complete">
+                <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                <td>Subscription Activated</td>
+              </tr>
+            <% else %>
+              <tr>
+                <td><label class="checkbox"> <i class="fa fa-square-o"></i></label></td>
+                <td><%= link_to "Activate your Subscription", new_subscription_path %></td>
+              </tr>
+            <% end %>
 
           </tbody>
         </table>

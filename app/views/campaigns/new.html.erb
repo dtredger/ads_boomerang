@@ -1,5 +1,19 @@
-<h1>New Campaign</h1>
 
-<%= render 'form', campaign: @campaign %>
+<div class="col-md-6">
+  <div class="card">
+    <div class="header">
+      <h4 class="title">Create your Campaign</h4>
+      <p class="category">All we need to start is a name</p>
+    </div>
+    <div class="content">
+      <%= render 'form', campaign: @campaign %>
 
-<%= link_to 'Back', campaigns_path %>
+      <div class="footer">
+        <hr>
+        <div class="stats">
+          <!--<i class="fa fa-check"></i> Data up-to-date as of-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

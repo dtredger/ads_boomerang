@@ -1,4 +1,4 @@
-<%= form_for(creative) do |f| %>
+<%= form_for creative, url: campaign_creatives_path(campaign_id: campaign.id), class: "dropzone", id: "media-dropzone" do |f| %>
   <% if creative.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(creative.errors.count, "error") %> prohibited this creative from being saved:</h2>
@@ -20,8 +20,10 @@
 		<%= f.file_field :creative_asset %>
 	</div>
 
-
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Creative", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+

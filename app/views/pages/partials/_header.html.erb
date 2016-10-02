@@ -23,15 +23,23 @@
           <!--<li><a href="#integrations" class="scroll-to">Integrations</a></li>-->
           <li><a href="#testimonials" class="scroll-to">Testimonials</a></li>
           <li><a href="#contact" class="scroll-to">Contact</a></li>
+          <li>
+            <a href="#" data-toggle="modal" data-target="#sign-in" class="">
+              Sign In <i class="glyphicon glyphicon-lock"></i>
+            </a>
+          </li>
         </ul>
 
-        <a href="#" data-toggle="modal" data-target="#sign-in" class="btn navbar-btn btn-ghost">
-          Sign In
-          <i class="glyphicon glyphicon-lock"></i>
-        </a>
-        <%= link_to "Start your free Trial", pricing_path, class: "btn btn-primary" %>
+        <%= link_to "Start your Free Trial", pricing_path, class: "btn btn-primary topright-button" %>
 
       </div>
     </div>
   </div>
 </header>
+
+<style>
+  .topright-button {
+    margin-top: 20px;
+    margin-right: 0;
+  }
+</style>

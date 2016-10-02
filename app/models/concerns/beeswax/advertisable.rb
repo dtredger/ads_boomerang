@@ -28,6 +28,7 @@ module Beeswax
 			response = Beeswax::Advertiser.create(
 					alternative_id: website[0..19],
 					advertiser_name: name,
+					attributes: beeswax_attributes,
 					default_click_url: default_click_url,
 					notes: notes )
 			if response[:id].present?

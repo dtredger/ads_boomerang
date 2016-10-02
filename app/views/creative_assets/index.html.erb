@@ -1,0 +1,52 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Ad Library</h4>
+            <p class="category">All the ads (creatives) you have uploaded to any campaign</p>
+          </div>
+          <div class="content table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+              <thead>
+                <th></th>
+                <th>Name</th>
+                <th>Created At</th>
+                <th>Size (width x height)</th>
+                <th>Campaigns</th>
+                <th></th>
+              </thead>
+              <tbody>
+              <% @creative_assets.each do |asset| %>
+                <tr>
+                  <td>
+                    <%= link_to asset do %>
+                      <%= image_tag asset.mounted_asset.url,
+                                    class: "image-responsive",
+                                    style: "max-width:#{asset.width / 3}px" %>
+                    <% end %>
+                  </td>
+                  <td><%= link_to asset.name, asset %></td>
+                  <td><%= asset.created_at.to_formatted_s(:long) %></td>
+                  <td><%= asset.width %>x<%= asset.height %></td>
+                  <td>
+                    <% asset.creatives.each do |creative| %>
+                      <%= link_to creative.campaign.name, creative.campaign %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to 'Delete', asset, method: :delete, data: { confirm: 'Are you sure? This will remove this Ad from all attached campaigns' } %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

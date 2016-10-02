@@ -1,5 +1,5 @@
 
-$main-green: #6bb2b5;
+$main-green: #a9c056;
 
 html {
   height: 100%;
@@ -14,8 +14,8 @@ header {
 }
 section {
   position: relative;
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 section.background-gray-lighter {
   background: #cdcdcd;
@@ -331,7 +331,7 @@ SERVICES / INTEGRATIONS
 
 */
 .services {
-  margin-top: 80px;
+  //margin-top: 80px;
   text-align: center;
 }
 .services .services-heading {

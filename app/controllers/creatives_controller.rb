@@ -9,22 +9,22 @@ class CreativesController < ApplicationController
   def show
   end
 
-  def new
-    @creative = Creative.new
-  end
+  # def new
+  #   @creative = Creative.new
+  # end
 
   def edit
   end
 
-  def create
-    @creative = Creative.new(creative_params)
-    @creative.advertiser = current_advertiser
-    if @creative.save
-      redirect_to @creative, notice: 'Creative was successfully created.'
-    else
-      render :new
-    end
-  end
+  # def create
+  #   @creative = Creative.new(creative_params)
+  #   @creative.advertiser = current_advertiser
+  #   if @creative.save
+  #     redirect_to @creative, notice: 'Creative was successfully created.'
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def update
     if @creative.update(creative_params)
@@ -36,14 +36,15 @@ class CreativesController < ApplicationController
 
   def destroy
     @creative.destroy
-    redirect_to creatives_url, notice: 'Creative was successfully destroyed.'
+    respond_to do |format|
+	    format.html { redirect_to :back }
+	    format.js { render layout: false }
+    end
   end
 
   private
     def set_creative
       @creative = current_advertiser.creatives.find_by_id(params[:id])
-			redirect_to creatives_url unless @creative
-			@creative
     end
 
     def creative_params

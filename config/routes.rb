@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 	# mount LetsencryptPlugin::Engine, at: '/'
   mount ForestLiana::Engine => '/forest'
   mount Payola::Engine => '/payola', as: :payola
-	mount ActionCable.server => '/cable'
+	# mount ActionCable.server => '/cable'
 	Sidekiq::Web.use Rack::Auth::Basic do |username, password|
 		username == ENV["SIDEKIQ_USERNAME"] && password == ENV["SIDEKIQ_PASSWORD"]
 	end if Rails.env.production?
@@ -15,17 +15,17 @@ Rails.application.routes.draw do
   #   root to: 'advertisers#index', as: :authenticated_admin
   # end
 
-	devise_for :advertisers, path: ""
+	devise_for :advertisers, path: "", controllers: { registrations: "registrations" }
 
   authenticated :advertiser do
     root to: 'advertisers#show', as: :authenticated_advertiser
 
     resource :advertiser, path: "account"
-
     resource :subscription, only: [:new, :create]
-
-    resources :campaigns
-    resources :creatives
+    resources :campaigns do
+	    resources :creatives
+    end
+    resources :creative_assets, path: "ad_library"
 
   end
 

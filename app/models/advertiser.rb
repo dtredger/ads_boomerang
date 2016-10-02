@@ -33,19 +33,25 @@
 #
 
 class Advertiser < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
+	include Beeswax::Advertisable
+
+	has_paper_trail
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  include Beeswax::Advertisable
-
   has_many :campaigns
-  has_many :creatives
-
+  has_many :segments, through: :campaigns
+  has_many :creative_assets
+  has_many :creatives, through: :creative_assets
 	has_one :subscription, class_name: "Payola::Subscription", foreign_key: "owner_id"
+  has_many :sales, through: :subscription, class_name: "Payola::Sale"
 
+	validates_presence_of :email
+
+  def total_audience
+		segments.where(audience: "include").sum(:segment_count)
+  end
 
 	def send_devise_notification(notification, *args)
 		devise_mailer.send(notification, self, *args).deliver_later
@@ -56,11 +62,26 @@ class Advertiser < ApplicationRecord
 	end
 
 	def default_click_url
-		website
+		"#{protocol}://#{website}"
 	end
+
+  def protocol
+	  "http"
+  end
+
+  def domain
+		website
+  end
 
 	def website
 		email.split("@")[1]
+	end
+
+	def beeswax_attributes
+		{ advertiser: {
+				advertiser_domain: ["http://www.adlinks.co"],
+				advertiser_category: ["IAB24"] }
+		}
 	end
 
 end

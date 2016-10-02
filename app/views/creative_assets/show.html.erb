@@ -1,0 +1,46 @@
+<div class="col-md-12">
+  <div class="card">
+    <div class="header">
+      <h4 class="title"><%= @creative_asset.name %></h4>
+      <p class="category">All info about this Ad, including which Campaigns it has been attached to.</p>
+      <%= link_to 'Delete from library', @campaign, method: :delete, data: { confirm: 'Are you sure? This will remove this creative from all your campaigns' } %>
+      <hr>
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= image_tag @creative_asset.mounted_asset.url,
+                        class: "image-responsive",
+                        style: "max-width:#{@creative_asset.width / 2}px" %>
+        </div>
+        <div class="col-sm-6">
+          <h4>
+            <b>Dimensions: </b>
+            <%= @creative_asset.width %>x<%= @creative_asset.height %>
+          </h4>
+
+          <% if @creative_asset.campaigns.any? %>
+            <b>Attached to these campaigns:</b>
+            <ul>
+              <% @creative_asset.campaigns.each do |campaign| %>
+                <li><%= link_to campaign.name, campaign %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <b>Not attached to any Campaigns</b>
+          <% end %>
+
+        </div>
+
+      </div>
+
+      <div class="footer">
+        <hr>
+        <div class="stats">
+          <i class="fa fa-history"></i> Last updated <%= @creative_asset.updated_at %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

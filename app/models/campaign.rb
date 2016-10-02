@@ -29,38 +29,32 @@ class Campaign < ApplicationRecord
 	include Beeswax::Campaignable
 	include Beeswax::Segmentable
 
-	validates_presence_of :advertiser
-	validates_presence_of :name
+	has_paper_trail
+
+	validates_presence_of :advertiser,
+	                      :name,
+	                      :start_date
 	validates_uniqueness_of :name, scope: :advertiser_id
 
   belongs_to :advertiser
+	has_many :creatives
 	has_many :line_items
 	has_many :segments
 	has_one :include_segment, -> { where audience: 'include' }, class_name: Segment
 	has_one :exclude_segment, -> { where audience: 'exclude' }, class_name: Segment
 
+	before_validation :set_campaign_start_date
+
 	after_create :sync_with_beeswax
 	after_create :create_campaign_segments
 	after_create :create_campaign_line_items
+
+	default_scope { order('created_at DESC') }
 
 	# enum budget_type: {
 	# 		     spend: 0,
 	# 		     impression: 1
 	#      }
-
-	def inventory_sources
-		{
-				appnexus: 9,
-				adx: 0,
-				openx: 10,
-				rubicon: 6,
-				pulsepoint: 5,
-				pubmatic: 11,
-				rtkio: 13
-		}
-	end
-
-
 
 
 	# TODO - alternative_id, frequency_cap, budget_type, revenue_type, pacing
@@ -100,13 +94,20 @@ class Campaign < ApplicationRecord
 		ENV.fetch("REVENUE_AMOUNT") { 5.00 }.to_f
 	end
 
+	def click_url
+		# TODO - allow individual creatives to have click_url?
 
+	end
 
 	private
 
+		def set_campaign_start_date
+			self.start_date = Time.now
+		end
+
 		def create_campaign_line_items
-			inventory_sources.each do |source_key, source_name|
-				self.line_items.create(name: "#{name}_#{source_name}",inventory_source: source_key)
+			LineItem.inventory_sources.each do |source_name, source_id|
+				self.line_items.create(name: "#{name}_#{source_name}",inventory_source: source_id)
 			end
 		end
 

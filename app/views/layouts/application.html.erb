@@ -36,3 +36,30 @@
     </div>
   </body>
 </html>
+
+<% if alert %>
+  <script !src="">
+      $.notify({
+            icon: 'pe-7s-warning',
+            message: <%= alert %>
+          },{
+            type: type,
+            timer: 2000,
+            placement: { from: "top", align: "center" }
+          }
+      );
+  </script>
+<% end %>
+<% if notice %>
+  <script !src="">
+      $.notify({
+            icon: 'pe-7s-speaker',
+            message: <%= notice %>
+          },{
+            type: type,
+            timer: 2000,
+            placement: { from: "top", align: "center" }
+          }
+      );
+  </script>
+<% end %>

@@ -20,7 +20,7 @@ describe Beeswax::Advertiser do
                          and_return({payload: {id: 1}})
 
       response = Beeswax::Advertiser.create(advertiser_name: 'Ad Man')
-      
+
       expect(response).to eql({id: 1})
     end
   end

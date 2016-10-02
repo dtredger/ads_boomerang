@@ -21,6 +21,7 @@
 //= require chartist.min
 //= require jquery.card
 //= require clipboard
+//= require dropzone
 
 //= require dashboard/demo
 //= require dashboard/light-bootstrap-dashboard
@@ -29,4 +30,3 @@
 
 // Payola does not work with turbolinks - https://github.com/peterkeen/payola
 // require turbolinks
-
