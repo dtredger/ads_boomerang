@@ -47,6 +47,6 @@ class CampaignsController < ApplicationController
     end
 
     def campaign_params
-      params.fetch(:campaign, {}).permit(:name, :start_date, :end_date)
+      params.fetch(:campaign, {}).permit(:name)
     end
 end

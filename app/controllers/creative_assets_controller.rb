@@ -19,10 +19,16 @@ class CreativeAssetsController < ApplicationController
 	def create
 		@creative_asset = CreativeAsset.new(creative_params)
 		@creative_asset.advertiser = current_advertiser
-		if @creative_asset.save
-			redirect_to @creative_asset, notice: 'Creative was successfully created.'
-		else
-			render :new
+		respond_to do |format|
+			if @creative_asset.save
+				if @creative_asset.creatives.create(campaign_id: params[:creative_asset][:campaign_id].to_i)
+					format.html { render json: @creative_asset, notice: 'Creative uploaded' }
+					format.json { render "creatives/create.js" }
+				else
+					format.html { render action: "new" }
+					format.json { render json: @creative_asset.errors, status: :unprocessable_entity }
+				end
+			end
 		end
 	end
 
@@ -39,14 +45,16 @@ class CreativeAssetsController < ApplicationController
 		redirect_to creative_assets_url, notice: 'Creative was successfully destroyed.'
 	end
 
-	private
-	def set_creative_asset
-		@creative_asset = current_advertiser.creative_assets.find_by_id(params[:id])
-		redirect_to creative_assets_url unless @creative_asset
-		@creative_asset
-	end
 
-	def creative_params
-		params.fetch(:creative, {}).permit(:mounted_asset)
-	end
+	private
+
+		def set_creative_asset
+			@creative_asset = current_advertiser.creative_assets.find_by_id(params[:id])
+			redirect_to creative_assets_url unless @creative_asset
+			@creative_asset
+		end
+
+		def creative_params
+			params.fetch(:creative_asset, {}).permit(:mounted_asset)
+		end
 end
