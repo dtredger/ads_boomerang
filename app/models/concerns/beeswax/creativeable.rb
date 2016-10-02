@@ -14,13 +14,11 @@ module Beeswax
 
 		def sync_with_beeswax
 			authenticate_beeswax
-			byebug
-
 			if beeswax_creative_id.present?
 				update_beeswax_creative
 			else
 				create_beeswax_creative(beeswax_creative_asset_id)
-				set_creative_thumbnail(beeswax_creative_id)
+				set_preview_url(beeswax_creative_id)
 			end
 		end
 
@@ -48,7 +46,7 @@ module Beeswax
 			end
 		end
 
-		def set_creative_thumbnail(beeswax_creative_id)
+		def set_preview_url(beeswax_creative_id)
 			response = Beeswax::Creative.get(beeswax_creative_id)
 			if response[:creative_thumbnail_url] or response[:preview_token]
 				self.beeswax_preview_url = response[:creative_thumbnail_url]

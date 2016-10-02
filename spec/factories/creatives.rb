@@ -25,15 +25,5 @@ FactoryGirl.define do
 	  creative_asset
 
     sequence(:name) { |x| "creative_#{x}" }
-
-	  factory :creative_728x90 do
-		  sequence(:name) { |x| "728x90_creative_#{x}" }
-		  creative_asset
-	  end
-
-    factory :creative_160x600 do
-	    sequence(:name) { |x| "160x600_creative_#{x}" }
-	    creative_asset
-    end
   end
 end

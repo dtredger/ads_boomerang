@@ -14,6 +14,9 @@
 class SubscriptionPlan < ApplicationRecord
 	include Payola::Plan
 
+	has_paper_trail
+
+
 	def delete
 		# Not handled within Payola::Plan as Create is
 		begin

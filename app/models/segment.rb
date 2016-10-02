@@ -17,6 +17,8 @@
 class Segment < ApplicationRecord
 	include Beeswax::Segmentable
 
+	has_paper_trail
+
 	belongs_to :campaign
 
 	enum audience: {

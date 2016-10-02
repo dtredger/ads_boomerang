@@ -19,19 +19,19 @@
 #
 
 class CreativeAsset < ApplicationRecord
-	default_scope { order('created_at DESC') }
+	# include Beeswax::CreativeAssetable
 
-	include Beeswax::CreativeAssetable
-
+	has_paper_trail
 	mount_uploader :mounted_asset, CreativeAssetUploader
 
-	VALID_DIMENSIONS = [ [160,600], [728,90], [300,250], [300,600] ]
-
-	validate :validate_dimensions
+	default_scope { order('created_at DESC') }
 
 	belongs_to :advertiser
+	has_many :creatives, dependent: :destroy
+	has_many :campaigns, through: :creatives
 
-	has_many :creatives #, foreign_key: "creative_asset_id"
+	VALID_DIMENSIONS = [ [160,600], [728,90], [300,250], [300,600] ]
+	validate :validate_dimensions
 
 
 	private

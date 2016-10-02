@@ -20,30 +20,24 @@
 #
 
 class Creative < ApplicationRecord
-  # include Beeswax::Creativeable
+	# include Beeswax::Creativeable
 
-  validates_presence_of :name,
-                        :campaign,
+	has_paper_trail
+
+  validates_presence_of :campaign,
                         :creative_asset
 
-  belongs_to :campaign
+	before_save :set_creative_name,
+	            :set_creative_size
+
+	belongs_to :campaign
   belongs_to :creative_asset
   has_many :line_items
 
-
+	default_scope { order('created_at DESC') }
 
   def template_id
-	  1   # - Image template
-	  #   2 - Flash template
-	  #   3 - VAST InLine
-	  #   4 - JS Tag
-	  #   5 - iFrame Tag
-	  #   6 - VAST and VPAID Wrapper
-	  #   7 - VAST 2.0 Template, Static Companion
-	  #   8 - VAST 2.0 Template, HTML Companion
-	  #   9 - VPAID Inline
-	  #   10 - VPAID, Static Companion
-	  #   11 - VPAID, HTML Companion
+	  1   # Beeswax image
   end
 
   def creative_attributes
@@ -72,6 +66,16 @@ class Creative < ApplicationRecord
 	  end
   end
 
+	private
+
+		def set_creative_name
+			self.name = "(#{campaign.name}) - #{creative_asset.name}"
+		end
+
+		def set_creative_size
+			self.height = creative_asset.height
+			self.width = creative_asset.width
+		end
 
 
 end

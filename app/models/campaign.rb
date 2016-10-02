@@ -29,19 +29,27 @@ class Campaign < ApplicationRecord
 	include Beeswax::Campaignable
 	include Beeswax::Segmentable
 
-	validates_presence_of :advertiser
-	validates_presence_of :name
+	has_paper_trail
+
+	validates_presence_of :advertiser,
+	                      :name,
+	                      :start_date
 	validates_uniqueness_of :name, scope: :advertiser_id
 
   belongs_to :advertiser
+	has_many :creatives
 	has_many :line_items
 	has_many :segments
 	has_one :include_segment, -> { where audience: 'include' }, class_name: Segment
 	has_one :exclude_segment, -> { where audience: 'exclude' }, class_name: Segment
 
+	before_validation :set_campaign_start_date
+
 	after_create :sync_with_beeswax
 	after_create :create_campaign_segments
 	after_create :create_campaign_line_items
+
+	default_scope { order('created_at DESC') }
 
 	# enum budget_type: {
 	# 		     spend: 0,
@@ -91,11 +99,14 @@ class Campaign < ApplicationRecord
 
 	end
 
-
 	private
 
+		def set_campaign_start_date
+			self.start_date = Time.now
+		end
+
 		def create_campaign_line_items
-			LineItem.inventory_source.each do |source_name, source_id|
+			LineItem.inventory_sources.each do |source_name, source_id|
 				self.line_items.create(name: "#{name}_#{source_name}",inventory_source: source_id)
 			end
 		end

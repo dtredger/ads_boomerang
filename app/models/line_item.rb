@@ -22,6 +22,8 @@
 class LineItem < ApplicationRecord
 	include Beeswax::LineItemable
 
+	has_paper_trail
+
 	belongs_to :campaign
 
 	validates_presence_of :name
@@ -47,11 +49,11 @@ class LineItem < ApplicationRecord
 	end
 
 	def line_item_budget
-		campaign.campaign_budget / campaign.inventory_sources.length
+		campaign.campaign_budget / self.class.inventory_sources.length
 	end
 
 	def daily_budget
-		campaign.daily_budget / campaign.inventory_sources.length
+		campaign.daily_budget / self.class.inventory_sources.length
 	end
 
 	#  0=spend, 1=impressions

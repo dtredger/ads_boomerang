@@ -18,6 +18,7 @@ gem 'turbolinks', '~> 5'
 gem 'premailer-rails'
 
 gem 'carrierwave'
+gem 'dropzonejs-rails'
 # gem 'mercury-rails' TODO - rails generate mercury:install
 # gem 'phrasing_plus'
 
@@ -39,12 +40,12 @@ gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'annotate'
+gem 'paper_trail'
 
 gem 'high_voltage', github: 'thoughtbot/high_voltage'
 
 gem 'payola-payments'
 gem 'money-rails'
-
 
 gem 'figaro'
 gem 'letsencrypt_plugin'
