@@ -16,6 +16,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@import "dropzone/dropzone";
+
 @import "../../../vendor/assets/stylesheets/animate.min.css";
 @import "../../../vendor/assets/stylesheets/pe-icon-7-stroke";
 
@@ -44,3 +46,7 @@
 @import "dashboard/responsive";
 
 
+.checklist-complete {
+  background: #c1ffc9;
+}
+$default-green: #a9c056;
