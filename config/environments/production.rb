@@ -81,8 +81,21 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.active_job.queue_adapter = :inline
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: ENV["PRODUCTION_HOST"] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+		  :authentication => :plain,
+		  :address => "smtp.mailgun.org",
+		  :port => 587,
+		  :domain => "sandboxfca99aa2850f4d908f3afa09ef6f3125.mailgun.org",
+		  :user_name => ENV["MAILGUN_LOGIN"],
+		  :password => ENV["MAILGUN_PASSWORD"]
+  }
 end
