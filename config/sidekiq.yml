@@ -2,3 +2,4 @@
 :queues:
   - default
   - mailers
+  - beeswax_actions
