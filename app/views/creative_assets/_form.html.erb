@@ -38,6 +38,32 @@
       },
       success: function (file, response) {
 
+      },
+      complete: function(file) {
+        if (this.getRejectedFiles().length == 0 && this.getAcceptedFiles().length > 0) {
+          $.notify({
+                icon: 'pe-7s-speaker',
+                message: file.name + " successfully uploaded"
+              },{
+                type: 'info',
+                timer: 2000,
+                placement: { from: "top", align: "center" }
+              }
+          );
+          var response = JSON.parse(file.xhr.response);
+          appendFileRow($('tbody'), response);
+          this.removeAllFiles();
+        } else {
+          $.notify({
+                icon: 'pe-7s-attention',
+                message: message
+              },{
+                type: 'warning',
+                timer: 2000,
+                placement: { from: "top", align: "center" }
+              }
+          );
+        }
       }
       //addedfile: function(file) {
       //  // Hookup the start button
@@ -50,4 +76,24 @@
       //}
     });
   });
+
+  function appendFileRow($target, file) {
+    var maxWidth = file.width / 2;
+    var template = "\
+      <tr>\
+        <td>\
+            <img class='image-responsive' style='max-width:"+ maxWidth + "px' \
+            src='/uploads/creative_asset/mounted_asset/_ID_/_FILENAME_'>\
+        </td>\
+        <td><a href='/ad_library/_ID_'>_FILENAME_</a></td>\
+        <td>Now</td>\
+        <td>_WIDTH_x_HEIGHT_</td>\
+        <td></td>\
+      </tr>";
+    html = template.replace(/_ID_/g, file.id)
+        .replace(/_FILENAME_/g, file.name)
+        .replace(/_WIDTH_/g, file.width)
+        .replace(/_HEIGHT_/g, file.height);
+    $target.append(html);
+  }
 </script>

@@ -23,7 +23,7 @@ class CreativeAssetsController < ApplicationController
 			if @creative_asset.save
 				if @creative_asset.creatives.create(campaign_id: params[:creative_asset][:campaign_id].to_i)
 					format.html { render json: @creative_asset, notice: 'Creative uploaded' }
-					format.json { render "creatives/create.js" }
+					format.json { render json: @creative_asset }
 				else
 					format.html { render action: "new" }
 					format.json { render json: @creative_asset.errors, status: :unprocessable_entity }

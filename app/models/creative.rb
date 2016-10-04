@@ -34,8 +34,6 @@ class Creative < ApplicationRecord
   belongs_to :creative_asset
   has_many :line_items
 
-	default_scope { order('created_at DESC') }
-
   def template_id
 	  1   # Beeswax image
   end
