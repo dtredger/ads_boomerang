@@ -17,11 +17,13 @@
 FactoryGirl.define do
   factory :segment do
     type 1
-    beeswax_id 1
     segment_name "MyString"
+
     active false
-    alternative_id "MyString"
-    campaign_id 1
-    segment_count 1
+    campaign
+
+	  factory :beeswax_segment do
+		  beeswax_id 5528
+	  end
   end
 end

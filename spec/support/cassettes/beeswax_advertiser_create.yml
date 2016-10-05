@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/authenticate
+    body:
+      encoding: UTF-8
+      string: '{"email":"<BEESWAX_API_USER>","password":"<BEESWAX_API_PASSWORD>"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 04:00:02 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE8B8D5241460E69BECA9F3082B14A5CF72133C265405AA8132B959FCF72B382A22AE64F64AD52F04C9E194155A35969720C0DD6777F86298B9B53393102F16E128CE64F79181B379705DAFB880C463BD40;PATH=/;MAX-AGE=360000
+      - PHPSESSID=vhf41rabkrq2n6v7vadjkgm5g7; path=/
+      - stingersbx_buzz_cookie=vhf41rabkrq2n6v7vadjkgm5g7; expires=Sun, 09-Oct-2016
+        08:00:02 GMT; Max-Age=360000; path=/
+      Content-Length:
+      - '66'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "Cookie set successfully"
+        }
+    http_version: 
+  recorded_at: Wed, 05 Oct 2016 04:00:02 GMT
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/advertiser
+    body:
+      encoding: UTF-8
+      string: '{"alternative_id":"email.com","advertiser_name":"test_advertiser1@email.com","attributes":{"advertiser":{"advertiser_domain":["http://www.adlinks.co"],"advertiser_category":["IAB24"]}},"default_click_url":"http://email.com","notes":null,"conversion_method_id":1}'
+    headers:
+      Cookie:
+      - PHPSESSID=vhf41rabkrq2n6v7vadjkgm5g7; stingersbx_buzz_cookie=vhf41rabkrq2n6v7vadjkgm5g7;
+        Max-Age=360000; AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE8B8D5241460E69BECA9F3082B14A5CF72133C265405AA8132B959FCF72B382A22AE64F64AD52F04C9E194155A35969720C0DD6777F86298B9B53393102F16E128CE64F79181B379705DAFB880C463BD40;PATH=/;MAX-AGE=360000
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 04:00:02 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Content-Length:
+      - '121'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "advertiser created with ID = 38617",
+            "payload": {
+                "id": 38617
+            }
+        }
+    http_version: 
+  recorded_at: Wed, 05 Oct 2016 04:00:03 GMT
+recorded_with: VCR 3.0.3

@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/authenticate
+    body:
+      encoding: UTF-8
+      string: '{"email":"<BEESWAX_API_USER>","password":"<BEESWAX_API_PASSWORD>"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 03:55:07 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DFC57DF5E316F9BFCA912F0CB1B6BE246AFA4C249245C676A82D14BF53A92285EDF86B0193B6D9D43FEC3956A414163C5114C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+      - PHPSESSID=amubl5mip6uqko9uthj2q3ijd7; path=/
+      - stingersbx_buzz_cookie=amubl5mip6uqko9uthj2q3ijd7; expires=Sun, 09-Oct-2016
+        07:55:07 GMT; Max-Age=360000; path=/
+      Content-Length:
+      - '66'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "Cookie set successfully"
+        }
+    http_version: 
+  recorded_at: Wed, 05 Oct 2016 03:55:07 GMT
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/advertiser
+    body:
+      encoding: UTF-8
+      string: '{"alternative_id":"email.com","advertiser_name":"advertiser2@email.com","attributes":{"advertiser":{"advertiser_domain":["http://www.adlinks.co"],"advertiser_category":["IAB24"]}},"default_click_url":"http://email.com","notes":null,"conversion_method_id":1}'
+    headers:
+      Cookie:
+      - PHPSESSID=amubl5mip6uqko9uthj2q3ijd7; stingersbx_buzz_cookie=amubl5mip6uqko9uthj2q3ijd7;
+        Max-Age=360000; AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DFC57DF5E316F9BFCA912F0CB1B6BE246AFA4C249245C676A82D14BF53A92285EDF86B0193B6D9D43FEC3956A414163C5114C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+  response:
+    status:
+      code: 406
+      message: Not Acceptable
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 03:55:08 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Content-Length:
+      - '146'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": false,
+            "message": "advertiser could not be created",
+            "errors": [
+                "ERROR: Advertiser name already in use"
+            ]
+        }
+    http_version: 
+  recorded_at: Wed, 05 Oct 2016 03:55:08 GMT
+recorded_with: VCR 3.0.3

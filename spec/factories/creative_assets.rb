@@ -34,15 +34,8 @@ FactoryGirl.define do
 	  end
 
 	  factory :beeswax_creative_asset do
-		  beeswax_asset_id 100
-		  beeswax_asset_path "stingersbx/94/38552/7890_level_end_300x250.jpg"
-		  notes "beeswax notes!"
-		  beeswax_alternative_id "a-beeswax-alt-id"
+		  beeswax_asset_id 7958
 		  active true
-		  after(:create) do |creative|
-			  creative.update(name: creative.mounted_asset.filename,
-			                  size_bytes: creative.mounted_asset.size )
-		  end
 	  end
 
   end

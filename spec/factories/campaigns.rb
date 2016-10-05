@@ -30,5 +30,22 @@ FactoryGirl.define do
     sequence(:name) { |x| "campaign_#{x}" }
 
 	  advertiser
+
+	  factory :beeswax_campaign do
+		  beeswax_id 36718
+
+		  factory :beeswax_segment_campaign do
+			  after(:create) do |campaign|
+				  campaign.segments.create(
+						  beeswax_id: 5528,
+						  segment_name:'test_include',
+						  audience: "include" )
+				  campaign.segments.create(
+						  beeswax_id: 5528,
+						  segment_name:'test_exclude',
+						  audience: "exclude" )
+			  end
+		  end
+	  end
   end
 end

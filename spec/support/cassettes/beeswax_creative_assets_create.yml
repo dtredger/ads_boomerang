@@ -1,0 +1,227 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/authenticate
+    body:
+      encoding: UTF-8
+      string: '{"email":"<BEESWAX_API_USER>","password":"<BEESWAX_API_PASSWORD>"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 07:35:59 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DFC8E979B19D004D8575FDBA73A6154AF26122AD7229812F1B0B6F1654B16D419BF86B0193B6D9D43FEC3956A414163C5114C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+      - PHPSESSID=30c8mc2eg867rbp8sgajbminb3; path=/
+      - stingersbx_buzz_cookie=30c8mc2eg867rbp8sgajbminb3; expires=Sun, 09-Oct-2016
+        11:35:59 GMT; Max-Age=360000; path=/
+      Content-Length:
+      - '66'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "Cookie set successfully"
+        }
+    http_version:
+  recorded_at: Wed, 05 Oct 2016 07:35:59 GMT
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/creative_asset
+    body:
+      encoding: UTF-8
+      string: '{"advertiser_id":38617,"creative_asset_name":"level_end_300x250.jpg","size_in_bytes":19370,"active":false}'
+    headers:
+      Cookie:
+      - PHPSESSID=30c8mc2eg867rbp8sgajbminb3; stingersbx_buzz_cookie=30c8mc2eg867rbp8sgajbminb3;
+        Max-Age=360000; AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DFC8E979B19D004D8575FDBA73A6154AF26122AD7229812F1B0B6F1654B16D419BF86B0193B6D9D43FEC3956A414163C5114C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 07:36:00 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Content-Length:
+      - '123'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "creative_asset created with ID = 7958",
+            "payload": {
+                "id": 7958
+            }
+        }
+    http_version:
+  recorded_at: Wed, 05 Oct 2016 07:36:00 GMT
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/creative_asset/upload/7958
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - PHPSESSID=30c8mc2eg867rbp8sgajbminb3; stingersbx_buzz_cookie=30c8mc2eg867rbp8sgajbminb3;
+        Max-Age=360000; AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DFC8E979B19D004D8575FDBA73A6154AF26122AD7229812F1B0B6F1654B16D419BF86B0193B6D9D43FEC3956A414163C5114C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+      Content-Type:
+      - multipart/form-data; boundary=-----------RubyMultipartPost
+      Content-Length:
+      - '19617'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 07:36:01 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Content-Length:
+      - '150'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "creative_asset created with ID = 7958",
+            "payload": {
+                "id": 7958
+            }
+        }
+    http_version:
+  recorded_at: Wed, 05 Oct 2016 07:36:01 GMT
+- request:
+    method: get
+    uri: https://stingersbx.api.beeswax.com/rest/creative_asset/7958
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Cookie:
+      - AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DFC8E979B19D004D8575FDBA73A6154AF26122AD7229812F1B0B6F1654B16D419BF86B0193B6D9D43FEC3956A414163C5114C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000,
+        PHPSESSID=30c8mc2eg867rbp8sgajbminb3; stingersbx_buzz_cookie=30c8mc2eg867rbp8sgajbminb3;
+        Max-Age=360000
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 18:21:15 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - PHPSESSID=2546jm144ddam29q9v2h5vvlk4; path=/
+      Www-Authenticate:
+      - FormBased realm="Buzz"
+      Content-Length:
+      - '145'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "payload": [{
+                "creative_asset_id": 7958,
+                "advertiser_id": 38617,
+                "creative_asset_name": "level_end_300x250.jpg",
+                "creative_thumbnail_name": null,
+                "asset_type": "IMAGE",
+                "mime_type": null,
+                "path_to_asset": null,
+                "size_in_bytes": 19370,
+                "metadata": [],
+                "account_id": 94,
+                "create_date": "2016-10-05 03:36:00",
+                "update_date": "2016-10-05 03:36:00",
+                "alternative_id": null,
+                "notes": null,
+                "active": true,
+                "buzz_key": "stingersbx"
+            }]
+        }
+    http_version:
+  recorded_at: Wed, 05 Oct 2016 18:21:15 GMT
+recorded_with: VCR 3.0.3

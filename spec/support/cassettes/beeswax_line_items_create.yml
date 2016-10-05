@@ -1,0 +1,158 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/authenticate
+    body:
+      encoding: UTF-8
+      string: '{"email":"<BEESWAX_API_USER>","password":"<BEESWAX_API_PASSWORD>"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 06:58:36 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE8B8D5241460E69BECA9F3082B14A5CF722F5A287EC66E4E7B4B7F33070485518330531C8F39BAF89D3573279F84CC66B0C0DD6777F86298B9B53393102F16E128CE64F79181B379705DAFB880C463BD40;PATH=/;MAX-AGE=360000
+      - PHPSESSID=4na201at2rg2gglv7p1obo8a43; path=/
+      - stingersbx_buzz_cookie=4na201at2rg2gglv7p1obo8a43; expires=Sun, 09-Oct-2016
+        10:58:36 GMT; Max-Age=360000; path=/
+      Content-Length:
+      - '66'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "Cookie set successfully"
+        }
+    http_version:
+  recorded_at: Wed, 05 Oct 2016 06:58:36 GMT
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/targeting_template
+    body:
+      encoding: UTF-8
+      string: '{"template_name":"campaign_2_test_line_item1_targeting","alternative_id":"","strategy_id":1,"targeting":{"segment":[{"include":{"segment":["stingersbx-5528"]}},{"exclude":{"segment":["stingersbx-5528"]}}],"inventory":[{"include":{"inventory_source":[0]}}]},"active":true}'
+    headers:
+      Cookie:
+      - PHPSESSID=4na201at2rg2gglv7p1obo8a43; stingersbx_buzz_cookie=4na201at2rg2gglv7p1obo8a43;
+        Max-Age=360000; AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE8B8D5241460E69BECA9F3082B14A5CF722F5A287EC66E4E7B4B7F33070485518330531C8F39BAF89D3573279F84CC66B0C0DD6777F86298B9B53393102F16E128CE64F79181B379705DAFB880C463BD40;PATH=/;MAX-AGE=360000
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 06:58:37 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Content-Length:
+      - '129'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "targeting_template created with ID = 14695",
+            "payload": {
+                "id": 14695
+            }
+        }
+    http_version:
+  recorded_at: Wed, 05 Oct 2016 06:58:37 GMT
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/line_item
+    body:
+      encoding: UTF-8
+      string: '{"campaign_id":36718,"advertiser_id":38617,"line_item_name":"test_line_item1","alternative_id":null,"line_item_type_id":0,"targeting_template_id":14695,"line_item_budget":14.285714285714286,"daily_budget":0.14285714285714285,"budget_type":0,"bidding":{"bidding_strategy":"cpm","values":{"cpm_bid":1.0}},"start_date":"2016-10-05T06:58:36.408Z","notes":null,"active":false,"e":0}'
+    headers:
+      Cookie:
+      - PHPSESSID=4na201at2rg2gglv7p1obo8a43; stingersbx_buzz_cookie=4na201at2rg2gglv7p1obo8a43;
+        Max-Age=360000; AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE8B8D5241460E69BECA9F3082B14A5CF722F5A287EC66E4E7B4B7F33070485518330531C8F39BAF89D3573279F84CC66B0C0DD6777F86298B9B53393102F16E128CE64F79181B379705DAFB880C463BD40;PATH=/;MAX-AGE=360000
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 06:58:38 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Content-Length:
+      - '241'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "line_item created with ID = 16697",
+            "payload": {
+                "id": 16697
+            },
+            "errors": [
+                "WARNING: The Line Item pacing field id deprecated. Use a paced Bidding Strategy instead"
+            ]
+        }
+    http_version:
+  recorded_at: Wed, 05 Oct 2016 06:58:38 GMT
+recorded_with: VCR 3.0.3
