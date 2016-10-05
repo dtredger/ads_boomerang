@@ -7,7 +7,7 @@ class Beeswax::Creative
   def self.get(creative_id)
 	  raise BeeswaxError, "#{self.to_s}.get -> :creative_id required" unless creative_id.is_a?(Integer)
 	  response = Beeswax.request(:get, "#{PATH}/#{creative_id}")
-	  return response[:payload]
+	  return response[:payload][0]
   end
 
   # @param advertiser_id [Integer] Required. Must belong to the same account as the Advertiser and be active
