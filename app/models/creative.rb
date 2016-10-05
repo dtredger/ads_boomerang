@@ -20,7 +20,7 @@
 #
 
 class Creative < ApplicationRecord
-	# include Beeswax::Creativeable
+	include Beeswax::Creativeable
 
 	has_paper_trail
 
@@ -35,6 +35,10 @@ class Creative < ApplicationRecord
   has_many :line_items
 
 	default_scope { order('created_at DESC') }
+
+	def advertiser
+		campaign.advertiser
+	end
 
   def template_id
 	  1   # Beeswax image

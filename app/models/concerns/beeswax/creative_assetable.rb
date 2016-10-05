@@ -18,7 +18,7 @@ module Beeswax
 		end
 
 		def update_beeswax_creative
-			# TODO
+			# TODO - when the job saves the creative, that counts as an update ...
 			log_failure("update creative not implemented")
 			raise "update not implemented"
 			# authenticate_beeswax

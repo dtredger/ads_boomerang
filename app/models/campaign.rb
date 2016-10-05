@@ -31,6 +31,10 @@ class Campaign < ApplicationRecord
 
 	has_paper_trail
 
+	default_scope { order('created_at DESC') }
+
+	before_validation :set_campaign_start_date
+
 	validates_presence_of :advertiser,
 	                      :name,
 	                      :start_date
@@ -43,19 +47,12 @@ class Campaign < ApplicationRecord
 	has_one :include_segment, -> { where audience: 'include' }, class_name: Segment
 	has_one :exclude_segment, -> { where audience: 'exclude' }, class_name: Segment
 
-	before_validation :set_campaign_start_date
-
-	after_create :sync_with_beeswax
-	after_create :create_campaign_segments
 	after_create :create_campaign_line_items
-
-	default_scope { order('created_at DESC') }
 
 	# enum budget_type: {
 	# 		     spend: 0,
 	# 		     impression: 1
 	#      }
-
 
 	# TODO - alternative_id, frequency_cap, budget_type, revenue_type, pacing
 	# 3600=hr, 86400=day, 604800=week
@@ -107,7 +104,9 @@ class Campaign < ApplicationRecord
 
 		def create_campaign_line_items
 			LineItem.inventory_sources.each do |source_name, source_id|
-				self.line_items.create(name: "#{name}_#{source_name}",inventory_source: source_id)
+				self.line_items.create(
+						name: "#{name}_#{source_name}",
+						inventory_source: source_id )
 			end
 		end
 

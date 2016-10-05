@@ -1,10 +1,15 @@
 class BeeswaxCreativeAssetJob < ApplicationJob
   queue_as :beeswax_actions
 
+  # rescue_from(ArgumentError) do
+  #   retry_job wait: 2.minutes, queue: :beeswax_actions_retry
+  # end
+
   def perform(asset)
 	  Beeswax.authenticate
     create_beeswax_asset_base(asset)
   end
+
 
   def create_beeswax_asset_base(asset)
 	  response = Beeswax::CreativeAsset.create(
@@ -14,15 +19,15 @@ class BeeswaxCreativeAssetJob < ApplicationJob
 			  active: false )
 	  if response[:id]
 		  asset.beeswax_asset_id = response[:id]
-		  upload_file_to_beeswax(asset, response[:id])
+		  upload_file_to_beeswax(asset)
 	  else
 		  log_failure(response)
 	  end
   end
 
-  def upload_file_to_beeswax(asset, remote_asset_id)
+  def upload_file_to_beeswax(asset)
 	  response = Beeswax::CreativeAsset.upload(
-			  creative_asset_id: remote_asset_id,
+			  creative_asset_id: asset.beeswax_asset_id,
 			  creative_content: asset.mounted_asset.file.to_file )
 	  if response[:id] && response[:id] == asset.beeswax_asset_id
 		  check_beeswax_asset_metadata(asset, response[:id])
@@ -42,4 +47,5 @@ class BeeswaxCreativeAssetJob < ApplicationJob
 		  log_failure(response)
 	  end
   end
+
 end

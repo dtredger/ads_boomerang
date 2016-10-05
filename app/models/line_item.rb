@@ -26,7 +26,8 @@ class LineItem < ApplicationRecord
 
 	belongs_to :campaign
 
-	validates_presence_of :name
+	validates_presence_of :name,
+	                      :inventory_source
 	validates_associated :campaign
 
 	enum inventory_source: {
@@ -41,6 +42,18 @@ class LineItem < ApplicationRecord
 
 	def inventory_id
 		self.class.inventory_sources[inventory_source]
+	end
+
+	# http://docs.beeswax.com/docs/list-of-targeting-modules-and-keys
+	def targeting_object
+		{ segment: [
+				{ include: {segment: [campaign.include_segment.segment_key]} },
+				{ exclude: {segment: [campaign.exclude_segment.segment_key]} }
+		],
+		  inventory: [
+				  { include: {inventory_source: [inventory_id]} }
+		  ]
+		}
 	end
 
 	# 0=banner, 1=video.
@@ -76,10 +89,6 @@ class LineItem < ApplicationRecord
 
 	def end_date
 		campaign.end_date
-	end
-
-	def active
-		campaign.active?
 	end
 
 

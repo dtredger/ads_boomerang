@@ -15,10 +15,12 @@
 #
 
 class Segment < ApplicationRecord
-	include Beeswax::Segmentable
 
 	has_paper_trail
 
+	validates_associated :campaign
+	validates_presence_of :segment_name,
+	                      :audience
 	belongs_to :campaign
 
 	enum audience: {
