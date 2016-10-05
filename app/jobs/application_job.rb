@@ -5,4 +5,8 @@ class ApplicationJob < ActiveJob::Base
 		Rails.logger.debug "Job ran at #{Time.now} with Args: #{args}"
 	end
 
+	def log_failure(*args)
+		Rollbar.error(*args)
+	end
+
 end

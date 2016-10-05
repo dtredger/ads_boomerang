@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/authenticate
+    body:
+      encoding: UTF-8
+      string: '{"email":"<BEESWAX_API_USER>","password":"<BEESWAX_API_PASSWORD>"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 04:26:50 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DF47C37FA16915C6B9504EB8B7EDBB5052817102547CDBD191D7FD568177DD34F8F86B0193B6D9D43FEC3956A414163C5114C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+      - PHPSESSID=p1sn9387rjchbou06ptrcfvbc7; path=/
+      - stingersbx_buzz_cookie=p1sn9387rjchbou06ptrcfvbc7; expires=Sun, 09-Oct-2016
+        08:26:50 GMT; Max-Age=360000; path=/
+      Content-Length:
+      - '66'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "Cookie set successfully"
+        }
+    http_version: 
+  recorded_at: Wed, 05 Oct 2016 04:26:50 GMT
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/campaign
+    body:
+      encoding: UTF-8
+      string: '{"advertiser_id":38617,"campaign_name":"campaign_1","campaign_budget":100.0,"daily_budget":1.0,"budget_type":0,"start_date":"2016-10-05T04:26:49.230Z","frequency_cap":[{"impressions":1,"duration":3600},{"impressions":2,"duration":86400},{"impressions":10,"duration":604800}],"notes":null,"active":true,"pacing":0}'
+    headers:
+      Cookie:
+      - PHPSESSID=p1sn9387rjchbou06ptrcfvbc7; stingersbx_buzz_cookie=p1sn9387rjchbou06ptrcfvbc7;
+        Max-Age=360000; AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DF47C37FA16915C6B9504EB8B7EDBB5052817102547CDBD191D7FD568177DD34F8F86B0193B6D9D43FEC3956A414163C5114C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 04:26:50 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Content-Length:
+      - '119'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "campaign created with ID = 36718",
+            "payload": {
+                "id": 36718
+            }
+        }
+    http_version: 
+  recorded_at: Wed, 05 Oct 2016 04:26:50 GMT
+recorded_with: VCR 3.0.3

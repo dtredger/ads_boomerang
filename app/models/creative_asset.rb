@@ -19,7 +19,7 @@
 #
 
 class CreativeAsset < ApplicationRecord
-	# include Beeswax::CreativeAssetable
+	include Beeswax::CreativeAssetable
 
 	has_paper_trail
 	mount_uploader :mounted_asset, CreativeAssetUploader

@@ -21,6 +21,13 @@
 
 FactoryGirl.define do
   factory :line_item do
-    
+	  sequence(:name ) { |x| "test_line_item#{x}" }
+	  inventory_source :adx
+
+	  campaign
+
+	  factory :beeswax_line_item do
+		  beeswax_id 14695
+	  end
   end
 end

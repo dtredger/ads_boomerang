@@ -34,13 +34,11 @@
 
 FactoryGirl.define do
   factory :advertiser do
-	  sequence(:email ) { |x| "advertiser#{x}@email.com" }
+	  sequence(:email ) { |x| "test_advertiser#{x}@email.com" }
     password "123123123"
 
-	  factory :advertiser_no_callbacks do
-		  after(:build) { |advertiser| advertiser.class.skip_callback(:create, :after) }
+	  factory :beeswax_advertiser do
+		  beeswax_id 38617
 	  end
   end
-
-	module ::Beeswax::Advertisable; end
 end

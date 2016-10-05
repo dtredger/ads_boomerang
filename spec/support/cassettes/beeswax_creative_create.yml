@@ -1,0 +1,222 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/authenticate
+    body:
+      encoding: UTF-8
+      string: '{"email":"<BEESWAX_API_USER>","password":"<BEESWAX_API_PASSWORD>"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 21:10:55 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Set-Cookie:
+      - AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DF8BDC2A991B53521F78673CFB82DFCC213ADFC133A226C091F367C5C550ABB7D9E3A71DE4B2BB7844AFF792AE7CA29CDB14C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+      - PHPSESSID=poq61v7leqtv0fu6bq5r5e90u3; path=/
+      - stingersbx_buzz_cookie=poq61v7leqtv0fu6bq5r5e90u3; expires=Mon, 10-Oct-2016
+        01:10:55 GMT; Max-Age=360000; path=/
+      Content-Length:
+      - '66'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "Cookie set successfully"
+        }
+    http_version: 
+  recorded_at: Wed, 05 Oct 2016 21:10:55 GMT
+- request:
+    method: post
+    uri: https://stingersbx.api.beeswax.com/rest/creative
+    body:
+      encoding: UTF-8
+      string: '{"advertiser_id":38617,"creative_name":"(campaign_2) - level_end_300x250.jpg","creative_type":0,"width":300,"height":250,"secure":false,"click_url":null,"creative_assets":[7958],"creative_content":{},"creative_template_id":1,"active":true,"sizeless":false}'
+    headers:
+      Cookie:
+      - PHPSESSID=poq61v7leqtv0fu6bq5r5e90u3; stingersbx_buzz_cookie=poq61v7leqtv0fu6bq5r5e90u3;
+        Max-Age=360000; AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DF8BDC2A991B53521F78673CFB82DFCC213ADFC133A226C091F367C5C550ABB7D9E3A71DE4B2BB7844AFF792AE7CA29CDB14C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 21:10:55 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Content-Length:
+      - '119'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "message": "creative created with ID = 24452",
+            "payload": {
+                "id": 24452
+            }
+        }
+    http_version: 
+  recorded_at: Wed, 05 Oct 2016 21:10:55 GMT
+- request:
+    method: get
+    uri: https://stingersbx.api.beeswax.com/rest/creative/24452
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Cookie:
+      - PHPSESSID=poq61v7leqtv0fu6bq5r5e90u3; stingersbx_buzz_cookie=poq61v7leqtv0fu6bq5r5e90u3;
+        Max-Age=360000; AWSELB=9F3F31CF1627645F103D6C0D9F06EB170621A75EE867A48DAE0746B6E7F300296FEBBE04DF8BDC2A991B53521F78673CFB82DFCC213ADFC133A226C091F367C5C550ABB7D9E3A71DE4B2BB7844AFF792AE7CA29CDB14C6F700DB764F0CA900E7297B7BC97B;PATH=/;MAX-AGE=360000
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, OPTIONS, DELETE
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 05 Oct 2016 21:10:56 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+            "success": true,
+            "payload": [
+                {
+                    "creative_id": 24452,
+                    "advertiser_id": 38617,
+                    "creative_type": 0,
+                    "creative_template_id": 1,
+                    "creative_status_id": 1,
+                    "creative_rule_id": null,
+                    "width": 300,
+                    "height": 250,
+                    "sizeless": false,
+                    "secure": false,
+                    "click_url": "http://email.com",
+                    "creative_name": "(campaign_2) - level_end_300x250.jpg",
+                    "creative_attributes": {
+                        "advertiser": {
+                            "advertiser_domain": [
+                                "http://www.adlinks.co"
+                            ],
+                            "advertiser_category": [
+                                "IAB24"
+                            ]
+                        },
+                        "technical": {
+                            "banner_mime": [
+                                "image/jpeg"
+                            ],
+                            "tag_type": [
+                                2
+                            ]
+                        }
+                    },
+                    "creative_approvals": {
+                        "pending": [
+                            1
+                        ]
+                    },
+                    "creative_assets": [
+                        7958
+                    ],
+                    "creative_addons": [
+
+                    ],
+                    "pixels": [
+
+                    ],
+                    "scripts": [
+
+                    ],
+                    "creative_content": {
+                        "IMAGE_NAME": "{{MEDIA_HOST}}/stingersbx/94/38617/7958_level_end_300x250.jpg"
+                    },
+                    "creative_content_munge": "<a href='{{CLICK_URL}}' target='_blank'><img src='{{MEDIA_HOST}}/stingersbx/94/38617/7958_level_end_300x250.jpg' alt='tap here' width='{{WIDTH}}' height='{{HEIGHT}}'></a><img src='{{IMPRESSION_URL}}' width='0' height='0'>",
+                    "preview_token": "DiUfLS5Ch2ntZyoF4WxZPH2IEjNfTwVxPQMBISe0",
+                    "creative_thumbnail_url": "/stingersbx/94/38617/thumb/7958_level_end_300x250_thumb.jpg",
+                    "start_date": null,
+                    "end_date": null,
+                    "frequency_cap": [
+
+                    ],
+                    "push_status": 0,
+                    "push_update": true,
+                    "account_id": 94,
+                    "create_date": "2016-10-05 17:10:55",
+                    "update_date": "2016-10-05 17:10:55",
+                    "alternative_id": null,
+                    "notes": null,
+                    "active": true,
+                    "buzz_key": "stingersbx"
+                }
+            ]
+        }
+    http_version: 
+  recorded_at: Wed, 05 Oct 2016 21:10:56 GMT
+recorded_with: VCR 3.0.3

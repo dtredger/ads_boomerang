@@ -25,7 +25,7 @@ class Beeswax::Advertiser
   #  }]
 
   def self.get(advertiser_id)
-	  raise BeeswaxError, "#{self.to_s}.get -> :advertiser_id required" unless opts[:advertiser_id].is_a?(Integer)
+	  raise BeeswaxError, "#{self.to_s}.get -> :advertiser_id required" unless advertiser_id.is_a?(Integer)
 		response = Beeswax.request(:get, "#{PATH}/#{advertiser_id}")
 		return response[:payload]
   end
