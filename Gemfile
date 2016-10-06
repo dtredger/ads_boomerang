@@ -16,6 +16,9 @@ gem 'bourbon'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'premailer-rails'
+gem 'ahoy_email'
+gem 'mailkick'
+gem 'mailgun-ruby'
 
 gem 'carrierwave'
 gem 'dropzonejs-rails'
@@ -65,6 +68,7 @@ group :development, :test do
   gem "awesome_print", require:"ap"
   gem 'webmock'
   gem 'vcr'
+	gem 'letter_opener'
 end
 
 group :development do

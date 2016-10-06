@@ -36,6 +36,7 @@ class Advertiser < ApplicationRecord
 	include Beeswax::Advertisable
 
 	has_paper_trail
+	mailkick_user
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -47,13 +48,16 @@ class Advertiser < ApplicationRecord
   has_many :segments, through: :campaigns
   has_many :creative_assets
   has_many :creatives, through: :creative_assets
+  has_many :sales, through: :subscription,
+           class_name: "Payola::Sale"
 	has_one :subscription,
 	        class_name: "Payola::Subscription",
 	        foreign_key: "owner_id"
-  has_many :sales, through: :subscription,
-           class_name: "Payola::Sale"
+	has_many :messages,
+	         class_name: "Ahoy::Message",
+	         foreign_key: "user_id"
 
-  def total_audience
+	def total_audience
 		segments.where(audience: "include").sum(:segment_count)
   end
 

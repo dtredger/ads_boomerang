@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <td align="center" class="masthead">
+      <h4>New Sale</h4>
+    </td>
+  </tr>
+  <tr>
+    <td class="content">
+      <p>To: <%= @sale.email %></p>
+      <p>Guid: <%= @sale.guid %></p>
+      <p>Product: <%= @product.name %></p>
+      <p>Amount: <%= formatted_price(@sale.amount) %>
+    </td>
+  </tr>
+</table>

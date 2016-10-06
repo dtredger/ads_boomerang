@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923213016) do
+ActiveRecord::Schema.define(version: 20161005221731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,20 @@ ActiveRecord::Schema.define(version: 20160923213016) do
     t.index ["confirmation_token"], name: "index_advertisers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_advertisers_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_advertisers_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "ahoy_messages", force: :cascade do |t|
+    t.string   "token"
+    t.text     "to"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "mailer"
+    t.text     "subject"
+    t.datetime "sent_at"
+    t.datetime "opened_at"
+    t.datetime "clicked_at"
+    t.index ["token"], name: "index_ahoy_messages_on_token", using: :btree
+    t.index ["user_id", "user_type"], name: "index_ahoy_messages_on_user_id_and_user_type", using: :btree
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -107,6 +121,19 @@ ActiveRecord::Schema.define(version: 20160923213016) do
     t.integer  "budget_type"
     t.string   "notes"
     t.boolean  "active"
+  end
+
+  create_table "mailkick_opt_outs", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.boolean  "active",     default: true, null: false
+    t.string   "reason"
+    t.string   "list"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["email"], name: "index_mailkick_opt_outs_on_email", using: :btree
+    t.index ["user_id", "user_type"], name: "index_mailkick_opt_outs_on_user_id_and_user_type", using: :btree
   end
 
   create_table "payola_affiliates", force: :cascade do |t|

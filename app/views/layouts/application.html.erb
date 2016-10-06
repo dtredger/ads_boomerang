@@ -14,6 +14,8 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
+    <%= render "layouts/alerts" %>
+
     <div class="wrapper">
       <%= render "layouts/dashboard/sidebar" %>
 
@@ -26,40 +28,13 @@
           </div>
         </div>
 
-
         <%= render "layouts/dashboard/footer" %>
 
         <% if Rails.env.development? %>
           <%= console %>
         <% end %>
+
       </div>
     </div>
   </body>
 </html>
-
-<% if alert %>
-  <script !src="">
-      $.notify({
-            icon: 'pe-7s-warning',
-            message: <%= alert %>
-          },{
-            type: type,
-            timer: 2000,
-            placement: { from: "top", align: "center" }
-          }
-      );
-  </script>
-<% end %>
-<% if notice %>
-  <script !src="">
-      $.notify({
-            icon: 'pe-7s-speaker',
-            message: <%= notice %>
-          },{
-            type: type,
-            timer: 2000,
-            placement: { from: "top", align: "center" }
-          }
-      );
-  </script>
-<% end %>

@@ -1,75 +1,32 @@
+<table>
+  <tr>
+    <td align="center" class="masthead">
+      <h2>Welcome to AdsDash</h2>
+      <h4>Please Confirm your Account</h4>
+    </td>
+  </tr>
+  <tr>
+    <td class="content">
 
-<!doctype html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width"/>
+      <p>Hello <%= @email %>,</p>
 
-    <%= stylesheet_link_tag 'mailers/base' %>
+      <p>Thank you for creating an AdsDash account.</p>
 
-    <style type="text/css">
-      /* Your custom styles go here */
-    </style>
-  </head>
-  <body>
-    <table class="body-wrap">
-      <tr>
-        <td class="container">
+      <p>Please confirm your account by clicking the link below.
+        This will allow you to start your campaign.</p>
 
-          <!-- Message start -->
-          <table>
-            <tr>
-              <td align="center" class="masthead">
+      <table>
+        <tr>
+          <td align="center">
+            <p>
+              <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), class: "button" %>
+            </p>
+          </td>
+        </tr>
+      </table>
+      <p>Thanks,</p>
+      <p><em>– AdsDash Team</em></p>
 
-                <h1>Something Big...</h1>
-
-              </td>
-            </tr>
-            <tr>
-              <td class="content">
-
-                <p>Welcome <%= @email %>!</p>
-
-                <p>You can confirm your account email through the link below:</p>
-
-                <h2>Hi Stranger,</h2>
-
-                <p>Kielbasa venison ball tip shankle. Boudin prosciutto landjaeger, pancetta jowl turkey tri-tip porchetta beef pork loin drumstick. Frankfurter short ribs kevin pig ribeye drumstick bacon kielbasa. Pork loin brisket biltong, pork belly filet mignon ribeye pig ground round porchetta turducken turkey. Pork belly beef ribs sausage ham hock, ham doner frankfurter pork chop tail meatball beef pig meatloaf short ribs shoulder. Filet mignon ham hock kielbasa beef ribs shank. Venison swine beef ribs sausage pastrami shoulder.</p>
-
-                <table>
-                  <tr>
-                    <td align="center">
-                      <p>
-                        <a href="#" class="button">Share the Awesomeness</a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-
-                <p>By the way, if you're wondering where you can find more of this fine meaty filler, visit <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
-
-                <p><em>– Mr. Pen</em></p>
-
-              </td>
-            </tr>
-          </table>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="container">
-
-          <!-- Message start -->
-          <table>
-            <tr>
-              <td class="content footer" align="center">
-                <p>Sent by <a href="#">Company Name</a>, 1234 Yellow Brick Road, OZ, 99999</p>
-                <p><a href="mailto:">hello@company.com</a> | <a href="#">Unsubscribe</a></p>
-              </td>
-            </tr>
-          </table>
-
-        </td>
-      </tr>
-    </table>
-  </body>
-</html>
+    </td>
+  </tr>
+</table>

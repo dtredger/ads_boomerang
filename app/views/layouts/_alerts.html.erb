@@ -1,18 +1,27 @@
+<% if alert %>
+  <script !src="">
+    $.notify({
+          icon: "pe-7s-warning",
+          message: "<%= alert %>"
+        },{
+          type: "danger",
+          timer: 2000,
+          placement: { from: "top", align: "center" }
+        }
+    );
+  </script>
+<% end %>
 
 <% if notice %>
-  <div class="alert alert-dismissible alert-success" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= notice %>
-  </div>
+  <script !src="">
+    $.notify({
+          icon: "pe-7s-speaker",
+          message: "<%= notice %>"
+        },{
+          type: "info",
+          timer: 2000,
+          placement: { from: "top", align: "center" }
+        }
+    );
+  </script>
 <% end %>
-
-<% if alert %>
-  <div class="alert alert-dismissible alert-danger" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= alert %>
-  </div>
-<% end %>
-
-<div class="alert alert-dismissible alert-info text-center">
-  <span id="events"></span>
-</div>
