@@ -3,18 +3,14 @@ Payola.configure do |config|
 	config.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
 
 	config.support_email = ENV["ADMIN_EMAIL"]
-  # Example subscription:
-  #
-  # config.subscribe 'payola.package.sale.finished' do |sale|
-  #   EmailSender.send_an_email(sale.email)
-  # end
-	config.send_email_for :receipt,
-	                      :refund,
-	                      :admin_receipt,
+
+	config.send_email_for	:admin_receipt,
 	                      :admin_dispute,
 	                      :admin_refund,
 	                      :admin_failure
-  #
+	                       # :receipt,
+	                       # :refund
+
   # In addition to any event that Stripe sends, you can subscribe
   # to the following special payola events:
   #
@@ -22,21 +18,16 @@ Payola.configure do |config|
   #  - payola.<sellable class>.sale.refunded
   #  - payola.<sellable class>.sale.failed
   #
-  # These events consume a Payola::Sale, not a Stripe::Event
-  #
-  # Example charge verifier:
-  #
-  # config.charge_verifier = lambda do |sale|
-  #   raise "Nope!" if sale.email.includes?('yahoo.com')
-  # end
-
 	# # --- event will be a Payola::Subscription
 	# config.charge_verifier = lambda do |event|
 	# 	true
 	# end
 	#
-	# config.subscribe 'invoice.payment_succeeded' do |event|
-	# end
+	config.subscribe 'invoice.payment_succeeded' do |event|
+		sale = Payola::Sale.find_by(stripe_id: event.data.object.id)
+		Payola::AdminMailer.receipt(sale.guid).deliver_later
+		Rails.logger.debug "invoice.payment_succeeded; event: #{event}."
+	end
 
   # Keep this subscription unless you want to disable refund handling
   config.subscribe 'charge.refunded' do |event|
@@ -76,3 +67,7 @@ end
 # Not required if belongs_to is optional in application.rb
 # require 'extensions/payola/sale'
 # Payola::Sale.include(Extensions::Payola::Sale)
+
+require 'extensions/payola/mailer_layout'
+Payola::ReceiptMailer.include(Extensions::Payola::MailerLayout)
+Payola::AdminMailer.include(Extensions::Payola::MailerLayout)
