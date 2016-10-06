@@ -40,7 +40,7 @@ module AdsDash
 			  :authentication => :plain,
 			  :address => "smtp.mailgun.org",
 			  :port => 587,
-			  :domain => ENV["MAILGUN_DOMAIN"],,
+			  :domain => ENV["MAILGUN_DOMAIN"],
 			  :user_name => ENV["MAILGUN_LOGIN"],
 			  :password => ENV["MAILGUN_PASSWORD"]
 	  }
