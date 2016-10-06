@@ -61,6 +61,11 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    ahoy_email (0.4.0)
+      addressable
+      nokogiri
+      rails
+      safely_block (>= 0.1.1)
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
@@ -120,6 +125,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dropzonejs-rails (0.7.3)
       rails (> 3.1)
+    errbase (0.0.3)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -185,9 +191,13 @@ GEM
     jsonapi-serializers (0.15.0)
       activesupport
     jwt (1.5.6)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     letsencrypt_plugin (0.0.9)
       acme-client (~> 0.3.0)
       rails (>= 4.2, < 5.1)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -196,6 +206,10 @@ GEM
     lumberjack (1.0.10)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mailgun-ruby (1.1.0)
+      json (~> 1.8)
+      rest-client (~> 1.6)
+    mailkick (0.1.4)
     meta_request (0.4.0)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -320,6 +334,8 @@ GEM
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     safe_yaml (1.0.4)
+    safely_block (0.1.1)
+      errbase
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -394,6 +410,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ahoy_email
   annotate
   awesome_print
   bootstrap-sass
@@ -416,7 +433,10 @@ DEPENDENCIES
   httparty
   jquery-rails
   letsencrypt_plugin
+  letter_opener
   listen (~> 3.0.5)
+  mailgun-ruby
+  mailkick
   meta_request
   money-rails
   paper_trail
