@@ -26,13 +26,6 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
-  config.action_mailer.perform_caching = false
-
-  config.action_mailer.preview_path = "#{Rails.root}/app/mailers/previews"
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -54,18 +47,15 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  # Devise asks for below
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.smtp_settings = {
-		  :authentication => :plain,
-		  :address => "smtp.mailgun.org",
-		  :port => 587,
-		  :domain => "sandboxfca99aa2850f4d908f3afa09ef6f3125.mailgun.org",
-		  :user_name => ENV["MAILGUN_LOGIN"],
-		  :password => ENV["MAILGUN_PASSWORD"]
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_caching = false
+  config.action_mailer.preview_path = "#{Rails.root}/app/mailers/previews"
+  config.action_mailer.default_url_options = {
+		  host: ENV["HOST"],
+		  port: 3000
   }
-
+  config.action_mailer.delivery_method = :letter_opener
   config.active_job.queue_adapter = :sidekiq
 
   host = ENV.fetch('HOST', 'localhost')
