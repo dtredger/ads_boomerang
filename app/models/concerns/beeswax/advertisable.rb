@@ -9,6 +9,7 @@ module Beeswax
 		end
 
 		def save_beeswax_advertiser
+			self.reload
 			if self.beeswax_id.nil?
 				BeeswaxAdvertiserJob.perform_later(self)
 			else
