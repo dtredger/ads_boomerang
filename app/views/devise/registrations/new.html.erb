@@ -1,29 +1,92 @@
-<h2>Sign up</h2>
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <title>AdsDash</title>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <meta name="description" content="AdsDash">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <%= csrf_meta_tags %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+    <%= stylesheet_link_tag "pages/base" %>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet'
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body style="background-color: #1c3738;">
+    
+    <div class="col-md-8 col-md-offset-2 register-modal">
+      <div class="modal-header" style="background: #71bc37">
+        <h4 class="modal-title text-center" id="myModalLabel" style="color: white;">
+          Register for <b>AdsDash</b>
+        </h4>
+      </div>
+      <div class="modal-body" style="padding: 30px;">
+        <div class="row">
+          <div class="col-xs-6">
+            <p class="lead">Sign up for an AdsDash account for<span class="text-success">Free</span></p>
+            <ul class="list-unstyled" style="line-height: 2">
+              <li><span class="fa fa-check text-success"></span> Transparent monthly pricing</li>
+              <li><span class="fa fa-check text-success"></span> Cancel your plan anytime</li>
+              <li><span class="fa fa-check text-success"></span> Handles multiple ad sizes</li>
+              <li><span class="fa fa-check text-success"></span> Fully automated optimization</li>
+              <li><span class="fa fa-check text-success"></span> Set-and-forget system</li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <div class="well">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+                <div class="form-group">
+                  <label for="email" class="control-label">Email</label>
+                  <%= f.email_field :email, autofocus: true, id:"email_modal", type:"text", placeholder:"name@company.com", class:"form-control" %>
+                  <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                  <label for="password" class="control-label">Password</label>
+                  <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %>
+                  <%= f.password_field :password, autocomplete: "off", placeholder:"Please enter your password", class:"form-control" %>
+                  <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                  <label for="password_confirmation" class="control-label">Confirm your Password</label>
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control" %>
+                </div>
+                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+                <div class="checkbox">
+                  <label>
+                    <%= f.check_box :remember_me %> Remember login
+                  </label>
+                  <p class="help-block">(if this is a private computer)</p>
+                </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+                <%= f.submit "Create your account", class: "btn btn-primary btn-block" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </body>
+</html>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+<style>
+  .register-modal {
+    background-color: #fff;
+    padding: 0;
+    margin-top: 10%;
+    -webkit-box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
+  }
+</style>

@@ -1,74 +1,30 @@
 <%= stylesheet_link_tag "pages/home/style.green" %>
 
 <div id="all">
-  <section id="intro" class="text-intro no-padding-bottom">
+  <section id="intro" class="section text-intro background-gray-lightest no-padding-bottom">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1>Online advertising, automated<span class="rotate"></span> </h1>
-          <h3 class="weight-300">The easiest way to find your customers online.</h3>
+          <h1>Bring in more <span class="rotate">online sales</span>.</h1>
+          <h3 class="weight-300">The easiest way to find more customers online.</h3>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <!--<p>500,000 users have already trusted <a href="http://bootstrapious.com">Bootstrapious templates</a>.<br />Try it for yourself.</p>-->
           <!--<form class="form-inline margin-top sign-up-form">-->
             <!--<input id="email_intro" type="email" placeholder="name@company.com" class="form-control">-->
-            <!--<input id="submit_intro" type="submit" value="Get started for FREE" class="btn btn-primary">-->
+            <!--<input id="submit_intro" type="submit" value="Get started for Free" class="btn btn-primary">-->
           <!--</form>-->
         </div>
         <div class="col-md-12 col-lg-8 col-lg-offset-2">
           <p class="margin-bottom--zero">
-            <%= image_tag "wsj.png", class:"img-responsive" %>
+            <%= image_tag "pages/features3.png", class:"img-responsive" %>
           </p>
         </div>
       </div>
     </div>
   </section>
-  <!--   *** CUSTOMERS ***-->
-  <section id="customers" class="section background-gray-lightest padding--small">
-    <!--<div class="container">-->
-      <!--<div class="row">-->
-        <!--<div class="col-sm-4 col-md-2 col-xs-6">-->
-          <!--<div class="customer">-->
-            <!--%= image_tag "pages/customers/kofola.png", class:"img-responsive", title:"Kofola", "data-placement":-->
-                                                          <!--"bottom", "data-toggle":"tooltip" %>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-4 col-md-2 col-xs-6">-->
-          <!--<div class="customer">-->
-            <!--%= image_tag "pages/customers/evian.png", class:"img-responsive", title:"Evian", "data-placement":-->
-                                                         <!--"bottom", "data-toggle":"tooltip" %>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-4 col-md-2 col-xs-6">-->
-          <!--<div class="customer">-->
-            <!--%= image_tag "pages/customers/cslink.png", class:"img-responsive", title:"CS Link", "data-placement":-->
-                                                          <!--"bottom", "data-toggle":"tooltip" %>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-4 col-md-2 col-xs-6">-->
-          <!--<div class="customer">-->
-            <!--%= image_tag "pages/customers/botas66.png", class:"img-responsive", title:"Botas 66 Concept store",-->
-                          <!--"data-placement": "bottom", "data-toggle":"tooltip" %>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-4 col-md-2 col-xs-6">-->
-          <!--<div class="customer">-->
-            <!--%= image_tag "pages/customers/mdfc.png", class:"img-responsive", title:"MediaFabríca", "data-placement":-->
-                                                        <!--"bottom", "data-toggle":"tooltip" %>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-4 col-md-2 col-xs-6">-->
-          <!--<div class="customer">-->
-            <!--%= image_tag "pages/customers/vanek.png", class:"img-responsive", title:"VANĚK Strojírenská výroba",-->
-                          <!--"data-placement": "bottom", "data-toggle": "tooltip" %>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  </section>
-  <!--   *** CUSTOMERS END ***-->
+
   <!--   *** FEATURES ***-->
   <section id="features" class="section">
     <div class="container">
@@ -92,25 +48,109 @@
         </div>
         <div class="col-md-6">
           <div class="icon brand-terciary"><i class="pe-7s-cash"></i></div>
-          <h2>Transparent Pricing</h2>
-          <p>AdsDash takes the complexity out of pricing. For a fixes monthly rate, we bring back your customers in
-            the most cost-effective way we can.</p>
+          <h2>The Simplest Possible Pricing</h2>
+          <p>AdsDash takes the complexity out of pricing. For a fixes monthly rate, we help you complete sales, in the most cost-effective way.</p>
+          <p>We </p>
         </div>
       </div>
     </div>
   </section>
-  <section class="section no-padding-bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8 col-lg-offset-2 text-center">
-          <div class="icon brand-secondary"><i class="pe-7s-graph1"></i></div>
-          <h2>Ads go where your Customers Go.</h2>
-          <p>AdsDash can reconnect you with your customers, wherever they go. This means showing your ads on sites
-            across the internet. </p>
-          <p class="margin-bottom--zero"><%= image_tag "pages/features3.png", class:"img-responsive" %></p>
+  <section class="section no-padding">
+    <!--<div class="container">-->
+      <!--<div class="row">-->
+        <div class="text-center">
+          <!--<div class="icon brand-secondary">-->
+            <!--<i class="pe-7s-graph1"></i>-->
+          <!--</div>-->
+          <div class="overlay-box">
+            <h2>Ads go where your Customers Go.</h2>
+            <p class="text-gray-light">
+              AdsDash can find your potential customers, wherever they go, automatically.
+              <br>
+              This means showing your ads on sites all across the internet, all with no work from you.
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
+
+        <div class="cols" style="opacity: 0.35">
+          <div class="box">
+            <%= image_tag "websites/latimes.png", class: "img-responsive" %>
+          </div>
+          <div class="box">
+            <%= image_tag "websites/hollywoodreporter.png", class: "img-responsive" %>
+          </div>
+          <div class="box">
+            <%= image_tag "websites/imgur.png", class: "img-responsive" %>
+          </div>
+          <div class="box">
+            <%= image_tag "websites/readersdigest.png", class: "img-responsive" %>
+          </div>
+          <div class="box">
+            <%= image_tag "websites/billboard.png", class: "img-responsive" %>
+          </div>
+          <div class="box">
+            <%= image_tag "websites/vox.png", class: "img-responsive" %>
+          </div>
+          <div class="box">
+            <%= image_tag "websites/sbnation.png", class: "img-responsive" %>
+          </div>
+          <div class="box">
+            <%= image_tag "websites/salon.png", class: "img-responsive" %>
+          </div>
+        </div>
+
+
+          <style>
+            #container {
+              width: 100%;
+              margin: 2em auto;
+            }
+            .cols {
+              -moz-column-count:4;
+              -moz-column-gap: 3%;
+              -moz-column-width: 30%;
+              -webkit-column-count:4;
+              -webkit-column-gap: 3%;
+              -webkit-column-width: 30%;
+              column-count: 4;
+              column-gap: 3%;
+              column-width: 30%;
+            }
+            .box {
+              margin-bottom: 20px;
+            }
+            .box.one {
+              height: 400px;
+              background-color: #d77575;
+            }
+            .box.two {
+              height: 400px;
+              background-color: #dcbc4c;
+            }
+            .box.three {
+              background-color: #a3ca3b;
+              height: 400px;
+            }
+            .box.four {
+              background-color: #3daee3;
+              height: 400px;
+            }
+            .box.five {
+              background-color: #bb8ed8;
+              height: 400px;
+            }
+            .box.six {
+              background-color: #baafb1;
+              height: 400px;
+            }
+          </style>
+
+
+
+
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
   </section>
   <!--   *** FEATURES END ***  -->
   <!--   *** TEXT ***-->
@@ -261,105 +301,14 @@
     </div>
   </section>
 
-  <!--   *** INTEGRATIONS END ***-->
-  <!--<section id="testimonials" class="section testimonails background-gray-lightest">-->
-    <!--<div class="container">-->
-      <!--<h2 class="text-center">-->
-
-        <!--What our customers say-->
-      <!--</h2>-->
-      <!--<p class="lead text-center">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.  </p>-->
-      <!--<div class="row">-->
-        <!--<div class="col-md-12">-->
-          <!--<ul class="owl-carousel testimonials same-height-row">-->
-            <!--<li class="item">-->
-              <!--<div class="testimonial same-height-always">-->
-                <!--<div class="text">-->
-                  <!--<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</p>-->
-                <!--</div>-->
-                <!--<div class="bottom">-->
-                  <!--<div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>-->
-                  <!--<div class="name-picture">-->
-                    <!--%= image_tag "pages/person-1.jpg" %>-->
-                    <!--<h5>John McIntyre</h5>-->
-                    <!--<p>CEO, TransTech</p>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li class="item">-->
-              <!--<div class="testimonial same-height-always">-->
-                <!--<div class="text">-->
-                  <!--<p>The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. "What's happened to me? " he thought. It wasn't a dream.</p>-->
-                <!--</div>-->
-                <!--<div class="bottom">-->
-                  <!--<div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>-->
-                  <!--<div class="name-picture">-->
-                    <!--%= image_tag "pages/person-1.jpg" %>-->
-                    <!--<h5>John McIntyre</h5>-->
-                    <!--<p>CEO, TransTech</p>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li class="item">-->
-              <!--<div class="testimonial same-height-always">-->
-                <!--<div class="text">-->
-                  <!--<p>His room, a proper human room although a little too small, lay peacefully between its four familiar walls.</p>-->
-                  <!--<p>A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame.</p>-->
-                <!--</div>-->
-                <!--<div class="bottom">-->
-                  <!--<div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>-->
-                  <!--<div class="name-picture">-->
-                    <!--%= image_tag "pages/person-1.jpg" %>-->
-                    <!--<h5>John McIntyre</h5>-->
-                    <!--<p>CEO, TransTech</p>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li class="item">-->
-              <!--<div class="testimonial same-height-always">-->
-                <!--<div class="text">-->
-                  <!--<p>It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather. Drops of rain could be heard hitting the pane, which made him feel quite sad.</p>-->
-                <!--</div>-->
-                <!--<div class="bottom">-->
-                  <!--<div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>-->
-                  <!--<div class="name-picture">-->
-                    <!--%= image_tag "pages/person-1.jpg" %>-->
-                    <!--<h5>John McIntyre</h5>-->
-                    <!--<p>CEO, TransTech</p>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li class="item">-->
-              <!--<div class="testimonial same-height-always">-->
-                <!--<div class="text">-->
-                  <!--<p>It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather. Drops of rain could be heard hitting the pane, which made him feel quite sad. Gregor then turned to look out the window at the dull weather. Drops of rain could be heard hitting the pane, which made him feel quite sad.</p>-->
-                <!--</div>-->
-                <!--<div class="bottom">-->
-                  <!--<div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>-->
-                  <!--<div class="name-picture">-->
-                    <!--%= image_tag "pages/person-1.jpg" %>-->
-                    <!--<h5>John McIntyre</h5>-->
-                    <!--<p>CEO, TransTech</p>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</li>-->
-          <!--</ul>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</section>-->
   <section class="signup-section text-center no-padding-bottom  background-gray-lightest">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h3>Join for free Now</h3>
           <p class="lead text-gray-light">Create an account now. Don't pay until you run a campaign.<p>
-          <%= link_to "Sign up for Free", pricing_path, class: "btn btn-primary" %>
+          <%= link_to "Sign up for Free", new_advertiser_registration_path,
+                      class: "btn btn-primary" %>
           <form class="form-inline margin-bottom--big sign-up-form">
           </form>
 
@@ -371,6 +320,7 @@
       </div>
     </div>
   </section>
+
   <!--<section id="contact" class="section background-gray-lightest">-->
     <!--<div class="container">-->
       <!--<div class="row">-->
@@ -401,6 +351,5 @@
     <!--</div>-->
   <!--</section>-->
 
-  <%= render "pages/partials/footer" %>
 </div>
 
