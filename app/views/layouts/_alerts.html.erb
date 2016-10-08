@@ -1,27 +1,32 @@
 <% if alert %>
   <script !src="">
-    $.notify({
-          icon: "pe-7s-warning",
-          message: "<%= alert %>"
-        },{
-          type: "danger",
-          timer: 2000,
-          placement: { from: "top", align: "center" }
-        }
-    );
+    $(document).ready(function() {
+      $.notify({
+            icon: "pe-7s-warning",
+            message: "<%= alert %>"
+          },{
+            type: "danger",
+            timer: 2000,
+            placement: { from: "top", align: "center" }
+          }
+      );
+    });
+
   </script>
 <% end %>
 
 <% if notice %>
   <script !src="">
-    $.notify({
-          icon: "pe-7s-speaker",
-          message: "<%= notice %>"
-        },{
-          type: "info",
-          timer: 2000,
-          placement: { from: "top", align: "center" }
-        }
-    );
+    $(document).ready(function() {
+      $.notify({
+            icon: "pe-7s-speaker",
+            message: "<%= notice %>"
+          }, {
+            type: "info",
+            timer: 2000,
+            placement: {from: "top", align: "center"}
+          }
+      );
+    });
   </script>
 <% end %>
