@@ -1,6 +1,6 @@
 <!-- sign-in and register modals -->
 <%= render "pages/partials/sign_in_modal" %>
-
+<%= render "pages/partials/sign_up_modal" %>
 <header class="header">
   <div role="navigation" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -29,9 +29,7 @@
             </a>
           </li>
         </ul>
-
-        <%= link_to "Sign up for Free", new_advertiser_registration_path, class: "btn btn-primary topright-button" %>
-
+        <a class="btn btn-primary topright-button" data-toggle="modal" data-target="#sign-up">Sign up for Free</a>
       </div>
     </div>
   </div>
