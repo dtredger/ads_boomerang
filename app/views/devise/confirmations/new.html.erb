@@ -7,7 +7,7 @@
   </div>
   <div class="modal-body" style="padding: 30px;">
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-sm-6">
         <div class="well">
           <p class="lead">Didn't receive an email confirmation?</p>
           <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
@@ -30,9 +30,10 @@
         </div>
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-sm-6">
         <p class="lead">Don't have an account? Sign up for <span class="text-success">Free</span></p>
         <ul class="list-unstyled" style="line-height: 2">
+          <li><span class="fa fa-check text-success"></span> Free until you start advertising</li>
           <li><span class="fa fa-check text-success"></span> Transparent monthly pricing</li>
           <li><span class="fa fa-check text-success"></span> Cancel your plan anytime</li>
           <li><span class="fa fa-check text-success"></span> Handles multiple ad sizes</li>
@@ -44,14 +45,14 @@
         </p>
       </div>
 
-      <div class="col-xs-12 text-center">
+      <div class="col-sm-12 text-center">
         <hr>
-        <div class="col-xs-6">
+        <div class="col-sm-6">
           <%- if controller_name != 'sessions' %>
             <%= link_to "Log in", new_session_path(resource_name) %><br />
           <% end -%>
         </div>
-        <div class="col-xs-6">
+        <div class="col-sm-6">
           <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
             <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
           <% end -%>

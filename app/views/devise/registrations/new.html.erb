@@ -1,4 +1,4 @@
-<div class="col-md-6 col-md-offset-3 register-modal">
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 register-modal">
   <div class="modal-header" style="background: #71bc37">
     <h4 class="modal-title text-center" id="myModalLabel" style="color: white;">
       Register for <b>AdsDash</b>
@@ -6,9 +6,10 @@
   </div>
   <div class="modal-body" style="padding: 30px;">
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-sm-6">
         <p class="lead">Sign up for an AdsDash account for <span class="text-success">Free</span></p>
         <ul class="list-unstyled" style="line-height: 2">
+          <li><span class="fa fa-check text-success"></span> Free until you start advertising</li>
           <li><span class="fa fa-check text-success"></span> Transparent monthly pricing</li>
           <li><span class="fa fa-check text-success"></span> Cancel your plan anytime</li>
           <li><span class="fa fa-check text-success"></span> Handles multiple ad sizes</li>
@@ -16,7 +17,7 @@
           <li><span class="fa fa-check text-success"></span> Set-and-forget system</li>
         </ul>
       </div>
-      <div class="col-xs-6">
+      <div class="col-sm-6">
         <div class="well">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
