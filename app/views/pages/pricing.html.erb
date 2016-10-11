@@ -1,201 +1,281 @@
-<%= stylesheet_link_tag "pages/pricing/pricing" %>
+<br><br><br><br><br><br>
 
-<header class="cd-header">
-  <h1>Pricing Tables</h1>
-</header>
-
-<div class="cd-pricing-container cd-has-margins">
-  <div class="cd-pricing-switcher">
-    <p class="fieldset">
-      <input type="radio" name="duration-2" value="monthly" id="monthly-2" checked>
-      <label for="monthly-2">Monthly</label>
-      <input type="radio" name="duration-2" value="yearly" id="yearly-2">
-      <label for="yearly-2">Yearly</label>
-      <span class="cd-switch"></span>
-    </p>
-  </div> <!-- .cd-pricing-switcher -->
-
-  <ul class="cd-pricing-list cd-bounce-invert">
-    <li>
-      <ul class="cd-pricing-wrapper">
-        <li data-type="monthly" class="is-visible">
-          <header class="cd-pricing-header">
-            <h2>Basic</h2>
-
-            <div class="cd-price">
-              <span class="cd-currency">$</span>
-              <span class="cd-value">30</span>
-              <span class="cd-duration">mo</span>
-            </div>
-          </header> <!-- .cd-pricing-header -->
-
-          <div class="cd-pricing-body">
-            <ul class="cd-pricing-features">
-              <li><em>256MB</em> Memory</li>
-              <li><em>1</em> User</li>
-              <li><em>1</em> Website</li>
-              <li><em>1</em> Domain</li>
-              <li><em>Unlimited</em> Bandwidth</li>
-              <li><em>24/7</em> Support</li>
-            </ul>
-          </div> <!-- .cd-pricing-body -->
-
-          <footer class="cd-pricing-footer">
-            <%= link_to "Sign Up", new_advertiser_registration_path, class: "cd-select" %>
-          </footer>  <!-- .cd-pricing-footer -->
-        </li>
-
-        <li data-type="yearly" class="is-hidden">
-          <header class="cd-pricing-header">
-            <h2>Basic</h2>
-
-            <div class="cd-price">
-              <span class="cd-currency">$</span>
-              <span class="cd-value">320</span>
-              <span class="cd-duration">yr</span>
-            </div>
-          </header> <!-- .cd-pricing-header -->
-
-          <div class="cd-pricing-body">
-            <ul class="cd-pricing-features">
-              <li><em>256MB</em> Memory</li>
-              <li><em>1</em> User</li>
-              <li><em>1</em> Website</li>
-              <li><em>1</em> Domain</li>
-              <li><em>Unlimited</em> Bandwidth</li>
-              <li><em>24/7</em> Support</li>
-            </ul>
-          </div> <!-- .cd-pricing-body -->
-
-          <footer class="cd-pricing-footer">
-            <%= link_to "Sign Up", new_advertiser_registration_path, class: "cd-select" %>
-          </footer>  <!-- .cd-pricing-footer -->
-        </li>
-      </ul> <!-- .cd-pricing-wrapper -->
-    </li>
-
-    <li class="cd-popular">
-      <ul class="cd-pricing-wrapper">
-        <li data-type="monthly" class="is-visible">
-          <header class="cd-pricing-header">
-            <h2>Popular</h2>
-            <div class="cd-price">
-              <span class="cd-currency">$</span>
-              <span class="cd-value">60</span>
-              <span class="cd-duration">mo</span>
-            </div>
-          </header> <!-- .cd-pricing-header -->
-
-          <div class="cd-pricing-body">
-            <ul class="cd-pricing-features">
-              <li><em>512MB</em> Memory</li>
-              <li><em>3</em> Users</li>
-              <li><em>5</em> Websites</li>
-              <li><em>7</em> Domains</li>
-              <li><em>Unlimited</em> Bandwidth</li>
-              <li><em>24/7</em> Support</li>
-            </ul>
-          </div> <!-- .cd-pricing-body -->
-
-          <footer class="cd-pricing-footer">
-            <%= link_to "Sign Up", new_advertiser_registration_path, class: "cd-select" %>
-          </footer>  <!-- .cd-pricing-footer -->
-        </li>
-
-        <li data-type="yearly" class="is-hidden">
-          <header class="cd-pricing-header">
-            <h2>Popular</h2>
-
-            <div class="cd-price">
-              <span class="cd-currency">$</span>
-              <span class="cd-value">630</span>
-              <span class="cd-duration">yr</span>
-            </div>
-          </header> <!-- .cd-pricing-header -->
-
-          <div class="cd-pricing-body">
-            <ul class="cd-pricing-features">
-              <li><em>512MB</em> Memory</li>
-              <li><em>3</em> Users</li>
-              <li><em>5</em> Websites</li>
-              <li><em>7</em> Domains</li>
-              <li><em>Unlimited</em> Bandwidth</li>
-              <li><em>24/7</em> Support</li>
-            </ul>
-          </div> <!-- .cd-pricing-body -->
-
-          <footer class="cd-pricing-footer">
-            <%= link_to "Sign Up", new_advertiser_registration_path, class: "cd-select" %>
-          </footer>  <!-- .cd-pricing-footer -->
-        </li>
-      </ul> <!-- .cd-pricing-wrapper -->
-    </li>
-
-    <li>
-      <ul class="cd-pricing-wrapper">
-        <li data-type="monthly" class="is-visible">
-          <header class="cd-pricing-header">
-            <h2>Premier</h2>
-
-            <div class="cd-price">
-              <span class="cd-currency">$</span>
-              <span class="cd-value">90</span>
-              <span class="cd-duration">mo</span>
-            </div>
-          </header> <!-- .cd-pricing-header -->
-
-          <div class="cd-pricing-body">
-            <ul class="cd-pricing-features">
-              <li><em>1024MB</em> Memory</li>
-              <li><em>5</em> Users</li>
-              <li><em>10</em> Websites</li>
-              <li><em>10</em> Domains</li>
-              <li><em>Unlimited</em> Bandwidth</li>
-              <li><em>24/7</em> Support</li>
-            </ul>
-          </div> <!-- .cd-pricing-body -->
-
-          <footer class="cd-pricing-footer">
-            <%= link_to "Sign Up", new_advertiser_registration_path, class: "cd-select" %>
-          </footer>  <!-- .cd-pricing-footer -->
-        </li>
-
-        <li data-type="yearly" class="is-hidden">
-          <header class="cd-pricing-header">
-            <h2>Premier</h2>
-
-            <div class="cd-price">
-              <span class="cd-currency">$</span>
-              <span class="cd-value">950</span>
-              <span class="cd-duration">yr</span>
-            </div>
-          </header> <!-- .cd-pricing-header -->
-
-          <div class="cd-pricing-body">
-            <ul class="cd-pricing-features">
-              <li><em>1024MB</em> Memory</li>
-              <li><em>5</em> Users</li>
-              <li><em>10</em> Websites</li>
-              <li><em>10</em> Domains</li>
-              <li><em>Unlimited</em> Bandwidth</li>
-              <li><em>24/7</em> Support</li>
-            </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 col-sm-offset-2">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Bronze</h3>
+        </div>
+        <div class="panel-body">
+          <div class="the-price">
+            <h1>
+              $10<span class="subscript">/mo</span></h1>
+            <small>1 month FREE trial</small>
           </div>
-
-          <footer class="cd-pricing-footer">
-            <a class="cd-select" href="#">Select</a>
-          </footer>
-        </li>
-      </ul>
-    </li>
-  </ul>
+          <table class="table">
+            <tr>
+              <td>
+                1 Account
+              </td>
+            </tr>
+            <tr class="active">
+              <td>
+                1 Project
+              </td>
+            </tr>
+            <tr>
+              <td>
+                100K API Access
+              </td>
+            </tr>
+            <tr class="active">
+              <td>
+                100MB Storage
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Custom Cloud Services
+              </td>
+            </tr>
+            <tr class="active">
+              <td>
+                Weekly Reports
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="panel-footer">
+          <a href="http://www.jquery2dotnet.com" class="btn btn-success" role="button">Sign Up</a>
+          1 month FREE trial</div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-3">
+      <div class="panel panel-success">
+        <div class="cnrflash">
+          <div class="cnrflash-inner">
+                        <span class="cnrflash-label">MOST
+                            <br>
+                            POPULAR</span>
+          </div>
+        </div>
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Silver</h3>
+        </div>
+        <div class="panel-body">
+          <div class="the-price">
+            <h1>
+              $20<span class="subscript">/mo</span></h1>
+            <small>1 month FREE trial</small>
+          </div>
+          <table class="table">
+            <tr>
+              <td>
+                2 Account
+              </td>
+            </tr>
+            <tr class="active">
+              <td>
+                5 Project
+              </td>
+            </tr>
+            <tr>
+              <td>
+                100K API Access
+              </td>
+            </tr>
+            <tr class="active">
+              <td>
+                200MB Storage
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Custom Cloud Services
+              </td>
+            </tr>
+            <tr class="active">
+              <td>
+                Weekly Reports
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="panel-footer">
+          <a href="http://www.jquery2dotnet.com" class="btn btn-success" role="button">Sign Up</a>
+          1 month FREE trial</div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-3">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Gold</h3>
+        </div>
+        <div class="panel-body">
+          <div class="the-price">
+            <h1>
+              $35<span class="subscript">/mo</span></h1>
+            <small>1 month FREE trial</small>
+          </div>
+          <table class="table">
+            <tr>
+              <td>
+                5 Account
+              </td>
+            </tr>
+            <tr class="active">
+              <td>
+                20 Project
+              </td>
+            </tr>
+            <tr>
+              <td>
+                300K API Access
+              </td>
+            </tr>
+            <tr class="active">
+              <td>
+                500MB Storage
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Custom Cloud Services
+              </td>
+            </tr>
+            <tr class="active">
+              <td>
+                Weekly Reports
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="panel-footer">
+          <a href="http://www.jquery2dotnet.com" class="btn btn-success" role="button">Sign Up</a> 1 month FREE trial</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="text-center" style="color:#fefefe;">
-  <p>
-    <b>All Prices in USD.</b>
-    You can cancel or change your plan anytime.
-  </p>
-</div>
+<style>
+  body
+  {
+    margin-top: 50px;
+    background: #ddd;
+  }
+  .panel
+  {
+    text-align: center;
+    cursor: pointer;
+    -webkit-box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  .panel:hover { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35); }
+  .panel-body
+  {
+    padding: 0px;
+    text-align: center;
+  }
 
-<%= javascript_include_tag "pages/pricing/pricing.js" %>
+  .the-price
+  {
+    background-color: rgba(220,220,220,.17);
+    box-shadow: 0 1px 0 #dcdcdc, inset 0 1px 0 #fff;
+    padding: 20px;
+    margin: 0;
+  }
+
+  .the-price h1
+  {
+    line-height: 1em;
+    padding: 0;
+    margin: 0;
+  }
+
+  .subscript
+  {
+    font-size: 25px;
+  }
+
+  /* CSS-only ribbon styles    */
+  .cnrflash
+  {
+    /*Position correctly within container*/
+    position: absolute;
+    top: -9px;
+    right: 4px;
+    z-index: 1; /*Set overflow to hidden, to mask inner square*/
+    overflow: hidden; /*Set size and add subtle rounding  		to soften edges*/
+    width: 100px;
+    height: 100px;
+    border-radius: 3px 5px 3px 0;
+  }
+  .cnrflash-inner
+  {
+    /*Set position, make larger then 			container and rotate 45 degrees*/
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 145px;
+    height: 145px;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -o-transform: rotate(45deg); /* Opera */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Safari and Chrome */
+    -webkit-transform-origin: 100% 100%; /*Purely decorative effects to add texture and stuff*/ /* Safari and Chrome */
+    -ms-transform-origin: 100% 100%;  /* IE 9 */
+    -o-transform-origin: 100% 100%; /* Opera */
+    -moz-transform-origin: 100% 100%; /* Firefox */
+    background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.1) 50%), linear-gradient(0deg, transparent 0%, rgba(1,1,1,.2) 50%);
+    background-size: 4px,auto, auto,auto;
+    background-color: #aa0101;
+    box-shadow: 0 3px 3px 0 rgba(1,1,1,.5), 0 1px 0 0 rgba(1,1,1,.5), inset 0 -1px 8px 0 rgba(255,255,255,.3), inset 0 -1px 0 0 rgba(255,255,255,.2);
+  }
+  .cnrflash-inner:before, .cnrflash-inner:after
+  {
+    /*Use the border triangle trick to make  				it look like the ribbon wraps round it's 				container*/
+    content: " ";
+    display: block;
+    position: absolute;
+    bottom: -16px;
+    width: 0;
+    height: 0;
+    border: 8px solid #800000;
+  }
+  .cnrflash-inner:before
+  {
+    left: 1px;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+  }
+  .cnrflash-inner:after
+  {
+    right: 0;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  .cnrflash-label
+  {
+    /*Make the label look nice*/
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    padding-bottom: 5px;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(1,1,1,.8);
+    font-size: 0.95em;
+    font-weight: bold;
+    text-align: center;
+  }
+
+</style>

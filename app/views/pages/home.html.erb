@@ -5,8 +5,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1>Bring in more <span class="rotate">online sales</span>.</h1>
-          <h3 class="weight-300">The easiest way to find more customers online.</h3>
+          <h1>Make more <span class="rotate">sales</span></h1>
+          <h3 class="weight-300">The easiest way to find more customers online</h3>
         </div>
       </div>
       <div class="row">
@@ -24,38 +24,43 @@
       </div>
     </div>
   </section>
-
-  <!--   *** FEATURES ***-->
+  <!-- what -->
   <section id="features" class="section">
     <div class="container">
       <div class="row text-center-mobile">
-        <div class="col-md-6">
-          <div class="icon"><i class="pe-7s-diamond"></i></div>
-          <h2>When we say automated, we mean it.</h2>
-          <p>AdsDash does the campaign optimization for you. </p>
+        <div class="col-sm-6">
+          <h3>Your first stop for online advertising</h3>
+          <p>
+            AdsDash is the best way to start out advertising online.
+            We bring people who have visited your site back,
+            helping you close sales and reconnect with cart abandoners.
+          </p>
+          <p>
+            Showing ads to people who have visited your site is the highest-ROI investment
+            in advertising you can make.
+          </p>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
+
           <p><%= image_tag "pages/features1.png", class:"img-responsive" %></p>
         </div>
       </div>
     </div>
   </section>
+  <!-- how-to -->
   <section class="section background-gray-lightest">
     <div class="container">
-      <div class="row text-center-mobile">
-        <div class="col-md-6">
-          <p><%= image_tag "pages/features2.png", class:"img-responsive" %></p>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= render "pages/partials/drop_template" %>
         </div>
-        <div class="col-md-6">
-          <div class="icon brand-terciary"><i class="pe-7s-cash"></i></div>
-          <h2>The Simplest Possible Pricing</h2>
-          <p>AdsDash takes the complexity out of pricing. For a fixes monthly rate, we help you complete sales, in the most cost-effective way.</p>
-          <p>We </p>
-        </div>
+        
       </div>
     </div>
   </section>
+  <!-- sites available -->
   <section class="section no-padding">
+
     <!--<div class="container">-->
       <!--<div class="row">-->
         <div class="text-center">
@@ -152,42 +157,40 @@
       <!--</div>-->
     <!--</div>-->
   </section>
-  <!--   *** FEATURES END ***  -->
-  <!--   *** TEXT ***-->
-  <section id="text" class="text-page section-inverse background-secondary">
+  <!-- pricing -->
+  <section id="pricing" class="text-page background-secondary">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <h2 class="text-center">Text page</h2>
-          <p class="lead text-center">Age lived smile six defer bed their few. Had admitting concluded too behaviour him she.</p>
-          <div class="row">
-            <div class="col-sm-6">
-              <p>Able an hope of body. Any nay shyness article matters own removal nothing his forming. Gay own additions education satisfied the perpetual. If he cause manor happy. Without farther she exposed saw man led. Along on happy could cease green oh. </p>
-              <p>Betrayed cheerful declared end and. Questions we additions is extremely incommode. Next half add call them eat face. Age lived smile six defer bed their few. Had admitting concluded too behaviour him she. Of death to or to being other. </p>
-            </div>
-            <div class="col-sm-6">
-              <p>Effects present letters inquiry no an removed or friends. Desire behind latter me though in. Supposing shameless am he engrossed up additions. My possible peculiar together to. Desire so better am cannot he up before points. Remember mistaken opinions it pleasure of debating. Court front maids forty if aware their at. Chicken use are pressed removed. </p>
-              <p>Saw yet kindness too replying whatever marianne. Old sentiments resolution admiration unaffected its mrs literature. Behaviour new set existence dashwoods. It satisfied to mr commanded consisted disposing engrossed. Tall snug do of till on easy. Form not calm new fail. </p>
-            </div>
+        <div class="col-sm-12">
+          <div class="section-inverse">
+            <h2 class="text-center">Plans that fit your site.</h2>
+            <p class="lead text-center">
+              Set a budget based on your site traffic, no guesswork required.
+            </p>
+          </div>
+          <%= render "layouts/price_tables" %>
+
+          <div class="col-xs-12 col-lg-8 col-lg-offset-2 section-inverse">
+            <p class="text-center">
+              *Site traffic less than your plan? Don't worry, we'll save unused visitors as a credit for next month.
+            </p>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!--   *** TEXT END ***-->
-
-  <!--   *** INTEGRATIONS ***-->
+  <!-- integrations -->
   <section id="integrations" class="section-gray">
     <div class="container clearfix">
       <div class="row services">
         <div class="col-md-12">
-          <h4 class="services-heading">Integrates with your Online Storefront</h4>
+          <h2 class="services-heading">Integrates with your Online Storefront</h2>
           <p class="lead text-gray-light">
             AdsDash can be used with any online storefront, website builder, or CMS that allows you to edit your own
             template.
             <br>
             Not sure if your site is compatible? Contact us for help.
-          <p>
+          </p>
           <!-- START regular sizes-->
           <div class="hidden-xs">
             <div class="row">
@@ -300,15 +303,14 @@
       </div>
     </div>
   </section>
-
+  <!-- closer -->
   <section class="signup-section text-center no-padding-bottom  background-gray-lightest">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h3>Join for free Now</h3>
-          <p class="lead text-gray-light">Create an account now. Don't pay until you run a campaign.<p>
-          <%= link_to "Sign up for Free", new_advertiser_registration_path,
-                      class: "btn btn-primary" %>
+          <p class="lead text-gray-light">Create an account now. Don't pay until you start your campaign.<p>
+          <a class="btn btn-primary" data-toggle="modal" data-target="#sign-up">Sign up for Free</a>
           <form class="form-inline margin-bottom--big sign-up-form">
           </form>
 
@@ -320,7 +322,6 @@
       </div>
     </div>
   </section>
-
   <!--<section id="contact" class="section background-gray-lightest">-->
     <!--<div class="container">-->
       <!--<div class="row">-->
@@ -350,6 +351,4 @@
       <!--</div>-->
     <!--</div>-->
   <!--</section>-->
-
 </div>
-

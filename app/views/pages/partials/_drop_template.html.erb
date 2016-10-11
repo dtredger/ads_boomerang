@@ -1,0 +1,188 @@
+
+<div class="chrome-window">
+  <div class="row">
+    <h2 class="text-center">Simple ad dashboard</h2>
+    <%= image_tag "toronto728x90.png", class: "text-center ad-728" %>
+  </div>
+          <!-- <div id="dropzone">
+            <div>Drag Here</div>
+            <input type="file" accept="image/png, application/pdf" />
+          </div> -->
+    <p>
+      AdsDash takes the complexity out of managing ads.
+    </p>
+    <div class="row">
+      <div class="col-xs-3">
+        <%= image_tag "fox_160x600.png", class: "ad-160" %>
+      </div>
+
+      <div class="col-xs-9">
+        <div class="col-xs-7">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eius accusantium nulla fugit laudantium fugiat!</p>
+
+          <p>
+            Simply drag-and drop any of the Intactive Advertising Bureau (IAB)
+            sizes into your
+          </p>
+        </div>
+        <div class="col-xs-5">
+          <p>
+            Simply drag-and drop any of the Intactive Advertising Bureau (IAB)
+            sizes into your
+          </p>
+          <%= image_tag "fox_300x250.jpg", class: "ad-300" %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<style>
+  .float-left {
+    float: left;
+  }
+  .ad-728 {
+    border: 1px solid #ddd;
+    max-width: 728px;
+    height: auto;
+  }
+  .ad-300 {
+    border: 1px solid #ddd;
+    max-width: 300px;
+    height: auto;
+  }
+  .ad-160 {
+    display: inline;
+    border: 1px solid #ddd;
+    max-width: 160px;
+    height: auto;
+  }
+
+  .chrome-window {
+      max-height: 600px;
+      overflow: hidden;
+      /*TODO - is that correct? */
+
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      display: block;
+      margin: 20px auto;
+      border-radius: 2px;
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, .15);
+      padding: 111px 40px 40px;
+      background: url('assets/chrome_top.png') top no-repeat white;
+      background-size: 100%;
+  }
+
+  .chrome-window img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+  }
+
+  hr {
+      border: 0;
+      border-top: 1px dashed rgba(255, 255, 255, .5);
+      margin: 40px auto;
+  }
+
+  h1 {
+      margin-top: 0;
+  }
+
+#dropzone {
+  position: relative;
+  border: 1px solid #DDD;
+  font: bold 24px/200px arial;
+  height: 250px;
+  width: 300px;
+  /*margin: 30px auto;*/
+  text-align: center;
+
+}
+
+#dropzone.hover {
+  border: 10px solid #FE5;
+  color: #FE5;
+}
+
+#dropzone div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+#dropzone img {
+  vertical-align: middle;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+#dropzone [type="file"] {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+</style>
+
+<script>
+$(function() {
+
+  $('#dropzone').on('dragover', function(e,f) {
+    $(this).addClass('hover');
+  });
+
+  $('#dropzone').on('dragleave', function() {
+    $(this).removeClass('hover');
+  });
+
+  $('#dropzone input').on('change', function() {
+    var file = this.files[0];
+    var _URL = window.URL || window.webkitURL;
+    $('#dropzone').removeClass('hover');
+    if (this.accept && $.inArray(file.type, this.accept.split(/, ?/)) == -1) {
+      // return alert('File type not allowed.');
+    }
+    $('#dropzone').addClass('dropped');
+    $('#dropzone img').remove();
+
+    if ((/^image\/(gif|png|jpg|jpeg)$/i).test(file.type)) {
+      var img = new Image();
+      img.src = _URL.createObjectURL(file);
+
+      img.onload = function() {
+          var width = this.width;
+          var height =  this.height;
+
+          var reader = new FileReader(file);
+          reader.readAsDataURL(file);
+          reader.onload = function(e) {
+            var data = e.target.result;
+            var $img = $('<img />').attr('src', data).fadeIn();
+            $('#dropzone div').html($img);
+          };
+      };
+      // img.onerror = function() {
+      //     alert( "not a valid file: " + file.type);
+      // };
+    } else {
+      var ext = file.name.split('.').pop();
+      $('#dropzone div').html(ext);
+    }
+  });
+});
+</script>

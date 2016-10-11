@@ -47,6 +47,15 @@
 
 
 .checklist-complete {
-  background: #c1ffc9;
+  background: #71bc37;
 }
+.checklist-complete i {
+  color: white;
+  font-weight: bolder;
+}
+.checklist-complete td {
+  color: white;
+  font-weight: bolder;
+}
+
 $default-green: #71bc37;
