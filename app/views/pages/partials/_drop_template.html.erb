@@ -1,41 +1,55 @@
 
 <div class="chrome-window">
   <div class="row">
-    <h2 class="text-center">Simple ad dashboard</h2>
-    <%= image_tag "toronto728x90.png", class: "text-center ad-728" %>
-  </div>
-          <!-- <div id="dropzone">
-            <div>Drag Here</div>
-            <input type="file" accept="image/png, application/pdf" />
-          </div> -->
-    <p>
-      AdsDash takes the complexity out of managing ads.
-    </p>
-    <div class="row">
-      <div class="col-xs-3">
+    <div class="col-sm-8">
+      <%= image_tag "728x90.png", class: "text-center ad-728" %>
+      <br>
+      <div class="col-sm-3 hidden-xs">
         <%= image_tag "fox_160x600.png", class: "ad-160" %>
       </div>
 
-      <div class="col-xs-9">
-        <div class="col-xs-7">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eius accusantium nulla fugit laudantium fugiat!</p>
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-md-6">
+            <p>AdsDash takes the complexity out of managing ads. Our drag-and-drop dashboard
+              accepts the most popular online formats easily.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <%= image_tag "300x250.png", class: "ad-300" %>
+          </div>
+        </div>
 
-          <p>
-            Simply drag-and drop any of the Intactive Advertising Bureau (IAB)
-            sizes into your
-          </p>
+        <h4>Supported Sizes</h4>
+        <p>
+          All plans include the most important online ad sizes:
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><span class="fa fa-check text-success"></span>Skyscraper (160x600)</li>
+              <li><span class="fa fa-check text-success"></span>Medium Rectangle (300x250)</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><span class="fa fa-check text-success"></span>Leaderboard (728x90)</li>
+              <li><span class="fa fa-check text-success"></span>Wide Skyscraper (300x600)</li>
+            </ul>
+          </div>
         </div>
-        <div class="col-xs-5">
-          <p>
-            Simply drag-and drop any of the Intactive Advertising Bureau (IAB)
-            sizes into your
-          </p>
-          <%= image_tag "fox_300x250.jpg", class: "ad-300" %>
-        </div>
+
       </div>
     </div>
-
+    <div class="col-sm-4 hidden-xs">
+      <%= image_tag "300x600.png", class: "ad-600" %>
+    </div>
   </div>
+  <hr>
+  <p class="text-center visible-xs visible-sm">
+    <i>*Some of the sample ads in this frame have been scaled down to fit your screen</i>
+  </p>
+
 </div>
 
 
@@ -56,6 +70,11 @@
     max-width: 300px;
     height: auto;
   }
+  .ad-600 {
+    border: 1px solid #ddd;
+    max-width: 300px;
+    height: auto;
+  }
   .ad-160 {
     display: inline;
     border: 1px solid #ddd;
@@ -64,7 +83,7 @@
   }
 
   .chrome-window {
-      max-height: 600px;
+      /*max-height: 600px;*/
       overflow: hidden;
       /*TODO - is that correct? */
 
@@ -173,7 +192,7 @@ $(function() {
           reader.onload = function(e) {
             var data = e.target.result;
             var $img = $('<img />').attr('src', data).fadeIn();
-            $('#dropzone div').html($img);
+            $('#drop-target').html($img);
           };
       };
       // img.onerror = function() {
