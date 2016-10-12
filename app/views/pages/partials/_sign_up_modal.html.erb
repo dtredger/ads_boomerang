@@ -1,0 +1,65 @@
+<!-- sign-in modal -->
+<div id="sign-up" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
+
+
+  <div id="login-overlay" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #71bc37">
+        <h4 class="modal-title text-center" style="color: white;">Register for <b>AdsDash</b></h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="lead">Sign up for an AdsDash account for <span class="text-success">Free</span></p>
+          <ul class="list-unstyled" style="line-height: 2">
+            <li><span class="fa fa-check text-success"></span> Free until you start advertising</li>
+            <li><span class="fa fa-check text-success"></span> Transparent monthly pricing</li>
+            <li><span class="fa fa-check text-success"></span> Cancel your plan anytime</li>
+            <li><span class="fa fa-check text-success"></span> Handles multiple ad sizes</li>
+            <li><span class="fa fa-check text-success"></span> Fully automated optimization</li>
+            <li><span class="fa fa-check text-success"></span> Set-and-forget system</li>
+          </ul>
+        </div>
+        <div class="col-sm-6">
+          <div class="well">
+            <%= form_for Advertiser.new, url: advertiser_registration_path do |f| %>
+              <div class="form-group">
+                <label for="email" class="control-label">Email</label>
+                <%= f.email_field :email, autofocus: true, id:"email_modal", type:"email",
+                                  placeholder:"name@company.com", class:"form-control", required: true %>
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                <label for="password" class="control-label">Password</label>
+                <em>(6 characters minimum)</em>
+                <%= f.password_field :password, autocomplete: "off",
+                                     placeholder:"Please enter your password",
+                                     class:"form-control", required: true %>
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                <label for="password_confirmation" class="control-label">Confirm your Password</label>
+                <%= f.password_field :password_confirmation, autocomplete: "off",
+                                     class:"form-control", required: true %>
+              </div>
+              <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :remember_me %> Remember login
+                </label>
+                <p class="help-block">(if this is a private computer)</p>
+              </div>
+
+              <%= f.submit "Create your account", class: "btn btn-primary btn-block" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+  </div>
+
+</div>
+

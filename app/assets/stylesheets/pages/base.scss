@@ -25,9 +25,9 @@ $main-green: #71bc37;
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,400italic");
 
 @import "../../../vendor/assets/stylesheets/pe-icon-7-stroke";
-@import "../../../vendor/assets/stylesheets/owl.carousel.css";
-@import "../../../vendor/assets/stylesheets/owl.theme.css";
-@import "../../../vendor/assets/stylesheets/simpletextrotator.css";
+@import "owl.carousel";
+@import "owl.theme";
+@import "simpletextrotator";
 
-@import "pages/helper.css";
+@import "pages/helper";
 @import "pages/header";

@@ -1,16 +1,67 @@
-<h2>Resend confirmation instructions</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+<div class="col-md-6 col-md-offset-3 register-modal">
+  <div class="modal-header" style="background: #71bc37">
+    <h4 class="modal-title text-center" id="myModalLabel" style="color: white;">
+      Resend your confirmation email
+    </h4>
   </div>
+  <div class="modal-body" style="padding: 30px;">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="well">
+          <p class="lead">Didn't receive an email confirmation?</p>
+          <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+            <%= devise_error_messages! %>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+            <div class="form-group">
+              <label for="email" class="control-label">Email</label>
+              <%= f.email_field :email, autofocus: true, type:"email", placeholder:"name@company.com",
+                                class:"form-control", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), required: true %>
+              <span class="help-block"></span>
+            </div>
+            <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+
+            <p>We'll send you another confirmation email</p>
+            <p>If you don't receive an email from AdsDash, please check your spam
+              folder</p>
+            <br>
+            <%= f.submit "Resend confirmation", class: "btn btn-success btn-block" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <p class="lead">Don't have an account? Sign up for <span class="text-success">Free</span></p>
+        <ul class="list-unstyled" style="line-height: 2">
+          <li><span class="fa fa-check text-success"></span> Free until you start advertising</li>
+          <li><span class="fa fa-check text-success"></span> Transparent monthly pricing</li>
+          <li><span class="fa fa-check text-success"></span> Cancel your plan anytime</li>
+          <li><span class="fa fa-check text-success"></span> Handles multiple ad sizes</li>
+          <li><span class="fa fa-check text-success"></span> Fully automated optimization</li>
+          <li><span class="fa fa-check text-success"></span> Set-and-forget system</li>
+        </ul>
+        <p>
+          <%= link_to "Sign up for Free", new_advertiser_registration_path, class: "btn btn-primary" %>
+        </p>
+      </div>
+
+      <div class="col-sm-12 text-center">
+        <hr>
+        <div class="col-sm-6">
+          <%- if controller_name != 'sessions' %>
+            <%= link_to "Log in", new_session_path(resource_name) %><br />
+          <% end -%>
+        </div>
+        <div class="col-sm-6">
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+          <% end -%>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+
+
+

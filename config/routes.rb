@@ -21,7 +21,12 @@ Rails.application.routes.draw do
   #   root to: 'advertisers#index', as: :authenticated_admin
   # end
 
-	devise_for :advertisers, path: "", controllers: { registrations: "registrations" }
+	devise_for :advertisers, path: "", controllers: {
+			                       registrations: "registrations",
+			                       sessions: "sessions",
+	                           confirmations: "confirmations",
+	                           passwords: "passwords"
+	                       }
 
   authenticated :advertiser do
     root to: 'advertisers#show', as: :authenticated_advertiser

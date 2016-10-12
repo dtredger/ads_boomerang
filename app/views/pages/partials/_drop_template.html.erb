@@ -1,0 +1,207 @@
+
+<div class="chrome-window">
+  <div class="row">
+    <div class="col-sm-8">
+      <%= image_tag "728x90.png", class: "text-center ad-728" %>
+      <br>
+      <div class="col-sm-3 hidden-xs">
+        <%= image_tag "fox_160x600.png", class: "ad-160" %>
+      </div>
+
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-md-6">
+            <p>AdsDash takes the complexity out of managing ads. Our drag-and-drop dashboard
+              accepts the most popular online formats easily.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <%= image_tag "300x250.png", class: "ad-300" %>
+          </div>
+        </div>
+
+        <h4>Supported Sizes</h4>
+        <p>
+          All plans include the most important online ad sizes:
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><span class="fa fa-check text-success"></span>Skyscraper (160x600)</li>
+              <li><span class="fa fa-check text-success"></span>Medium Rectangle (300x250)</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><span class="fa fa-check text-success"></span>Leaderboard (728x90)</li>
+              <li><span class="fa fa-check text-success"></span>Wide Skyscraper (300x600)</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-sm-4 hidden-xs">
+      <%= image_tag "300x600.png", class: "ad-600" %>
+    </div>
+  </div>
+  <hr>
+  <p class="text-center visible-xs visible-sm">
+    <i>*Some of the sample ads in this frame have been scaled down to fit your screen</i>
+  </p>
+
+</div>
+
+
+
+
+
+<style>
+  .float-left {
+    float: left;
+  }
+  .ad-728 {
+    border: 1px solid #ddd;
+    max-width: 728px;
+    height: auto;
+  }
+  .ad-300 {
+    border: 1px solid #ddd;
+    max-width: 300px;
+    height: auto;
+  }
+  .ad-600 {
+    border: 1px solid #ddd;
+    max-width: 300px;
+    height: auto;
+  }
+  .ad-160 {
+    display: inline;
+    border: 1px solid #ddd;
+    max-width: 160px;
+    height: auto;
+  }
+
+  .chrome-window {
+      /*max-height: 600px;*/
+      overflow: hidden;
+      /*TODO - is that correct? */
+
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      display: block;
+      margin: 20px auto;
+      border-radius: 2px;
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, .15);
+      padding: 111px 40px 40px;
+      background: url('assets/chrome_top.png') top no-repeat white;
+      background-size: 100%;
+  }
+
+  .chrome-window img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+  }
+
+  hr {
+      border: 0;
+      border-top: 1px dashed rgba(255, 255, 255, .5);
+      margin: 40px auto;
+  }
+
+  h1 {
+      margin-top: 0;
+  }
+
+#dropzone {
+  position: relative;
+  border: 1px solid #DDD;
+  font: bold 24px/200px arial;
+  height: 250px;
+  width: 300px;
+  /*margin: 30px auto;*/
+  text-align: center;
+
+}
+
+#dropzone.hover {
+  border: 10px solid #FE5;
+  color: #FE5;
+}
+
+#dropzone div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+#dropzone img {
+  vertical-align: middle;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+#dropzone [type="file"] {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+</style>
+
+<script>
+$(function() {
+
+  $('#dropzone').on('dragover', function(e,f) {
+    $(this).addClass('hover');
+  });
+
+  $('#dropzone').on('dragleave', function() {
+    $(this).removeClass('hover');
+  });
+
+  $('#dropzone input').on('change', function() {
+    var file = this.files[0];
+    var _URL = window.URL || window.webkitURL;
+    $('#dropzone').removeClass('hover');
+    if (this.accept && $.inArray(file.type, this.accept.split(/, ?/)) == -1) {
+      // return alert('File type not allowed.');
+    }
+    $('#dropzone').addClass('dropped');
+    $('#dropzone img').remove();
+
+    if ((/^image\/(gif|png|jpg|jpeg)$/i).test(file.type)) {
+      var img = new Image();
+      img.src = _URL.createObjectURL(file);
+
+      img.onload = function() {
+          var width = this.width;
+          var height =  this.height;
+
+          var reader = new FileReader(file);
+          reader.readAsDataURL(file);
+          reader.onload = function(e) {
+            var data = e.target.result;
+            var $img = $('<img />').attr('src', data).fadeIn();
+            $('#drop-target').html($img);
+          };
+      };
+      // img.onerror = function() {
+      //     alert( "not a valid file: " + file.type);
+      // };
+    } else {
+      var ext = file.name.split('.').pop();
+      $('#dropzone div').html(ext);
+    }
+  });
+});
+</script>

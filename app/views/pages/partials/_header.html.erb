@@ -1,45 +1,51 @@
 <!-- sign-in and register modals -->
-<%= render "pages/partials/forms" %>
-
+<%= render "pages/partials/sign_in_modal" %>
+<%= render "pages/partials/sign_up_modal" %>
 <header class="header">
   <div role="navigation" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <%= link_to root_path, class: "navbar-brand scroll-to" do %>
-          <%= image_tag "pages/logo.png", alt: "logo", class: "hidden-xs hidden-sm" %>
-          <%= image_tag "pages/logo-small.png", alt:"logo", class:"visible-xs visible-sm" %>
+          <%= image_tag "pages/logo.png", alt: "logo" %>
+          <!--%= image_tag "pages/logo-small.png", alt:"logo", class:"visible-xs visible-sm" %>-->
           <span class="sr-only">Go to homepage</span>
         <% end %>
         <div class="navbar-buttons">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle navbar-btn">
-            Menu<i class="pe-7s-menu"></i>
+            Menu<i class="glyphicon glyphicon-menu-hamburger"></i>
           </button>
         </div>
       </div>
       <div id="navigation" class="collapse navbar-collapse navbar-right">
         <ul class="nav navbar-nav">
           <li><a href="#features" class="scroll-to">Features</a></li>
-          <!--<li><a href="#text" class="scroll-to">Text </a></li>-->
-          <!--<li><a href="#integrations" class="scroll-to">Integrations</a></li>-->
-          <li><a href="#testimonials" class="scroll-to">Testimonials</a></li>
-          <li><a href="#contact" class="scroll-to">Contact</a></li>
+          <li><a href="#pricing" class="scroll-to">Pricing </a></li>
+          <li><a href="#integrations" class="scroll-to">Integrations</a></li>
+          <!--<li><a href="#contact" class="scroll-to">Contact</a></li>-->
           <li>
-            <a href="#" data-toggle="modal" data-target="#sign-in" class="">
+            <a href="#" data-toggle="modal" data-target="#sign-in" class="signin">
               Sign In <i class="glyphicon glyphicon-lock"></i>
             </a>
           </li>
         </ul>
-
-        <%= link_to "Start your Free Trial", pricing_path, class: "btn btn-primary topright-button" %>
-
+        <a class="btn btn-primary topright-button" data-toggle="modal" data-target="#sign-up">Sign up for Free</a>
       </div>
     </div>
   </div>
 </header>
 
 <style>
+  .navbar {
+    background: #71bc37;
+  }
   .topright-button {
     margin-top: 20px;
     margin-right: 0;
+  }
+  .navbar-default .navbar-nav > li > a {
+    color: white;
+  }
+  .navbar a:focus {
+    outline: none;
   }
 </style>

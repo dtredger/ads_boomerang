@@ -1,4 +1,24 @@
-
+<div class="col-md-12">
+  <div class="card">
+    <div class="header">
+      <h4 class="title">Campaign Performance</h4>
+      <p class="category">For the last week</p>
+    </div>
+    <div class="content">
+      <div id="chartHours" class="ct-chart"></div>
+      <div class="footer">
+        <div class="legend">
+          <i class="fa fa-circle text-info"></i> Conversions from Views
+          <i class="fa fa-circle text-danger"></i> Conversions from Clicks
+        </div>
+        <hr>
+        <div class="stats">
+          <i class="fa fa-history"></i> Updated 3 minutes ago
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= render "layouts/dashboard/checklist", advertiser: @advertiser %>
 
@@ -34,34 +54,15 @@
   </div>
 </div>
 
-<div class="col-md-8">
-  <div class="card">
-    <div class="header">
-      <h4 class="title">Users Behavior</h4>
-      <p class="category">24 Hours performance</p>
-    </div>
-    <div class="content">
-      <div id="chartHours" class="ct-chart"></div>
-      <div class="footer">
-        <div class="legend">
-          <i class="fa fa-circle text-info"></i> Open
-          <i class="fa fa-circle text-danger"></i> Click
-          <i class="fa fa-circle text-warning"></i> Click Second Time
-        </div>
-        <hr>
-        <div class="stats">
-          <i class="fa fa-history"></i> Updated 3 minutes ago
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <script !src="">
   var data = {
-    labels: ['1', '2', '3', '4', '5', '6'],
+    labels: ['1', '2', '3', '4', '5', '6', '7'],
     series: [
       {
-        data: [1, 2, 3, 5, 8, 13]
+        data: [ 62, 63, 70, 78, 83, 84, 86 ]
+      },{
+        data: [  17, 23, 21, 23, 27, 31, 35 ]
       }
     ]
   };
@@ -70,9 +71,10 @@
   var options = {
     axisX: {
       labelInterpolationFnc: function(value) {
-        return 'Calendar Week ' + value;
+        return 'Oct ' + value;
       }
-    }
+    },
+    showArea: true
   };
 
   /* Now we can specify multiple responsive settings that will override the base settings based on order and if the media queries match. In this example we are changing the visibility of dots and lines as well as use different label interpolations for space reasons. */

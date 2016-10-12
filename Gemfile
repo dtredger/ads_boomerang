@@ -69,6 +69,8 @@ group :development, :test do
   gem 'webmock'
   gem 'vcr'
 	gem 'letter_opener'
+  gem "better_errors"
+	gem 'binding_of_caller'
 end
 
 group :development do

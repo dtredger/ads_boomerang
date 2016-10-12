@@ -1,4 +1,3 @@
 class RegistrationsController < Devise::RegistrationsController
-	layout false
-	# layout "pages/base"
+	layout "pages/devise"
 end

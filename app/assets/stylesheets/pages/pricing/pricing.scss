@@ -1,5 +1,5 @@
 
-$main-green: #6bb2b5;
+$main-green: #71bc37;
 
 @import "bourbon";
 
@@ -569,7 +569,6 @@ Main Components
     @include center(y);
     height: 20px;
     width: 20px;
-    background: url(../img/cd-icon-small-arrow.svg);
   }
 
   @include MQ(M) {
