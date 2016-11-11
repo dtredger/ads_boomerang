@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 	get '/faq' => 'high_voltage/pages#show', id: 'faq'
 	get '/pricing' => 'high_voltage/pages#show', id: 'pricing'
 
-	get '/.well-known/acme-challenge/ADaQM38v1A_OK-mtsL38ncJ038z5ug--4m159RWwMmc' => 'pages#letsencrypt'
+	get '/.well-known/acme-challenge/TBaKrkn4Wa5Tcmy7VWJKbylJCBRY5uIlB_y2t1_TQMw' => 'pages#letsencrypt'
 
   # root to: 'pages#home' # set in initializers/high_voltage
   # TODO - figure out subscriptions path before enabling below:
