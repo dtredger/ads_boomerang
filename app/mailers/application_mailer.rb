@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'hello@adsdash.com'
+  default from: 'hello@adsboomerang.com'
   layout 'mailers/base'
 
 end
