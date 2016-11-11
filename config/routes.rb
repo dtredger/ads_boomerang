@@ -2,8 +2,6 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
-	# mount LetsencryptPlugin::Engine, at: '/'
-
   mount ForestLiana::Engine => '/forest'
   mount Payola::Engine => '/payola', as: :payola
 
@@ -42,6 +40,8 @@ Rails.application.routes.draw do
 
 	get '/faq' => 'high_voltage/pages#show', id: 'faq'
 	get '/pricing' => 'high_voltage/pages#show', id: 'pricing'
+
+	get '/.well-known/acme-challenge/ADaQM38v1A_OK-mtsL38ncJ038z5ug--4m159RWwMmc' => 'pages#letsencrypt'
 
   # root to: 'pages#home' # set in initializers/high_voltage
   # TODO - figure out subscriptions path before enabling below:
