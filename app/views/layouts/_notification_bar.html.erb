@@ -1,0 +1,70 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style type="text/css">
+
+  .top-general-alert {
+    padding: 8px;
+    border: none;
+    font-size: 1em;
+    line-height: 2em;
+    text-align: center;
+    display: none;
+    background-color: #ae0029;
+    color: #ffee7a;
+    z-index: 9999;
+  }
+
+  .top-general-alert {
+    color: #fff;
+  }
+
+  .top-general-alert a, .top-general-alert a:hover {
+    color: #6bf;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button.close {
+    color: white;
+    font-size: 40px;
+    line-height: 0.7;
+  }
+  button.close:hover {
+    color: #bbb;
+  }
+</style>
+
+<div class="top-general-alert">
+  <span>Ads Boomerang is about to launch!
+    <a data-toggle="modal" data-target="#sign-up">Register your account now for 50% off for an entire year.</a>
+  </span>
+
+  <button class="close">&times;</button>
+</div>
+
+
+<script type="text/javascript">
+//  function getCookieValue(a, b) {
+//    b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+//    return b ? b.pop() : '';
+//  }
+
+  $(document).ready(function() {
+//
+//    var cookie = "_nb";
+//    var cookieVal = getCookieValue(cookie);
+//    if(!cookieVal) {
+//      cookieVal = 0;
+//    }
+//    document.cookie += cookieVal + ";";
+
+    if( $('.top-general-alert').length > 0 ) {
+      $('.top-general-alert').delay(800).slideDown('medium');
+
+      $('.top-general-alert .close').click(function() {
+        $(this).parent().slideUp('fast');
+      });
+    }
+
+  });
+</script>

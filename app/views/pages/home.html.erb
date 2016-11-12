@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag "pages/home/style.green" %>
 
+<%= render "layouts/notification_bar" %>
+
 <div id="all">
   <section id="intro" class="section text-intro background-gray-lightest no-padding-bottom">
     <div class="container">
@@ -28,9 +30,8 @@
   <section id="features" class="section">
     <div class="container">
       <div class="row text-center-mobile">
-        <h3 class="text-center">The highest-ROI advertising</h3>
+        <h3 class="text-center">The most effective advertising</h3>
         <div class="col-sm-6">
-
           <p>
             Ads Boomerang is the best place to start advertising your store online.
             We bring people who have visited your site back,
@@ -43,7 +44,8 @@
           <%= image_tag "pages/store-ad-placement.png", class: "img-responsive" %>
           <br>
           <p>
-            Targeting people who've been to your site but not converted gives you a guaranteed warm audience, and an exceptional return on investment compared to other channels.
+            Targeting people who've been to your site but didn't buy gives you a guaranteed warm audience,
+            and an exceptional return on investment compared to other channels.
           </p>
         </div>
       </div>
@@ -57,7 +59,6 @@
           <h2 class="text-center">Simple ad dashboard</h2>
           <%= render "pages/partials/drop_template" %>
         </div>
-
       </div>
     </div>
   </section>
