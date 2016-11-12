@@ -3,6 +3,10 @@
   <head>
     <title>Ads Boomerang</title>
 
+    <% if Rails.env.production? %>
+      <%= render "layouts/tag_manager" %>
+    <% end %>
+
     <meta name="description" content="AdsBoomerang">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +31,12 @@
     <%= javascript_include_tag "pages/front.js" %>
 
     <% if Rails.env.production? %>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC7QTV4" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
       <%= javascript_include_tag 'rollbar' %>
     <% end %>
 

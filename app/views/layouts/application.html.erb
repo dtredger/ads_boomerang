@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
 
     <% if Rails.env.production? %>
+      <%= render "layouts/tag_manager" %>
       <%= javascript_include_tag 'rollbar' %>
     <% end %>
 
