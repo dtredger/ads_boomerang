@@ -18,7 +18,8 @@
 
 @import "dropzone/dropzone";
 
-@import "../../../vendor/assets/stylesheets/animate.min.css";
+@import "animate.min";
+//@import "../../../vendor/assets/stylesheets/animate.min.css";
 @import "../../../vendor/assets/stylesheets/pe-icon-7-stroke";
 
 @import "dashboard/variables";
@@ -44,6 +45,8 @@
 @import "dashboard/cards";
 @import "dashboard/chartist";
 @import "dashboard/responsive";
+
+@import "hopscotch";
 
 
 .checklist-complete {
