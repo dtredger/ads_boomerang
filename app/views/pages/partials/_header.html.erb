@@ -17,18 +17,29 @@
         </div>
       </div>
       <div id="navigation" class="collapse navbar-collapse navbar-right">
-        <ul class="nav navbar-nav">
-          <li><a href="#features" class="scroll-to">Features</a></li>
-          <li><a href="#pricing" class="scroll-to">Pricing </a></li>
-          <li><a href="#integrations" class="scroll-to">Integrations</a></li>
-          <!--<li><a href="#contact" class="scroll-to">Contact</a></li>-->
-          <li>
-            <a href="#" data-toggle="modal" data-target="#sign-in" class="signin">
-              Sign In <i class="glyphicon glyphicon-lock"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="btn btn-primary topright-button" data-toggle="modal" data-target="#sign-up">Sign up for Free</a>
+        <% if controller_name == "registrations" || controller_name == "sessions" %>
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Features", root_path(anchor: "features"), class: "scroll-to" %></li>
+            <li><%= link_to "Pricing", root_path(anchor: "pricing"), class: "scroll-to" %></li>
+            <li><%= link_to "Integrations", root_path(anchor: "integrations"), class: "scroll-to" %></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav">
+            <li><a href="#features" class="scroll-to">Features</a></li>
+            <li><a href="#pricing" class="scroll-to">Pricing </a></li>
+            <li><a href="#integrations" class="scroll-to">Integrations</a></li>
+            <!--<li><a href="#contact" class="scroll-to">Contact</a></li>-->
+            <li>
+              <a href="#" data-toggle="modal" data-target="#sign-in" class="signin">
+                Sign In <i class="glyphicon glyphicon-lock"></i>
+              </a>
+            </li>
+          </ul>
+          <a class="btn btn-primary topright-button" data-toggle="modal"
+             data-target="#sign-up">Sign up for Free</a>
+        <% end %>
       </div>
     </div>
   </div>

@@ -21,5 +21,6 @@ coverage
 spec/support/uploads/*
 spec/examples.txt
 public/uploads/*
+public
 # Ignore application configuration
 /config/application.yml

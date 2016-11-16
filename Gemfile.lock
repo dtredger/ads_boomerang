@@ -173,6 +173,7 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashdiff (0.3.0)
+    hopscotch-rails (0.1.2.1)
     htmlentities (4.3.4)
     httmultiparty (0.3.16)
       httparty (>= 0.7.3)
@@ -438,6 +439,7 @@ DEPENDENCIES
   guard
   guard-rspec
   high_voltage!
+  hopscotch-rails
   httmultiparty
   httparty
   intercom-rails

@@ -19,12 +19,13 @@
         <% end %>
 
         <div class="field">
-          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+          <%= f.label :password %>
           <% if @minimum_password_length %>
-            <br />
             <em><%= @minimum_password_length %> characters minimum</em>
           <% end %>
+          <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+
         </div>
 
         <div class="field">
@@ -32,19 +33,28 @@
           <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
         </div>
 
+        <br><br>
         <div class="field">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.label :current_password %>
+          <i>(we need your current password to confirm your changes)</i>
           <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
         </div>
-
+        <br>
         <div class="actions">
-          <%= f.submit "Update" %>
+          <%= f.submit "Update", class: "btn btn-primary", style: "float:right;" %>
         </div>
       <% end %>
+      <br><br>
 
-      <h3>Cancel my account</h3>
+      <!--<h3>Cancel my account</h3>-->
 
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      <!--<p>-->
+        <!--Unhappy?-->
+        <!--%= button_to "Cancel my account", registration_path(resource_name),-->
+<!--#                       data: { confirm: "Are you sure?" },-->
+<!--#                       class: "btn btn-danger",-->
+                      <!--method: :delete %>-->
+      <!--</p>-->
 
       <%= link_to "Back", :back %>
 
@@ -59,4 +69,85 @@
 </div>
 
 
+<div class="col-md-6">
+  <div class="card">
+    <div class="header">
+      <h4 class="title">Your Subscription</h4>
+      <p class="category">Details about your paid plan</p>
+    </div>
+    <div class="content">
+      <% if current_advertiser.subscription %>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6"><p class="category"><%= current_advertiser.subscription.name %></p></div>
+          <div class="col-xs-6">
+            $<%= (current_advertiser.subscription.amount.to_money)/100.to_s %>
+            /<%= current_advertiser.subscription.plan.interval %>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6"><p class="category">Subscription Started on</p></div>
+          <div class="col-xs-6"><%= current_advertiser.subscription.created_at %></div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6"><p class="category">Current Period Start</p></div>
+          <div class="col-xs-6"><%= current_advertiser.subscription.current_period_start %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6"><p class="category">Current Period End</p></div>
+          <div class="col-xs-6"><%= current_advertiser.subscription.current_period_end %></div>
+        </div>
+        <hr>
+        <p>
+          <small>
+            If you would like to cancel your subscription please <a href="mailto:hello@adsboomerang.com?subject=cancel subscription ID <%= current_advertiser.id %>">email us</a>.
+            <!--<a href="#" data-toggle="modal" data-target="#cancelModal">click here.</a>-->
+          </small>
+        </p>
 
+      <% else %>
+        No Subscription Active
+        <br>
+        <br>
+        <%= link_to "Activate A Subscription", new_subscription_path,
+                    class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelSubscriptionModal">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center" id="cancelSubscriptionModal">Cancel your Subscription</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+            <p class="text-center">
+              <b>Ads Boomerang</b> is the easiest way to bring more customers back to your ecommerce store.
+            </p>
+            <p>
+              We aim to be the simplest-possible advertising system, but we need a few things from you before
+              we can start bringing in the sales.
+            </p>
+            <ol>
+              <li>Add our HTML tags to your site</li>
+              <li>Upload ads into our dashboard (or ask for us to create some for you)</li>
+              <li>Activate your subscription</li>
+            </ol>
+            <p>Click "Start Tour" below to see how to do these three things.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Cancel Subscription</button>
+      </div>
+    </div>
+  </div>
+</div>
