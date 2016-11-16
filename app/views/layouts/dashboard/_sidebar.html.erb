@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="green" data-image="">
+<div class="sidebar">
   <div class="sidebar-wrapper">
     <div class="logo">
       <%= image_tag "pages/logo-small.png", style: "display: inline;padding-left:30px" %>
@@ -8,19 +8,19 @@
     </div>
 
     <ul class="nav">
-      <li class="<%= 'active' if controller_name == 'advertisers' %>">
+      <li id="dashboard-link" class="<%= 'active' if controller_name == 'advertisers' %>">
         <%= link_to root_path do %>
           <i class="pe-7s-note2"></i>
           <p>Dashboard</p>
         <% end %>
       </li>
-      <li class="<%= 'active' if controller_name == 'campaigns' %>">
+      <li id="campaigns-link" class="<%= 'active' if controller_name == 'campaigns' %>">
         <%= link_to campaigns_path do %>
           <i class="pe-7s-rocket"></i>
           <p>Campaigns</p>
         <% end %>
       </li>
-      <li class="<%= 'active' if controller_name == 'creatives' %>">
+      <li id="creatives-link" class="<%= 'active' if controller_name == 'creatives' %>">
         <%= link_to creative_assets_path do %>
           <i class="pe-7s-albums"></i>
           <p>Ad Library</p>
