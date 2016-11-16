@@ -11,7 +11,9 @@
       <% if subscription && subscription.plan %>
         <h4><%= subscription.plan.name %></h4>
         <p>Signed up on: <%= subscription.plan.created_at.to_date %></p>
-        <p><%= subscription.plan.amount.to_money %> / <%= subscription.plan.interval %></p>
+        <p>
+          $<%= (subscription.plan.amount.to_money)/100.to_s %> /
+          <%= subscription.plan.interval %></p>
       <% else %>
         <%= link_to "Subscribe to a plan", new_subscription_path %>
       <% end %>

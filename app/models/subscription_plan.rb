@@ -16,7 +16,6 @@ class SubscriptionPlan < ApplicationRecord
 
 	has_paper_trail
 
-
 	def delete
 		# Not handled within Payola::Plan as Create is
 		begin
@@ -31,7 +30,7 @@ class SubscriptionPlan < ApplicationRecord
 
 	def redirect_path(sale)
 		Rails.logger.debug(sale.inspect)
-		"/?yes=yup"
+		"/?sub=y"
 	end
 
 	def active?

@@ -1,5 +1,22 @@
 <%= render 'payola/transactions/stripe_header' %>
 
+<div class="card">
+  <div class="header">
+    <p>Select a Plan</p>
+  </div>
+  <div class="content">
+    <!--%= render "layouts/price_tables" %>-->
+    <ul>
+      <% @plans.each do |plan| %>
+        <li><%= plan.name %>: $<%= (plan.amount.to_money)/100.to_s %> USD/mo</li>
+      <% end %>
+    </ul>
+    <hr>
+    <%= select_tag "Plan", options_from_collection_for_select(@plans, "id", "name"),
+                   prompt: "Select a plan",
+                   onchange: "updateSelectedPlan()" %>
+  </div>
+</div>
 
 <div class="card">
   <div class="header">
@@ -18,8 +35,8 @@
       <%= form_tag('/subscription',
                    class: 'payola-onestep-subscription-form',
                    'data-payola-base-path' => '/payola',
-                   'data-payola-plan-type' => @plan.plan_class,
-                   'data-payola-plan-id' => @plan.id ) do |f| %>
+                   'data-payola-plan-type' => SubscriptionPlan,
+                   'data-payola-plan-id' => nil ) do |f| %>
         <span class="payola-payment-error text-warning"></span>
         <div class="col-sm-3">
           <label for="">Email:</label>
@@ -78,6 +95,11 @@
       nameInput: 'input#name'
     }
   });
+
+  function updateSelectedPlan() {
+    $('form.payola-onestep-subscription-form').attr('data-payola-plan-id', $('select#Plan').val());
+  };
+
 </script>
 
 <style>
