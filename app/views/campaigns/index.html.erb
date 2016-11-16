@@ -3,34 +3,48 @@
     <div class="row">
       <div class="col-md-12">
 
-        <div class="card">
+        <div id="campaigns-table" class="card">
           <div class="header">
             <h4 class="title">All Campaigns</h4>
             <p class="category">Details for all the campaigns you have run</p>
-            <%= link_to 'New Campaign', new_campaign_path %>
+            <br>
+            <%= link_to 'New Campaign', new_campaign_path, id: "new-campaign-btn",
+                        class: "btn btn-primary" %>
           </div>
           <div class="content table-responsive table-full-width">
-            <table class="table table-hover table-striped">
-              <thead>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Created At</th>
-                <th></th>
-                <th></th>
-              </thead>
-              <tbody>
-                <% @campaigns.each do |campaign| %>
-                  <tr>
-                    <td><%= campaign.id %></td>
-                    <td><%= link_to campaign.name, campaign %></td>
-                    <td><%= campaign.created_at.to_formatted_s(:rfc822) %></td>
-                    <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
-                    <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+            <% if @campaigns.any? %>
+              <table class="table table-hover table-striped">
+                <thead>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Created At</th>
+                  <th></th>
+                  <th></th>
+                </thead>
+                <tbody>
+                  <% @campaigns.each do |campaign| %>
+                    <tr>
+                      <td><%= campaign.id %></td>
+                      <td><%= link_to campaign.name, campaign %></td>
+                      <td><%= campaign.created_at.to_formatted_s(:rfc822) %></td>
+                      <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
+                      <td><%= link_to 'Delete', campaign, method: :delete,
+                                      data: { confirm: 'Are you sure?' } %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p class="text-center">
+                You don't have any campaigns yet. Create your first campaign to get started.
+              </p>
+              <p class="text-center">
+                <small>
+                  Create a campaign for free, only pay when you're ready to start advertising.
+                </small>
+              </p>
+            <% end %>
           </div>
         </div>
 

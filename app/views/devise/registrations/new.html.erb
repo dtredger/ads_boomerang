@@ -50,18 +50,15 @@
           <% end %>
         </div>
       </div>
+      <div class="col-sm-12 text-center">
+        <hr>
+        <div class="col-sm-6">
+          <%= link_to "Log in", new_session_path(resource_name) %>
+        </div>
+        <div class="col-sm-6">
+          <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
+        </div>
+      </div>
     </div>
-    <%= render "devise/shared/links" %>
   </div>
 </div>
-
-<style>
-  .register-modal {
-    background-color: #fff;
-    padding: 0;
-    margin-top: 10%;
-    -webkit-box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
-  }
-</style>

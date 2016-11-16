@@ -27,9 +27,8 @@
     <%= javascript_include_tag "bootstrap-notify" %>
 
     <%= render "layouts/alerts" %>
-
+    <%= render "pages/partials/header" %>
     <%= yield %>
-
   </body>
 </html>
 
@@ -37,7 +36,7 @@
   .register-modal {
     background-color: #fff;
     padding: 0;
-    margin-top: 10%;
+    margin-top: 150px;
     -webkit-box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 46px -6px rgba(0,0,0,0.75);

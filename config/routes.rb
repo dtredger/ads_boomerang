@@ -43,8 +43,13 @@ Rails.application.routes.draw do
 
 	get '/.well-known/acme-challenge/TBaKrkn4Wa5Tcmy7VWJKbylJCBRY5uIlB_y2t1_TQMw' => 'pages#letsencrypt'
 
+
+	get '/survey' => redirect { |params, req| ENV["SURVEY_URL"] }
   # root to: 'pages#home' # set in initializers/high_voltage
   # TODO - figure out subscriptions path before enabling below:
   # explicitly mount mailkick engine?
-  # get '*path' => redirect('/')
+  if Rails.env.production?
+	  get '*path' => redirect('/')
+  end
+
 end

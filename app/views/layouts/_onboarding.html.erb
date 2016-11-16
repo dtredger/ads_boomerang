@@ -1,0 +1,187 @@
+<div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="onboardingModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center" id="onboardingModal">Welcome to Ads Boomerang</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+            <p class="text-center">
+              <b>Ads Boomerang</b> is the easiest way to bring more customers back to your ecommerce store.
+            </p>
+            <p>
+              We aim to be the simplest-possible advertising system, but we need a few things from you before
+              we can start bringing in the sales.
+            </p>
+            <ol>
+              <li>Add our HTML tags to your site</li>
+              <li>Upload ads into our dashboard (or ask for us to create some for you)</li>
+              <li>Activate your subscription</li>
+            </ol>
+            <p>Click "Start Tour" below to see how to do these three things.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="startOnboardingTour()">Start Tour</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if current_advertiser && current_advertiser.sign_in_count < 10 %>
+  <script>
+    $(document).ready(function() {
+      function getCookieValue(a, b) {
+        b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+        return b ? b.pop() : '';
+      }
+
+      var cookie = "_onbrd";
+      var cookieVal = getCookieValue(cookie);
+      if (cookieVal !== "true") {
+        $('#introModal').modal('toggle');
+        document.cookie = cookie + "=true";
+      }
+
+//      var revealer = new Revealer();
+//      hopscotch.listen('show', function() {
+//        revealer.reveal(hopscotch.getCurrTarget());
+//      });
+//      hopscotch.listen('close', function() {
+//        revealer.hide();
+//      });
+//      hopscotch.listen('end', function() {
+//        revealer.hide();
+//      });
+    });
+
+    var firstTour = {
+      id: "adsboomerang-onboarding",
+      steps: [
+        {
+          title: "Checklist",
+          content: "This checklist shows the steps required to start advertising with Ads Boomerang.",
+          target: "#checklist",
+          arrowOffset: "center",
+          xOffset: "center",
+          yOffset: "center"
+        },
+        {
+          title: "Campaigns",
+          content: "The <a>campaigns</a> link allows you to create your first campaign",
+          target: "campaigns-link",
+          placement: "right",
+          multipage: true,
+          onNext: function() {
+            window.location = "campaigns";
+          }
+        },
+        {
+          title: "Campaigns List",
+          content: "This is the list of your advertising campaigns. You should have one campaign per website",
+          target: "campaigns-table",
+          placement: "bottom",
+          xOffset: "center"
+        },
+        {
+          title: "New Campaign",
+          content: "Click here to create a new campaign",
+          target: "new-campaign-btn",
+          placement: "right",
+          multipage: true,
+          onNext: function() {
+            window.location = "campaigns/new";
+          }
+        },
+        {
+          title: "New Campaign",
+          content: "Fill out this form with your website's URL (including http:// or https://), and pick a campaign name that's convenient to you",
+          target: "new-campaign-card",
+          placement: "right"
+        }
+      ]
+    };
+    var firstCampaign =         {
+      title: "Your First Campaign",
+      content: "This page shows your campaign. Insert the <b>INCLUDE TAG</b> below into your website to start advertising to your visitors",
+      target: "campaign-segments",
+      placement: "top"
+    }
+
+    function startOnboardingTour() {
+      $('#introModal').modal('toggle');
+      hopscotch.endTour(clearCookie=true);
+      hopscotch.startTour(firstTour);
+    }
+
+//    function Revealer() {
+//      var OVERLAY_ZINDEX = 10;
+//      var OVERLAY_BACKGROUND = 'rgba(0,0,0,0.5)';
+//
+//      var $overlay, $prevTarget, $currTarget;
+//
+//      function overlay() {
+//        if ($overlay) {
+//          return $overlay;
+//        }
+//        $overlay = $('<div>');
+//        var $prevTarget, $currTarget;
+//        $overlay.css({
+//          zIndex:     OVERLAY_ZINDEX,
+//          background: OVERLAY_BACKGROUND,
+//          position:   'fixed',
+//          display:    'none',
+//          top:        0,
+//          right:      0,
+//          bottom:     0,
+//          left:       0
+//        });
+//        $(document.body).append($overlay);
+//        return $overlay;
+//      }
+//
+//      function cleanupPrevTarget() {
+//        if ($prevTarget) {
+//          $prevTarget.css({
+//            position: '',
+//            zIndex:   ''
+//          });
+//        }
+//        $prevTarget = null;
+//      }
+//
+//      function hide() {
+//        overlay().fadeOut();
+//        cleanupPrevTarget();
+//      }
+//
+//      function reveal(target) {
+//        cleanupPrevTarget();
+//        overlay().fadeIn();
+//        if (target) {
+//          $currTarget = $(target);
+//          // make sure the target node's `position` behaves with `z-index` correctly
+//          var position = $currTarget.css('position')
+//          if (!/^(?:absolute|fixed|relative)$/.test(position)) {
+//            position = 'relative';
+//          }
+//          $currTarget.css({
+//            position: position,
+//            zIndex:   OVERLAY_ZINDEX + 1
+//          });
+//          $prevTarget = $currTarget;
+//        }
+//      }
+//
+//      return {
+//        reveal: reveal,
+//        hide: hide
+//      };
+//    }
+
+  </script>
+<% end %>
+

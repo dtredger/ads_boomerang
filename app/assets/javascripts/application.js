@@ -22,6 +22,7 @@
 //= require jquery.card
 //= require clipboard
 //= require dropzone
+//= require hopscotch
 
 //= require dashboard/demo
 //= require dashboard/light-bootstrap-dashboard

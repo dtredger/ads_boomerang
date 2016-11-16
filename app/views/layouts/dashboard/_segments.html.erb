@@ -1,38 +1,54 @@
 <!-- render "layouts/dashboard/segments", campaign: @campaign  -->
 
 <div class="col-md-12">
-  <div class="card">
+  <div id="campaign-segments" class="card">
     <div class="header">
       <h4 class="title">Campaign Segments</h4>
       <p class="category">HTML tags to create target audiences</p>
     </div>
     <div class="content">
-      <h4><b>Campaign: </b><%= campaign.name %></h4>
-
+      <% if campaign.include_segment && campaign.exclude_segment %>
         <label for="">Include Tag</label>
         <div class="input-group">
           <%= text_field_tag "Include Tag",campaign.include_segment.segment_tag, class: "form-control", type:'text' %>
           <span class="input-group-btn">
-            <button class="btn btn-default copy-button" type="button" data-clipboard-target="#Include_Tag"><i class="fa
+            <button class="btn btn-primary copy-button" type="button" data-clipboard-target="#Include_Tag"><i class="fa
             fa-clipboard"></i>Copy</button>
           </span>
         </div>
-        <p>This campaign has an audience of <%= pluralize campaign.include_segment.segment_count, "person" %></p>
+        <p>
+          <small>
+            This campaign has an audience of
+            <%= pluralize campaign.include_segment.segment_count, "person" %>
+          </small>
+        </p>
 
         <label for="">Exclude Tag</label>
         <div class="input-group">
           <%= text_field_tag "Exclude Tag",campaign.exclude_segment.segment_tag, class: "form-control" %>
           <span class="input-group-btn">
-            <button class="btn btn-default copy-button" type="button" data-clipboard-target="#Exclude_Tag"><i class="fa
+            <button class="btn btn-primary copy-button" type="button" data-clipboard-target="#Exclude_Tag"><i class="fa
             fa-clipboard"></i>Copy</button>
           </span>
         </div>
-        <p>This campaign has an audience of <%= pluralize campaign.include_segment.segment_count, "person" %></p>
+        <p>
+          <small>
+            This campaign has an audience of
+          <%= pluralize campaign.include_segment.segment_count, "person" %>
+          </small>
+        </p>
+      <% else %>
+        <h4>Campaign Tags being Generated</h4>
+        <p>
+          It can sometimes take a moment to generate the HTML tags required for you to place on your site.
+          Please refresh the page if your tags do not appear.
+        </p>
+      <% end %>
 
       <div class="footer">
         <hr>
         <div class="stats">
-          <i class="fa fa-history"></i> Last updated <%= campaign.include_segment.updated_at %>
+          <i class="fa fa-history"></i> Last updated <%= campaign.updated_at %>
         </div>
       </div>
     </div>
