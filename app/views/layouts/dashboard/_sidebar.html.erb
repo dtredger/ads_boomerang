@@ -11,21 +11,27 @@
       <li id="dashboard-link" class="<%= 'active' if controller_name == 'advertisers' %>">
         <%= link_to root_path do %>
           <i class="pe-7s-note2"></i>
-          <p>Dashboard</p>
+          <p>Dashboard Home</p>
         <% end %>
       </li>
-      <li id="campaigns-link" class="<%= 'active' if controller_name == 'campaigns' %>">
-        <%= link_to campaigns_path do %>
-          <i class="pe-7s-rocket"></i>
-          <p>Campaigns</p>
+
+      <li id="websites-link" class="<%= 'active' if controller_name == 'websites' %>">
+        <%= link_to websites_path do %>
+          <i class="pe-7s-network"></i>
+          <p>Websites
+            (<%= current_advertiser.websites.count %>/<%= current_advertiser.max_websites %>)
+          </p>
         <% end %>
       </li>
-      <li id="creatives-link" class="<%= 'active' if controller_name == 'creatives' %>">
-        <%= link_to creative_assets_path do %>
-          <i class="pe-7s-albums"></i>
-          <p>Ad Library</p>
-        <% end %>
-      </li>
+
+      <% if current_advertiser.creative_assets.any? %>
+        <li id="creatives-link" class="<%= 'active' if controller_name == 'creatives' %>">
+          <%= link_to creative_assets_path do %>
+            <i class="pe-7s-albums"></i>
+            <p>Ad Library</p>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

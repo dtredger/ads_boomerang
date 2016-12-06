@@ -1,0 +1,38 @@
+
+<% @websites.each do |website| %>
+  <div class="col-md-8">
+    <%= link_to website do %>
+      <div id="checklist" class="card">
+        <div class="header">
+          <h4 class="title"><%= link_to website.name, website %></h4>
+          <p class="category"><%= website.domain_name %></p>
+        </div>
+        <div class="content">
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="col-md-4">
+  <div class="card">
+    <div class="header">
+
+    </div>
+    <div class="content">
+      This page shows the list of all your websites. Under your current subscription, you are limited to
+      <%= pluralize(current_advertiser.max_websites, "website") %>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-8">
+  <% if current_advertiser.websites.count < current_advertiser.max_websites %>
+    <%= link_to 'Create a New Website', new_website_path, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to 'Upgrade your Plan to create more websites', new_subscription_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+
