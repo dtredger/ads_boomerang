@@ -6,7 +6,6 @@
   </div>
 
   <%= hidden_field_tag "creative_asset[campaign_id]", campaign.id %>
-
 <% end %>
 
 
@@ -18,6 +17,7 @@
       maxFilesize: 1,
       autoQueue: true,
       addRemoveLinks: false,
+      dictDefaultMessage: "Drop files or CLICK HERE to upload",
       paramName: "creative_asset[mounted_asset]",
       acceptedFiles: "image/*, .jpg, .jpeg, .png",
       thumbnailWidth: null,
@@ -30,16 +30,26 @@
           $('.dz-image').css({"width":"100%", "height":"auto"});
         })
       },
-      error: function (file, message, xhr) {
-
+      error: function (file, response, xhr) {
+        var _this = this;
+        console.log("ERROR: ", file, response);
+        $.notify({
+              icon: 'pe-7s-attention',
+              message: response[Object.keys(response)][0]['message']
+            },{
+              type: 'warning',
+              timer: 2000,
+              placement: { from: "top", align: "center" }
+            }
+        );
+        setTimeout(function() {
+          _this.removeAllFiles()
+        }, 2000);
       },
       sending: function (file, xhr, formdata) {
-
+        console.log(file, xhr, formdata);
       },
       success: function (file, response) {
-
-      },
-      complete: function(file) {
         if (this.getRejectedFiles().length == 0 && this.getAcceptedFiles().length > 0) {
           $.notify({
                 icon: 'pe-7s-speaker',
@@ -50,20 +60,11 @@
                 placement: { from: "top", align: "center" }
               }
           );
-          var response = JSON.parse(file.xhr.response);
           appendFileRow($('tbody'), response);
           this.removeAllFiles();
-        } else {
-          $.notify({
-                icon: 'pe-7s-attention',
-                message: message
-              },{
-                type: 'warning',
-                timer: 2000,
-                placement: { from: "top", align: "center" }
-              }
-          );
         }
+      },
+      complete: function(file) {
       }
       //addedfile: function(file) {
       //  // Hookup the start button
@@ -78,19 +79,17 @@
   });
 
   function appendFileRow($target, file) {
+    var assetHost = "https://<%= ENV['AWS_S3_BUCKET_NAME'] %>.s3.amazonaws.com";
     var maxWidth = file.width / 2;
     var template = "\
       <tr>\
         <td>\
             <img class='image-responsive' style='max-width:"+ maxWidth + "px' \
-            src='/uploads/creative_asset/mounted_asset/_ID_/_FILENAME_'>\
+            src='" + assetHost + "/uploads/creative_asset/mounted_asset/_ID_/_FILENAME_'>\
         </td>\
-        <td><a href='/ad_library/_ID_'>_FILENAME_</a></td>\
-        <td>Now</td>\
         <td>_WIDTH_x_HEIGHT_</td>\
-        <td></td>\
       </tr>";
-    html = template.replace(/_ID_/g, file.id)
+    var html = template.replace(/_ID_/g, file.id)
         .replace(/_FILENAME_/g, file.name)
         .replace(/_WIDTH_/g, file.width)
         .replace(/_HEIGHT_/g, file.height);
