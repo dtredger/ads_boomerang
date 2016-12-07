@@ -1,10 +1,10 @@
 class SegmentsController < ApplicationController #ActionController::Base
 	skip_before_action :verify_authenticity_token, only: :tag
 	before_action :allow_any_origin
-	before_action :find_segment
+	before_action :find_website
 
 	def tag
-		if @segment
+		if @website
 			respond_to do |format|
 				format.html { head 204 }
 				format.js { render "segments/segment" }
@@ -17,16 +17,18 @@ class SegmentsController < ApplicationController #ActionController::Base
 
 	private
 
-		def find_segment
+		def find_website
 			referrer = URI.parse(segment_params[:d])
-			website = Website.find_by(domain_name: referrer.host)
-			return unless website
+			@website = Website.find_by(domain_name: referrer.host)
+			return unless @website
 
-			if website.pages.exclude?(referrer)
-				website.pages.push(referrer)
+			if @website.pages.exclude?(referrer)
+				@website.pages.push(referrer)
 			end
 			# TODO - decisioning wrt include vs exclude segments, conversion tags
-			@segment = website.campaign.include_segment if website.campaign && website.campaign.include_segment
+			if @website.campaign && @website.campaign.include_segment
+				@segment_tag = @website.campaign.include_segment.retarget_src
+			end
 		end
 
 		def segment_params
