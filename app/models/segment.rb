@@ -32,7 +32,7 @@ class Segment < ApplicationRecord
 	end
 
 	def segment_tag
-		"<script>var s=document.createElement('script');var u=''+document.location;s.setAttribute('src','https://#{ENV['HOST']}/px.js?d='+u);document.head.appendChild(s);</script>"
+		"<script>var s=document.createElement('script');var u=''+document.location;s.setAttribute('src','https://#{ENV['HOST']}/px.js?d='+u);s.setAttribute('async', '');document.head.appendChild(s);</script>"
 	end
 
 	def retarget_src
