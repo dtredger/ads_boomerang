@@ -14,7 +14,7 @@
   <hr>
   <div class="form-group">
     Website Name
-    <p class="category">Pick something convenient, this is only shown to yourself</p>
+    <p class="category">Pick something convenient (this name is not shown to your visitors)</p>
     <%= f.text_field :name, type: "text",
                      placeholder: "My Store",
                      class: "form-control", required: true %>
@@ -49,6 +49,6 @@
   <hr>
   <div class="actions">
     <%= link_to 'Cancel', websites_path, class: "btn btn-danger" %>
-    <%= f.submit "Create Campaign", class: "btn btn-primary" %>
+    <%= f.submit "Create Website", class: "btn btn-primary" %>
   </div>
 <% end %>

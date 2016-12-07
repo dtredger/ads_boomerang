@@ -40,7 +40,9 @@
         <h4>Have you placed your tag on your website?</h4>
         <p class="category">
           Visit your test link at
-          <%= link_to @website.homepage, (url_for(@website.homepage) + "?adsboomerangtest=verify") %>
+          <%= link_to @website.homepage,
+                      (url_for(@website.homepage) + "?adsboomerangtest=verify"),
+                      target: "_blank" %>
           to check. (Don't worry, this is not visible to regular visitors)
         </p>
       </div>
