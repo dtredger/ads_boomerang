@@ -18,6 +18,7 @@ class Website < ApplicationRecord
 	belongs_to :advertiser
 	has_one :campaign
 
+	validates_presence_of :advertiser
 	validate :sufficient_subscription
 
 	enum hosting_provider: {
