@@ -86,5 +86,10 @@ group :development do
   gem 'meta_request'
 end
 
+group :production do
+	gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
+	gem 'letsencrypt-rails-heroku'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
