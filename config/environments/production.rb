@@ -58,7 +58,11 @@ Rails.application.configure do
   end
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  config.active_job.queue_adapter = :sidekiq
+  if ENV["STAGING_ENV"]
+	  config.active_job.queue_adapter = :inline
+  else
+	  config.active_job.queue_adapter = :sidekiq
+  end
   # config.active_job.queue_name_prefix = "ads_dash_#{Rails.env}"
 
 
