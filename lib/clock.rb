@@ -21,4 +21,8 @@ module Clockwork
 	# 	TODO - Pull Mailkick.fetch_opt_outs
 	# end
 
+	# TODO - rake letsencrypt:renew
+	# every(1.month, 'ssl renew', at: "00:00") do
+	# end
+
 end
