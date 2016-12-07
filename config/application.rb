@@ -24,6 +24,7 @@ module AdsBoomerang
 
 	  config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
 	  config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
+	  config.assets.precompile += %w(rollbar.js)
 
     config.generators do |g|
       g.view_specs false

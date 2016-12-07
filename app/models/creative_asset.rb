@@ -19,7 +19,7 @@
 #
 
 class CreativeAsset < ApplicationRecord
-	include Beeswax::CreativeAssetable
+	include Beeswax::CreativeAssetable if beeswax_provider?
 
 	has_paper_trail
 	mount_uploader :mounted_asset, CreativeAssetUploader
@@ -38,7 +38,7 @@ class CreativeAsset < ApplicationRecord
 
 		def validate_dimensions
 			unless VALID_DIMENSIONS.include?([self.width, self.height])
-				errors.add(:creative_asset, message: "Please choose different image dimensions")
+				errors.add(:creative_asset, message: "Image size is not valid. Please choose different image dimensions")
 			end
 		end
 

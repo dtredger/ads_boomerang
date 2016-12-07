@@ -15,7 +15,6 @@
 #
 
 class Segment < ApplicationRecord
-
 	has_paper_trail
 
 	validates_associated :campaign
@@ -24,7 +23,7 @@ class Segment < ApplicationRecord
 	belongs_to :campaign
 
 	enum audience: {
-			     include: 0,
+			     add: 0,
 			     exclude: 1
 	     }
 
@@ -33,8 +32,11 @@ class Segment < ApplicationRecord
 	end
 
 	def segment_tag
-		"<img src=\"http://segment.prod.bidr.io/associate-segment?buzz_key=#{buzz_key}&segment_key=#{segment_key}&value
-=#{segment_value}\" height=\"0\" width=\"0\">"
+		"<script>var s=document.createElement('script');var u=''+document.location;s.setAttribute('src','https://#{ENV['HOST']}/px.js?d='+u);s.setAttribute('async', '');document.head.appendChild(s);</script>"
+	end
+
+	def retarget_src
+		"https://segment.prod.bidr.io/associate-segment?buzz_key=#{buzz_key}&segment_key=#{segment_key}&value=#{segment_value}"
 	end
 
 	def segment_value

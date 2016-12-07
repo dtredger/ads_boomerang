@@ -6,6 +6,7 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'redis'
+gem 'dalli'
 
 
 gem 'sass-rails', '~> 5.0'
@@ -18,8 +19,8 @@ gem 'turbolinks', '~> 5'
 gem 'premailer-rails'
 gem 'ahoy_email'
 gem 'mailkick'
-gem 'mailgun-ruby'
 
+gem 'fog-aws'
 gem 'carrierwave'
 gem 'dropzonejs-rails'
 # gem 'mercury-rails' TODO - rails generate mercury:install

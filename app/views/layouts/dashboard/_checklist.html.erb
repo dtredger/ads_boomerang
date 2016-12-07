@@ -22,48 +22,58 @@
               </tr>
             <% end %>
 
-            <% if advertiser.campaigns.any? %>
+            <% if advertiser.websites.any? %>
               <tr class="checklist-complete">
                 <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
-                <td>First Campaign Created</td>
+                <td>First Website Created</td>
               </tr>
             <% else %>
               <tr>
                 <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
-                <td><%= link_to "Create your first campaign", new_campaign_path %></td>
+                <td><%= link_to "Create your first website", new_website_path %></td>
               </tr>
             <% end %>
 
-            <% if advertiser.total_audience > 10 %>
-              <tr class="checklist-complete">
-                <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
-                <td>Audience Tag Activated</td>
-              </tr>
-            <% else %>
-              <tr>
-                <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
-                <% if advertiser.campaigns.any? %>
-                  <td><%= link_to "Place your Audience Tags on your site", campaign_path(advertiser.campaigns.last) %></td>
-                <% else %>
-                  <td><%= link_to "Create a campaign to generate Audience Tags", new_campaign_path %></td>
-                <% end  %>
-              </tr>
-            <% end %>
+            <% if advertiser.websites.any? %>
+              <% if advertiser.campaigns.any? %>
+                <tr class="checklist-complete">
+                  <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                  <td>Website Campaign Created</td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
+                  <td><%= link_to "Create your first campaign", new_campaign_path %></td>
+                </tr>
+              <% end %>
 
-            <% if advertiser.creatives.any? %>
-              <tr class="checklist-complete">
-                <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
-                <td>Creatives Uploaded</td>
-              </tr>
-            <% else %>
-              <tr>
-                <td><label class="checkbox"> <i class="fa fa-square-o"></i></label></td>
-                <% if advertiser.campaigns.any? %>
-                  <td><%= link_to "Upload Creatives to your Campaign", campaign_path(advertiser.campaigns.last) %></td>
-                <% else %>
-                  <td><%= link_to "Create a Campaign to upload Creatives", new_campaign_path %></td>
-                <% end  %>
-              </tr>
+              <% if advertiser.total_audience > 10 %>
+                <tr class="checklist-complete">
+                  <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                  <td>Website Tag Activated</td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
+                  <td><%= link_to "Place your Website Tag on your site", website_path(advertiser.websites.first) %></td>
+                </tr>
+              <% end %>
+
+              <% if advertiser.creatives.any? %>
+                <tr class="checklist-complete">
+                  <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                  <td>Ads Uploaded</td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td><label class="checkbox"> <i class="fa fa-square-o"></i></label></td>
+                  <% if advertiser.campaigns.any? %>
+                    <td><%= link_to "Upload Creatives to your Campaign", campaign_path(advertiser.campaigns.last) %></td>
+                  <% else %>
+                    <td><%= link_to "Create a Campaign to upload Creatives", new_campaign_path %></td>
+                  <% end  %>
+                </tr>
+              <% end %>
             <% end %>
 
             <% if advertiser.subscription && advertiser.subscription.active? %>

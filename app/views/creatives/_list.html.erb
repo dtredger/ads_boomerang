@@ -1,0 +1,27 @@
+<!--%= render "creatives/index", campaign: campaign %>-->
+
+<div class="card">
+  <div class="content table-responsive table-full-width">
+    <table class="table table-hover table-striped">
+      <thead>
+        <th><p class="category">All ads (creatives) attached to this campaign</p></th>
+        <th>Size (width x height)</th>
+      </thead>
+      <tbody>
+      <% campaign.creatives.each do |creative| %>
+        <tr>
+          <%= link_to creative_asset_path(creative.creative_asset_id) do %>
+            <td>
+              <%= image_tag creative.creative_asset.mounted_asset.url,
+                            class: "image-responsive",
+                            style: "max-width:#{creative.creative_asset.width / 2}px" %>
+            </td>
+          <% end %>
+          <td><%= creative.width %>x<%= creative.height %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= render "creative_assets/form", creative_asset: CreativeAsset.new, campaign: campaign %>
+</div>

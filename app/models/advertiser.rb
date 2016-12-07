@@ -33,7 +33,7 @@
 #
 
 class Advertiser < ApplicationRecord
-	include Beeswax::Advertisable
+	include Beeswax::Advertisable if beeswax_provider?
 
 	has_paper_trail
 	mailkick_user
@@ -44,6 +44,7 @@ class Advertiser < ApplicationRecord
 
 	validates_presence_of :email
 
+	has_many :websites
   has_many :campaigns
   has_many :segments, through: :campaigns
   has_many :creative_assets
@@ -58,7 +59,7 @@ class Advertiser < ApplicationRecord
 	         foreign_key: "user_id"
 
 	def total_audience
-		segments.where(audience: "include").sum(:segment_count)
+		segments.where(audience: "add").sum(:segment_count)
   end
 
 	def name
@@ -66,7 +67,7 @@ class Advertiser < ApplicationRecord
 	end
 
 	def default_click_url
-		"#{protocol}://#{website}"
+		"#{protocol}://#{domain}"
 	end
 
   def protocol
@@ -74,16 +75,17 @@ class Advertiser < ApplicationRecord
   end
 
   def domain
-		website
+	  email.split("@")[1]
   end
 
-	def website
-		email.split("@")[1]
+	def max_websites
+		1
 	end
+
 
 	def beeswax_attributes
 		{ advertiser: {
-				advertiser_domain: ["http://www.adlinks.co"],
+				advertiser_domain: [domain],
 				advertiser_category: ["IAB24"] }
 		}
 	end

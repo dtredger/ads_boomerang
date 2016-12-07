@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
     resource :advertiser, path: "account"
     resource :subscription, only: [:new, :create]
+    resources :websites
     resources :campaigns do
 	    resources :creatives
     end
@@ -48,6 +49,11 @@ Rails.application.routes.draw do
   # root to: 'pages#home' # set in initializers/high_voltage
   # TODO - figure out subscriptions path before enabling below:
   # explicitly mount mailkick engine?
+
+
+  get '/px' => 'segments#tag', :constraints => { :format => 'js' }
+
+
   if Rails.env.production?
 	  get '*path' => redirect('/')
   end

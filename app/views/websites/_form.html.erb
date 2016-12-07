@@ -1,0 +1,54 @@
+<%= form_for(website) do |f| %>
+  <% if website.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(website.errors.count, "error") %> prohibited this website from being saved:</h2>
+
+      <ul>
+      <% website.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <hr>
+  <div class="form-group">
+    Website Name
+    <p class="category">Pick something convenient (this name is not shown to your visitors)</p>
+    <%= f.text_field :name, type: "text",
+                     placeholder: "My Store",
+                     class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    Website URL
+    <p class="category">paste your whole website URL (including http or https)</p>
+    <%= f.url_field :domain_name, autofocus: true, type: "url",
+                    placeholder: "http://my-store.com",
+                    class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :hosting_provider %>
+    <br>
+    <%= f.select :hosting_provider, Website.hosting_providers,
+                 class: "form-control", prompt: "Select your hosting provider", required: true %>
+  </div>
+
+  <div class="form-group">
+    <p class="category">Tell us about your site (if you'd like to). This can help us optimize your campaign. Things
+      to mention are:</p>
+    <ul>
+      <li class="category">Number of monthly visitors to your site</li>
+      <li class="category">Number of sales per month</li>
+      <li class="category">Average value of a sale</li>
+    </ul>
+    <%= f.text_area :notes, class: "form-control" %>
+  </div>
+
+  <hr>
+  <div class="actions">
+    <%= link_to 'Cancel', websites_path, class: "btn btn-danger" %>
+    <%= f.submit "Create Website", class: "btn btn-primary" %>
+  </div>
+<% end %>
