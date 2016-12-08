@@ -21,6 +21,7 @@ gem 'ahoy_email'
 gem 'mailkick'
 
 gem 'fog-aws'
+gem 'rack-cors'
 gem 'carrierwave'
 gem 'dropzonejs-rails'
 # gem 'mercury-rails' TODO - rails generate mercury:install
