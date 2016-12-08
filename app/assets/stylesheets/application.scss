@@ -14,7 +14,8 @@
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
-@import "bootstrap";
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");
+//@import "bootstrap";
 
 @import "dropzone/dropzone";
 
@@ -46,7 +47,6 @@
 @import "dashboard/responsive";
 
 @import "hopscotch";
-
 
 .checklist-complete {
   background: #71bc37;
