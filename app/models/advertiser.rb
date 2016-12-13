@@ -36,7 +36,7 @@ class Advertiser < ApplicationRecord
 	include Beeswax::Advertisable if beeswax_provider?
 
 	has_paper_trail
-	mailkick_user
+	# mailkick_user
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -54,9 +54,9 @@ class Advertiser < ApplicationRecord
 	has_one :subscription,
 	        class_name: "Payola::Subscription",
 	        foreign_key: "owner_id"
-	has_many :messages,
-	         class_name: "Ahoy::Message",
-	         foreign_key: "user_id"
+	# has_many :messages,
+	#          class_name: "Ahoy::Message",
+	#          foreign_key: "user_id"
 
 	def total_audience
 		segments.where(audience: "add").sum(:segment_count)
