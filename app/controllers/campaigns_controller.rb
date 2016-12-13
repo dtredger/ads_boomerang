@@ -20,7 +20,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(campaign_params)
 		@campaign.advertiser = current_advertiser
     if @campaign.save
-      redirect_to @campaign, notice: 'Campaign was successfully created.'
+      redirect_to website_path(campaign_params[:website_id]), notice: 'Campaign was successfully created.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class CampaignsController < ApplicationController
 
   def update
     if @campaign.update(campaign_params)
-      redirect_to @campaign, notice: 'Campaign was successfully updated.'
+      redirect_to website_path(@campaign.website), notice: 'Campaign was successfully updated.'
     else
       render :edit
     end
@@ -47,6 +47,6 @@ class CampaignsController < ApplicationController
     end
 
     def campaign_params
-      params.fetch(:campaign, {}).permit(:name)
+      params.fetch(:campaign, {}).permit(:name, :website_id, :clickthrough_url)
     end
 end

@@ -19,15 +19,22 @@ class CreativeAssetsController < ApplicationController
 	def create
 		@creative_asset = CreativeAsset.new(creative_params)
 		@creative_asset.advertiser = current_advertiser
-		respond_to do |format|
-			if @creative_asset.save
-				if @creative_asset.creatives.create(campaign_id: params[:creative_asset][:campaign_id].to_i)
+		if @creative_asset.save
+			if @creative_asset.creatives.create(campaign_id: params[:creative_asset][:campaign_id].to_i)
+				respond_to do |format|
 					format.html { render json: @creative_asset, notice: 'Creative uploaded' }
 					format.json { render json: @creative_asset }
-				else
+				end
+			else
+				respond_to do |format|
 					format.html { render action: "new" }
 					format.json { render json: @creative_asset.errors, status: :unprocessable_entity }
 				end
+			end
+		else
+			respond_to do |format|
+				format.html { render action: "new" }
+				format.json { render json: @creative_asset.errors, status: :unprocessable_entity }
 			end
 		end
 	end

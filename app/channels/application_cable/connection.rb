@@ -4,7 +4,7 @@ module ApplicationCable
 		identified_by :current_advertiser
 
 		def connect
-			self.current_advertiser = find_active_advertiser
+			# self.current_advertiser = find_active_advertiser
 		end
 
 		protected

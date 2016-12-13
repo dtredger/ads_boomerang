@@ -20,7 +20,7 @@
 #
 
 class LineItem < ApplicationRecord
-	include Beeswax::LineItemable
+	include Beeswax::LineItemable if beeswax_provider?
 
 	has_paper_trail
 

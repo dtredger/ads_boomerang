@@ -28,7 +28,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  config.action_controller.asset_host = ENV["CDN_DOMAIN"] if ENV["CDN_DOMAIN"]
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -39,8 +39,10 @@ Rails.application.configure do
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
+  # https://github.com/pixielabs/letsencrypt-rails-heroku
+  config.middleware.insert_before ActionDispatch::SSL, Letsencrypt::Middleware
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true if ENV["FORCE_SSL"] == "true"
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -50,10 +52,19 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  if ENV["MEMCACHEDCLOUD_SERVERS"]
+	  config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), {
+			  username: ENV["MEMCACHEDCLOUD_USERNAME"],
+			  password: ENV["MEMCACHEDCLOUD_PASSWORD"]
+	  }
+  end
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  config.active_job.queue_adapter     = :inline
+  if ENV["STAGING_ENV"]
+	  config.active_job.queue_adapter = :inline
+  else
+	  config.active_job.queue_adapter = :sidekiq
+  end
   # config.active_job.queue_name_prefix = "ads_dash_#{Rails.env}"
 
 
@@ -81,12 +92,11 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.active_job.queue_adapter = :inline
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: ENV["HOST"] }
+  config.action_mailer.default_url_options = { host: "adsboomerang.com" }
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true

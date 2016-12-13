@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'hello@adsboomerang.com'
+  default from: ENV["OUTGOING_EMAIL_ADDRESS"]
   layout 'mailers/base'
 
 end

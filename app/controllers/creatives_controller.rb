@@ -16,6 +16,7 @@ class CreativesController < ApplicationController
   def edit
   end
 
+  # Creatives are made in the creative_assets controller
   # def create
   #   @creative = Creative.new(creative_params)
   #   @creative.advertiser = current_advertiser

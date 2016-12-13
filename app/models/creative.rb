@@ -20,7 +20,7 @@
 #
 
 class Creative < ApplicationRecord
-	include Beeswax::Creativeable
+	include Beeswax::Creativeable if beeswax_provider?
 
 	has_paper_trail
 

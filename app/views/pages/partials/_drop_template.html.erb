@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "pages/partials/drop_template" %>
 
 <div class="chrome-window">
   <div class="row">
@@ -52,114 +53,10 @@
   <p class="text-center visible-xs visible-sm">
     <i>*Some of the sample ads in this frame have been scaled down to fit your screen</i>
   </p>
-
 </div>
 
 
 
-
-
-<style>
-  .float-left {
-    float: left;
-  }
-  .ad-728 {
-    border: 1px solid #ddd;
-    max-width: 728px;
-    height: auto;
-  }
-  .ad-300 {
-    border: 1px solid #ddd;
-    max-width: 300px;
-    height: auto;
-  }
-  .ad-600 {
-    border: 1px solid #ddd;
-    max-width: 300px;
-    height: auto;
-  }
-  .ad-160 {
-    display: inline;
-    border: 1px solid #ddd;
-    max-width: 160px;
-    height: auto;
-  }
-
-  .chrome-window {
-      /*max-height: 600px;*/
-      overflow: hidden;
-      /*TODO - is that correct? */
-
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      display: block;
-      margin: 20px auto;
-      border-radius: 2px;
-      box-shadow: 2px 2px 3px rgba(0, 0, 0, .15);
-      padding: 111px 40px 40px;
-      background: url('assets/chrome_top.png') top no-repeat white;
-      background-size: 100%;
-  }
-
-  .chrome-window img {
-      display: block;
-      margin: 0 auto;
-      max-width: 100%;
-  }
-
-  hr {
-      border: 0;
-      border-top: 1px dashed rgba(255, 255, 255, .5);
-      margin: 40px auto;
-  }
-
-  h1 {
-      margin-top: 0;
-  }
-
-#dropzone {
-  position: relative;
-  border: 1px solid #DDD;
-  font: bold 24px/200px arial;
-  height: 250px;
-  width: 300px;
-  /*margin: 30px auto;*/
-  text-align: center;
-
-}
-
-#dropzone.hover {
-  border: 10px solid #FE5;
-  color: #FE5;
-}
-
-#dropzone div {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-#dropzone img {
-  vertical-align: middle;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-
-#dropzone [type="file"] {
-  cursor: pointer;
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-</style>
 
 <script>
 $(function() {

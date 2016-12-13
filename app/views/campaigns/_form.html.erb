@@ -1,30 +1,47 @@
-<%= form_for(campaign) do |f| %>
-  <% if campaign.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+<div class="col-md-8">
+  <div class="card">
+    <div class="content">
 
-      <ul>
-      <% campaign.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <%= form_for(campaign) do |f| %>
+        <% if campaign.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+
+            <ul>
+              <% campaign.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label "website" %>
+          <%= f.collection_select :website_id, current_advertiser.websites, :id, :domain_name,
+                                  autofocus: true, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :campaign_name %>
+          <%= f.text_field :name, type: "text", placeholder: "site campaign",
+                           class: "form-control", required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :clickthrough_url %>
+          <p class="category">
+            This is the location people are taken to when they click your ads.
+            It must be a complete URL (which includes http:// or https://).
+          </p>
+          <%= f.text_field :clickthrough_url, type: "url", placeholder: "http://my-domain.com",
+                           class: "form-control", required: true %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Save Campaign", class: "btn btn-primary" %>
+        </div>
       <% end %>
-      </ul>
+
+
     </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label "domain name" %>
-    <%= f.url_field :alternative_id, autofocus: true, type: "text",
-                    placeholder: "http://my-store.com",
-                    class: "form-control", required: true %>
   </div>
-  <div class="form-group">
-    <%= f.label :campaign_name %>
-    <%= f.text_field :name, type: "text",
-                     placeholder: "site campaign",
-                     class: "form-control", required: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Create Campaign", class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>

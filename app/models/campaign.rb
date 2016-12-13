@@ -2,23 +2,25 @@
 #
 # Table name: campaigns
 #
-#  id              :integer          not null, primary key
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  advertiser_id   :integer
-#  name            :string           not null
-#  start_date      :datetime
-#  end_date        :datetime
-#  alternative_id  :string
-#  campaign_budget :float
-#  daily_budget    :float
-#  budget_type     :integer
-#  revenue_type    :integer
-#  revenue_amount  :float
-#  pacing          :integer
-#  notes           :string
-#  active          :boolean
-#  beeswax_id      :integer
+#  id               :integer          not null, primary key
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  advertiser_id    :integer
+#  name             :string           not null
+#  start_date       :datetime
+#  end_date         :datetime
+#  alternative_id   :string
+#  campaign_budget  :float
+#  daily_budget     :float
+#  budget_type      :integer
+#  revenue_type     :integer
+#  revenue_amount   :float
+#  pacing           :integer
+#  notes            :string
+#  active           :boolean
+#  beeswax_id       :integer
+#  website_id       :integer
+#  clickthrough_url :string
 #
 # Indexes
 #
@@ -26,8 +28,8 @@
 #
 
 class Campaign < ApplicationRecord
-	include Beeswax::Campaignable
-	include Beeswax::Segmentable
+	include Beeswax::Campaignable if beeswax_provider?
+	include Beeswax::Segmentable if beeswax_provider?
 
 	has_paper_trail
 
@@ -36,16 +38,19 @@ class Campaign < ApplicationRecord
 	before_validation :set_campaign_start_date
 
 	validates_presence_of :advertiser,
-	                      :name,
-	                      :start_date
-	validates_uniqueness_of :name, scope: :advertiser_id
+	                      :start_date,
+	                      :website
+	# validates_uniqueness_of :name, scope: :advertiser_id
 
   belongs_to :advertiser
+	belongs_to :website
 	has_many :creatives
 	has_many :line_items
 	has_many :segments
-	has_one :include_segment, -> { where audience: 'include' }, class_name: Segment
+	has_one :include_segment, -> { where audience: 'add' }, class_name: Segment
 	has_one :exclude_segment, -> { where audience: 'exclude' }, class_name: Segment
+
+	before_create :set_default_clickthrough_url
 
 	after_create :create_campaign_line_items
 
@@ -100,6 +105,10 @@ class Campaign < ApplicationRecord
 
 		def set_campaign_start_date
 			self.start_date = Time.now
+		end
+
+		def set_default_clickthrough_url
+			self.clickthrough_url = website.homepage
 		end
 
 		def create_campaign_line_items

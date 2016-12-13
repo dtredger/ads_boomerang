@@ -1,0 +1,126 @@
+<div class="col-md-8">
+  <%= link_to '< Back', websites_path, class: "btn btn-default" %>
+  <br><br>
+</div>
+
+<div class="col-md-8">
+  <div class="card">
+    <div class="header">
+      <div class="row">
+        <div class="col-xs-6">
+          <h3 class="title"><%= @website.name %></h3>
+          <p class="category"><%= @website.domain_name %></p>
+          <%= link_to 'Edit', edit_website_path(@website) %> |
+          <%= link_to 'Delete', @website, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+        <div class="col-xs-6">
+          <p class="category">Hosting Provider</p>
+          <%= @website.hosting_provider %>
+          <br>
+          <p class="category">Notes</p>
+          <%= @website.notes %>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="content">
+      <h4>Website Tag</h4>
+      <p class="category">Place this tag on every page of your website</p>
+      <div class="input-group">
+        <%= text_field_tag "Website Tag", @website.website_tag,
+                           class: "form-control", type:'text' %>
+        <span class="input-group-btn">
+          <button class="btn btn-primary copy-button" type="button" data-clipboard-target="#Website_Tag">
+            <i class="fa fa-clipboard"></i>Copy
+          </button>
+        </span>
+      </div>
+      <div>
+        <br>
+        <h4>Have you placed your tag on your website?</h4>
+        <p class="category">
+          Visit your test link at
+          <%= link_to @website.homepage,
+                      (url_for(@website.homepage) + "?adsboomerangtest=verify"),
+                      target: "_blank" %>
+          to check. (Don't worry, this is not visible to regular visitors)
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- info card -->
+<div class="col-md-4">
+  <div class="card">
+    <div class="content">
+      <p>This page contains basic details about your website.</p>
+      <% if @website.campaign.nil? %>
+        <p>
+          To start advertising this website, please
+          <%= button_to "Start a campaign for this Website", {
+                        controller: "campaigns", action: "create",
+                        campaign: { name: "#{@website.name} campaign", website_id: @website.id },
+                        method: :post }, class: "btn btn-success" %>
+        </p>
+      <% end %>
+      <% if current_advertiser.campaigns.any? %>
+        <p>To create more websites, please
+          <%= link_to "upgrade your subscription", new_subscription_path %>.
+        </p>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
+
+<% if @website.campaign %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="header">
+          <h4>Advertising Campaign</h4>
+        </div>
+        <div class="content">
+
+          <div>
+            Click-through URL:
+            <a href="<%= @website.campaign.clickthrough_url %>">
+              <%= @website.campaign.clickthrough_url %>
+            </a>
+            <%= link_to "Edit", edit_campaign_path(@website.campaign),
+                        class: "btn btn-primary btn-sm" %>
+          </div>
+          <br>
+
+          <%= render "creatives/list", campaign: @website.campaign %>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="header">
+          <p>Here are the details of your Advertising Campaign for this website.</p>
+        </div>
+        <div class="content">
+          To start your campaign, a few things are required:
+          <br><br>
+          <ul>
+            <li>Set up a <b>Click-through Url</b> (that people are taken to when they click your ads)</li>
+            <li>Upload some ads (or ask us to create some for you)</li>
+            <li>Verify that your <b>Website Tag</b> is placed on your site.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+
+<script>
+  new Clipboard(".copy-button");
+</script>

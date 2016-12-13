@@ -1,16 +1,13 @@
 # encoding: utf-8
 
 class CreativeAssetUploader < CarrierWave::Uploader::Base
-
-
-  process :store_dimensions
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+	process :store_dimensions
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # -- set in carrierwave.rb config (storage :fog if production) --
   # TODO
   # if Rails.env.production?
 	 #  include Cloudinary::CarrierWave
