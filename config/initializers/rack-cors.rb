@@ -8,6 +8,8 @@ if defined? Rack::Cors
 								"http://d305q2469s7bp2.cloudfront.net",
 								"http://d1idnqjey0zziz.cloudfront.net",
                 "https://d1idnqjey0zziz.cloudfront.net",
+                "http://d305q2469s7bp2.cloudfront.net",
+                "https://d305q2469s7bp2.cloudfront.net",
                 "https://adsboomerang.com",
                 "http://adsboomerang.com",
                 "https://ads-boomerang-staging.herokuapp.com",
