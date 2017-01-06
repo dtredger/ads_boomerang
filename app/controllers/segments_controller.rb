@@ -18,13 +18,14 @@ class SegmentsController < ApplicationController #ActionController::Base
 	private
 
 		def find_website
-			referrer = URI.parse(segment_params[:d])
-			@website = Website.find_by(domain_name: referrer.host)
+			refer_uri = URI.parse(segment_params[:d])
+			@website = Website.find_by(domain_name: refer_uri.host)
 			return unless @website
-
-			if @website.pages.exclude?(referrer)
-				@website.pages.push(referrer)
+			if @website.pages.exclude?(refer_uri.to_s)
+				@website.pages.push(refer_uri.to_s)
+				@website.save
 			end
+
 			# TODO - decisioning wrt include vs exclude segments, conversion tags
 			if @website.campaign && @website.campaign.include_segment
 				@segment_tag = @website.campaign.include_segment.retarget_src

@@ -1,56 +1,51 @@
 <!-- render "layouts/dashboard/segments", subscription: @advertiser.subscription -->
 
 
-<div class="col-md-6">
+<div class="col-md-8">
   <div class="card">
     <div class="header">
-      <h4 class="title">Ads Boomerang Subscription</h4>
-      <p class="category">Details about your subscription</p>
+      <h4 class="title">Subscription Details</h4>
     </div>
     <div class="content">
-      <% if subscription && subscription.plan %>
-        <h4><%= subscription.plan.name %></h4>
-        <p>Signed up on: <%= subscription.plan.created_at.to_date %></p>
-        <p>
-          $<%= (subscription.plan.amount.to_money)/100.to_s %> /
-          <%= subscription.plan.interval %></p>
-      <% else %>
-        <%= link_to "Subscribe to a plan", new_subscription_path %>
-      <% end %>
+      <div class="row">
+        <% if subscription && subscription.plan %>
+          <div class="col-sm-6">
+            <b><%= subscription.plan.name %></b>
+            <p>$<%= (subscription.plan.amount.to_money)/100.to_s %> / <%= subscription.plan.interval %></p>
+            <p><i>Signed up on:</i> <%= subscription.plan.created_at.strftime("%b %d, %Y") %></p>
+          </div>
+        <% else %>
+          <div class="col-sm-8">
+            <p>You are not subscribed to a plan</p>
+          </div>
+          <div class="col-sm-4">
+            <%= link_to "Choose Plan", new_subscription_path, class: "btn btn-primary" %>
+          </div>
+        <% end %>
+
+        <% if subscription %>
+          <div class="col-sm-6">
+            <b>Payment Details</b>
+            <p class="category">Details about your payment history</p>
+
+            <p>Subscription Status: <%= subscription.state %></p>
+
+            <p>Card: <%= subscription.card_type %> **** **** **** <%= subscription.card_last4 %></p>
+
+            <% if subscription.sales.any? %>
+              <%= render "layouts/dashboard/invoices", invoices: subscription.sales %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
 
       <div class="footer">
         <hr>
         <div class="stats">
-          <i class="fa fa-check"></i> Data up-to-date as of <%= Time.now.to_s %>
+          <i class="fa fa-check"></i>
+          Data up-to-date as of <%= Time.now.strftime("%l:%M %p") %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<% if subscription %>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="header">
-        <h4 class="title">Payment Details</h4>
-        <p class="category">Details about your payment history</p>
-      </div>
-      <div class="content">
-        <p>Subscription Status: <%= subscription.state %></p>
-
-        <p>Card: <%= subscription.card_type %> **** **** **** <%= subscription.card_last4 %></p>
-
-        <h4>Invoices:</h4>
-        <%= render "layouts/dashboard/invoices", invoices: subscription.sales %>
-
-        <div class="footer">
-          <hr>
-          <div class="stats">
-            <i class="fa fa-check"></i> Data up-to-date as of <%= Time.now.to_s %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-

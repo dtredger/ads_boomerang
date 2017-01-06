@@ -1,6 +1,6 @@
 <!--%= render "creative_assets/form", creative_asset: CreativeAsset.new, campaign: @campaign %>-->
 
-<%= form_tag "/ad_library", method: :post, class: 'dropzone form', id: 'media-dropzone' do %>
+<%= form_tag "/app/ad_library", method: :post, class: 'dropzone form', id: 'media-dropzone' do %>
   <div class="fallback">
     <%= file_field_tag "mounted_asset", multiple: true %>
   </div>

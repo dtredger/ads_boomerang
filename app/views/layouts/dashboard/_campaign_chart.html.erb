@@ -1,0 +1,78 @@
+<!--%= render "layouts/dashboard/campaign_chart", campaign: campaign %>-->
+
+<div class="col-md-8">
+  <div class="card">
+    <div class="header">
+      <h4 class="title"><%= campaign.name %></h4>
+      <p class="category">Campaign Performance</p>
+    </div>
+    <div class="content">
+
+      <% if campaign.website.tag_placed? %>
+        <div id="chart-<%= campaign.id %>" class="ct-chart ct-perfect-fourth"></div>
+      <% else %>
+        <p class="text-center">
+          Place your website tag to see your performance chart
+        </p>
+      <% end %>
+
+      <div class="footer">
+        <div class="legend">
+          <i class="fa fa-circle text-info"></i> Max Audience
+          <i class="fa fa-circle text-warning"></i> Current Audience
+          <i class="fa fa-circle text-danger"></i> Conversions
+        </div>
+        <hr>
+        <div class="stats">
+          <i class="fa fa-clock-o"></i> Data last updated
+          <%= campaign.updated_at.strftime('%b %d, %Y') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script !src="">
+  var data = {
+    labels: <%= raw campaign.last_week_labels.as_json %>,
+    series: [
+      { data: <%= raw campaign.max_audience_history.as_json %> },
+      { data: <%= raw campaign.conversion_history.as_json %> },
+      { data: <%= raw campaign.addressable_audience_history.as_json %> }
+    ]
+  };
+
+  /* Set some base options (settings will override the default settings in Chartist.js *see default settings*). We are adding a basic label interpolation function for the xAxis labels. */
+  var options = {
+    axisX: {
+//      labelInterpolationFnc: function(value) {
+//      return 'Oct ' + value;
+//      }
+    },
+    showArea: false
+  };
+
+  /* Now we can specify multiple responsive settings that will override the base settings based on order and if the media queries match. In this example we are changing the visibility of dots and lines as well as use different label interpolations for space reasons. */
+  var responsiveOptions = [
+    ['screen and (min-width: 641px) and (max-width: 1024px)', {
+      showPoint: false,
+      axisX: {
+//        labelInterpolationFnc: function(value) {
+//          return 'Week ' + value;
+//        }
+      }
+    }],
+    ['screen and (max-width: 640px)', {
+      showLine: false,
+      axisX: {
+//        labelInterpolationFnc: function(value) {
+//          return 'W' + value;
+//        }
+      }
+    }]
+  ];
+
+  /* Initialize the chart with the above settings */
+  new Chartist.Line('#chart-<%= campaign.id %>', data, options, responsiveOptions);
+</script>

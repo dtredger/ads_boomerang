@@ -2,14 +2,20 @@
   <div id="checklist" class="card">
     <div class="header">
       <h4 class="title">Add a Website</h4>
-      <p class="category">
-        Enter the info for your eCommerce store or website to use Ads Boomerang.
-        <br>
-        This will allow you to get the website tag, which must be placed on the site.
-      </p>
     </div>
     <div class="content">
-      <%= render 'form', website: @website %>
+      <% if current_advertiser.websites.count < current_advertiser.max_websites %>
+        <p>Enter your website's info below to start an ad campaign</p>
+        <%= render 'form', website: @website %>
+      <% else %>
+        Under your current subscription, you are limited to
+        <%= pluralize(current_advertiser.max_websites, "website") %>
+        <br>
+        <br>
+        <%= link_to 'Upgrade your Plan to create more websites', new_subscription_path,
+                    class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>
+

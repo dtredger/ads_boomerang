@@ -2,36 +2,47 @@
   <div class="sidebar-wrapper">
     <div class="logo">
       <%= image_tag "pages/logo-small.png", style: "display: inline;padding-left:30px" %>
-      <%= link_to root_url, class:"simple-text", style:"display: inline;vertical-align: bottom;" do %>
+      <%= link_to authenticated_advertiser_url, class:"simple-text", style:"display: inline;vertical-align: bottom;" do %>
         Ads Boomerang
       <% end %>
     </div>
 
     <ul class="nav">
       <li id="dashboard-link" class="<%= 'active' if controller_name == 'advertisers' %>">
-        <%= link_to root_path do %>
-          <i class="pe-7s-note2"></i>
+        <%= link_to authenticated_advertiser_path do %>
+          <i class="pe-7s-home"></i>
           <p>Dashboard Home</p>
         <% end %>
       </li>
 
-      <li id="websites-link" class="<%= 'active' if controller_name == 'websites' %>">
-        <%= link_to websites_path do %>
-          <i class="pe-7s-network"></i>
-          <p>Websites
+      <% current_advertiser.websites.each do |website| %>
+        <li class="<%= 'active' if (controller_name == 'websites' && controller.params[:id] == website.id.to_s) %>">
+          <%= link_to website_path(website) do %>
+            <i class="pe-7s-browser"></i>
+            <p><%= website.name %></p>
+          <% end %>
+        </li>
+      <% end %>
+
+      <hr>
+
+      <li id="websites-link" class="<%= 'active' if controller_name == 'websites' && action_name == 'new' %>">
+        <%= link_to new_website_path do %>
+          <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+          <p>New Website
             (<%= current_advertiser.websites.count %>/<%= current_advertiser.max_websites %>)
           </p>
         <% end %>
       </li>
 
-      <% if current_advertiser.creative_assets.any? %>
-        <li id="creatives-link" class="<%= 'active' if controller_name == 'creatives' %>">
-          <%= link_to creative_assets_path do %>
-            <i class="pe-7s-albums"></i>
-            <p>Ad Library</p>
-          <% end %>
-        </li>
-      <% end %>
+      <!--% if current_advertiser.creative_assets.any? %>-->
+        <!--<li id="creatives-link" class="<%= 'active' if controller_name == 'creatives' %>">-->
+          <!--%= link_to creative_assets_path do %>-->
+            <!--<i class="pe-7s-albums"></i>-->
+            <!--<p>Ad Library</p>-->
+          <!--% end %>-->
+        <!--</li>-->
+      <!--% end %>-->
     </ul>
   </div>
 </div>

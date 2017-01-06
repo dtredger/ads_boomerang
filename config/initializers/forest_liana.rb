@@ -1,5 +1,5 @@
-ForestLiana.secret_key = ENV["FOREST_SECRET_KEY"]
-ForestLiana.auth_key = ENV["FOREST_AUTH_KEY"]
+ForestLiana.env_secret = ENV["FOREST_SECRET_KEY"]
+ForestLiana.auth_secret = ENV["FOREST_AUTH_KEY"]
 ForestLiana.integrations = {
 		stripe: {
 				api_key: ENV["STRIPE_SECRET_KEY"],
