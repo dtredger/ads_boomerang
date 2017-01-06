@@ -1,102 +1,14 @@
-<!--<div class="col-md-12">-->
-  <!--<div class="card">-->
-    <!--<div class="header">-->
-      <!--<h4 class="title">Campaign Performance</h4>-->
-      <!--<p class="category">For the last week</p>-->
-    <!--</div>-->
-    <!--<div class="content">-->
-      <!--<div id="chartHours" class="ct-chart"></div>-->
-      <!--<div class="footer">-->
-        <!--<div class="legend">-->
-          <!--<i class="fa fa-circle text-info"></i> Conversions from Views-->
-          <!--<i class="fa fa-circle text-danger"></i> Conversions from Clicks-->
-        <!--</div>-->
-        <!--<hr>-->
-        <!--<div class="stats">-->
-          <!--<i class="fa fa-history"></i> Updated 3 minutes ago-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<%= render "layouts/dashboard/checklist", advertiser: @advertiser %>
-
-<%= render "layouts/dashboard/subscription", subscription: @advertiser.subscription %>
 
 
-<!--<hr>-->
+<% unless @advertiser.checklist_complete? %>
+  <%= render "layouts/dashboard/checklist", advertiser: @advertiser %>
+<% end %>
+
+<% if @advertiser.subscription.nil? %>
+  <%= render "layouts/dashboard/subscription", subscription: @advertiser.subscription %>
+<% end %>
 
 
-<!--<div class="col-md-4">-->
-  <!--<div class="card">-->
-    <!--<div class="header">-->
-      <!--<h4 class="title">Email Statistics</h4>-->
-      <!--<p class="category">Last Campaign Performance</p>-->
-    <!--</div>-->
-    <!--<div class="content">-->
-      <!--&lt;!&ndash;<iframe src="http://stingersbx.api.beeswax.com/buzz/public/CreativePreview.php?token=620UKRxP933vEfv5Xsc1p3YvPOWpVlH1nHW8ytXI" style="width: 728px; height: 90px;" frameborder="0"></iframe>&ndash;&gt;-->
-
-      <!--<div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>-->
-
-      <!--<div class="footer">-->
-        <!--<div class="legend">-->
-          <!--<i class="fa fa-circle text-info"></i> Open-->
-          <!--<i class="fa fa-circle text-danger"></i> Bounce-->
-          <!--<i class="fa fa-circle text-warning"></i> Unsubscribe-->
-        <!--</div>-->
-        <!--<hr>-->
-        <!--<div class="stats">-->
-          <!--<i class="fa fa-clock-o"></i> Campaign sent 2 days ago-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-
-<script !src="">
-//  var data = {
-//    labels: ['1', '2', '3', '4', '5', '6', '7'],
-//    series: [
-//      {
-//        data: [ 62, 63, 70, 78, 83, 84, 86 ]
-//      },{
-//        data: [  17, 23, 21, 23, 27, 31, 35 ]
-//      }
-//    ]
-//  };
-//
-//  /* Set some base options (settings will override the default settings in Chartist.js *see default settings*). We are adding a basic label interpolation function for the xAxis labels. */
-//  var options = {
-//    axisX: {
-//      labelInterpolationFnc: function(value) {
-//        return 'Oct ' + value;
-//      }
-//    },
-//    showArea: true
-//  };
-
-  /* Now we can specify multiple responsive settings that will override the base settings based on order and if the media queries match. In this example we are changing the visibility of dots and lines as well as use different label interpolations for space reasons. */
-  var responsiveOptions = [
-    ['screen and (min-width: 641px) and (max-width: 1024px)', {
-      showPoint: false,
-      axisX: {
-        labelInterpolationFnc: function(value) {
-          return 'Week ' + value;
-        }
-      }
-    }],
-    ['screen and (max-width: 640px)', {
-      showLine: false,
-      axisX: {
-        labelInterpolationFnc: function(value) {
-          return 'W' + value;
-        }
-      }
-    }]
-  ];
-
-  /* Initialize the chart with the above settings */
-//  new Chartist.Line('#chartHours', data, options, responsiveOptions);
-</script>
+<% @advertiser.campaigns.each do |campaign| %>
+  <%= render "layouts/dashboard/campaign_chart", campaign: campaign %>
+<% end %>
