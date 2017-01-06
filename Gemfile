@@ -19,9 +19,10 @@ gem 'premailer-rails'
 # gem 'ahoy_email'
 # gem 'mailkick'
 
+gem 'carrierwave'
+gem 'fog'
 gem 'fog-aws'
 gem 'rack-cors'
-gem 'carrierwave'
 gem 'dropzonejs-rails'
 # gem 'mercury-rails' TODO - rails generate mercury:install
 # gem 'phrasing_plus'
@@ -54,7 +55,6 @@ gem 'payola-payments'
 gem 'money-rails'
 
 gem 'figaro'
-gem 'letsencrypt_plugin'
 gem 'rollbar'
 
 group :development, :test do
