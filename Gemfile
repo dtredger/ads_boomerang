@@ -22,7 +22,7 @@ gem 'premailer-rails'
 gem 'carrierwave'
 gem 'fog'
 gem 'fog-aws'
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 gem 'dropzonejs-rails'
 # gem 'mercury-rails' TODO - rails generate mercury:install
 # gem 'phrasing_plus'
