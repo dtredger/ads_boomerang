@@ -18,6 +18,8 @@ class Website < ApplicationRecord
 	belongs_to :advertiser
 	has_one :campaign
 
+	after_create :start_campaign_if_none
+
 	validates_presence_of :advertiser
 	validate :sufficient_subscription
 
@@ -49,14 +51,28 @@ class Website < ApplicationRecord
 		end
 	end
 
+	def tag_placed?
+		if self.pages.include?(self.homepage + "/?adsboomerangtest=verify")
+			true
+		else
+			false
+		end
+	end
+
 
 
 	private
 
 		def sufficient_subscription
-			if advertiser.websites.count == advertiser.max_websites
+			if advertiser.websites.count > advertiser.max_websites
 				errors.add(:advertiser, "You need to upgrade your subscription to create more websites")
 			end
+		end
+
+		def start_campaign_if_none
+			Campaign.create(advertiser: self.advertiser,
+			                website: self,
+			                name: "#{self.name} campaign")
 		end
 
 end

@@ -1,5 +1,4 @@
 class WebsitesController < ApplicationController
-	before_action :check_website_count, only: [:index, :new, :create]
 	before_action :set_website, only: [:show, :edit, :update, :destroy]
 
 
@@ -46,13 +45,6 @@ class WebsitesController < ApplicationController
   private
     def set_website
       @website = current_advertiser.websites.find(params[:id])
-    end
-
-    def check_website_count
-	    # index redundant for most ppl with one website; don't allow creating more
-	    if current_advertiser.websites.count >= current_advertiser.max_websites
-		    redirect_to website_path(current_advertiser.websites.first)
-	    end
     end
 
     def website_params
