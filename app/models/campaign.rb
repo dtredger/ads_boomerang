@@ -98,8 +98,35 @@ class Campaign < ApplicationRecord
 
 	def click_url
 		# TODO - allow individual creatives to have click_url?
-
 	end
+
+	def last_week_labels
+		[
+				6.days.ago.strftime("%b %d"),
+				5.days.ago.strftime("%b %d"),
+				4.days.ago.strftime("%b %d"),
+				3.days.ago.strftime("%b %d"),
+				2.days.ago.strftime("%b %d"),
+				Date.yesterday.strftime("%b %d"),
+				Date.today.strftime("%b %d")
+		]
+	end
+
+
+	# TODO - check SubscriptionPLan (which should note audience size)
+	def max_audience_history
+		[ 500, 500, 500, 500, 500, 500, 500 ]
+	end
+
+	# TODO - these numbers are used in weekly graph: should be real numbers
+	def addressable_audience_history
+		[ 0, 0, 0, 0, 0, 0, 0 ]
+	end
+
+	def conversion_history
+		[ 0, 0, 0, 0, 0, 0, 0 ]
+	end
+
 
 	private
 

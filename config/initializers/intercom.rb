@@ -15,7 +15,7 @@ IntercomRails.config do |config|
   # == Enabled Environments
   # Which environments is auto inclusion of the Javascript enabled for
   #
-  config.enabled_environments = ["development", "production"]
+  config.enabled_environments = ["production"]
 
   # == Current user method/variable
   # The method/variable that contains the logged in user in your controllers.
@@ -31,7 +31,7 @@ IntercomRails.config do |config|
   # == User model class
   # The class which defines your user model
   #
-  # config.user.model = Proc.new { User }
+  config.user.model = Proc.new { Advertiser }
 
   # == Lead/custom attributes for non-signed up users
   # Pass additional attributes to for potential leads or

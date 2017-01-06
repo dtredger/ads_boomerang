@@ -8,10 +8,10 @@
 #  active         :boolean
 #  alternative_id :string
 #  campaign_id    :integer
-#  segment_count  :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  audience       :integer
+#  audience_count :integer
 #
 
 require 'rails_helper'

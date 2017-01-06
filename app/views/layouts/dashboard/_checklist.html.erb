@@ -1,6 +1,6 @@
 <!--%= render "layouts/dashboard/checklist", advertiser: @advertiser %>-->
 
-<div class="col-md-12">
+<div class="col-md-8">
   <div id="checklist" class="card">
     <div class="header">
       <h4 class="title">Onboarding Checklist</h4>
@@ -30,24 +30,12 @@
             <% else %>
               <tr>
                 <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
-                <td><%= link_to "Create your first website", new_website_path %></td>
+                <td><%= link_to "Add your first website", new_website_path %></td>
               </tr>
             <% end %>
 
             <% if advertiser.websites.any? %>
-              <% if advertiser.campaigns.any? %>
-                <tr class="checklist-complete">
-                  <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
-                  <td>Website Campaign Created</td>
-                </tr>
-              <% else %>
-                <tr>
-                  <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
-                  <td><%= link_to "Create your first campaign", new_campaign_path %></td>
-                </tr>
-              <% end %>
-
-              <% if advertiser.total_audience > 10 %>
+              <% if advertiser.active_website_tag? %>
                 <tr class="checklist-complete">
                   <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
                   <td>Website Tag Activated</td>
@@ -55,7 +43,7 @@
               <% else %>
                 <tr>
                   <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
-                  <td><%= link_to "Place your Website Tag on your site", website_path(advertiser.websites.first) %></td>
+                  <td><%= link_to "Place your Website Tag on your site", website_path(advertiser.websites.first, anchor: "website-tag") %></td>
                 </tr>
               <% end %>
 
@@ -68,9 +56,9 @@
                 <tr>
                   <td><label class="checkbox"> <i class="fa fa-square-o"></i></label></td>
                   <% if advertiser.campaigns.any? %>
-                    <td><%= link_to "Upload Creatives to your Campaign", campaign_path(advertiser.campaigns.last) %></td>
+                    <td><%= link_to "Upload Ads to your Website's Campaign", website_path(advertiser.websites.first, anchor: "upload-ads") %></td>
                   <% else %>
-                    <td><%= link_to "Create a Campaign to upload Creatives", new_campaign_path %></td>
+                    <td><%= link_to "Create a Campaign to upload Ads", new_campaign_path %></td>
                   <% end  %>
                 </tr>
               <% end %>

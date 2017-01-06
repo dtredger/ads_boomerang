@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122184842) do
+ActiveRecord::Schema.define(version: 20161222223711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -287,10 +287,10 @@ ActiveRecord::Schema.define(version: 20161122184842) do
     t.boolean  "active"
     t.string   "alternative_id"
     t.integer  "campaign_id"
-    t.integer  "segment_count"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "audience"
+    t.integer  "audience_count"
   end
 
   create_table "storytime_actions", force: :cascade do |t|

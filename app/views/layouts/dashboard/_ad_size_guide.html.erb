@@ -1,0 +1,58 @@
+<div class="modal fade" id="adSizeModal" tabindex="-1" role="dialog" aria-labelledby="adSizeModal">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center" id="adSizeModal">Supported Ad Sizes</h4>
+      </div>
+      <div class="modal-body">
+        <p>Ads Boomerang supports the following Ad sizes:</p>
+        <ul>
+          <li>
+            <b>Medium Rectangle (width 300px, height 200px)</b>
+            <br>
+            <%= image_tag "300x250.png", class: "ad-300" %>
+            <br>
+          </li>
+          <hr>
+          <li>
+            <b>Leaderboard (width 728px, height 90px )</b>
+            <br>
+            <%= image_tag "728x90.png", class: "text-center ad-728" %>
+            <br>
+          </li>
+          <hr>
+          <div class="row">
+            <div class="col-sm-6">
+              <li>
+                <b>Skyscraper (width 160px, height 600px)</b>
+                <br>
+                <%= image_tag "fox_160x600.png", class: "ad-160" %>
+                <br>
+              </li>
+            </div>
+            <div class="col-sm-6">
+              <li>
+                <b>Wide Skyscraper (width 300px, height 600px)</b>
+                <br>
+                <%= image_tag "300x600.png", class: "ad-600" %>
+                <br>
+              </li>
+            </div>
+          </div>
+
+          <hr>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @media (min-width: 768px) {
+    .modal-xl {
+      width: 90%;
+      max-width:1200px;
+    }
+  }
+</style>

@@ -30,7 +30,7 @@ class SubscriptionPlan < ApplicationRecord
 
 	def redirect_path(sale)
 		Rails.logger.debug(sale.inspect)
-		"/?sub=y"
+		"/app"
 	end
 
 	def active?

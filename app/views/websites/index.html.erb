@@ -1,4 +1,25 @@
 
+<div class="col-md-8">
+  <div class="card">
+    <div class="header">
+
+    </div>
+    <div class="content">
+      This page shows the list of all your websites. Under your current subscription, you are limited to
+      <%= pluralize(current_advertiser.max_websites, "website") %>
+
+      <br>
+      <hr>
+      <% if current_advertiser.websites.count < current_advertiser.max_websites %>
+        <%= link_to 'Create a New Website', new_website_path, class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to 'Upgrade your Plan to create more websites', new_subscription_path,
+                    class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <% @websites.each do |website| %>
   <div class="col-md-8">
     <%= link_to website do %>
@@ -13,26 +34,3 @@
     <% end %>
   </div>
 <% end %>
-
-<div class="col-md-4">
-  <div class="card">
-    <div class="header">
-
-    </div>
-    <div class="content">
-      This page shows the list of all your websites. Under your current subscription, you are limited to
-      <%= pluralize(current_advertiser.max_websites, "website") %>
-    </div>
-  </div>
-</div>
-
-
-<div class="col-md-8">
-  <% if current_advertiser.websites.count < current_advertiser.max_websites %>
-    <%= link_to 'Create a New Website', new_website_path, class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to 'Upgrade your Plan to create more websites', new_subscription_path, class: "btn btn-primary" %>
-  <% end %>
-</div>
-
-

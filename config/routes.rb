@@ -19,24 +19,25 @@ Rails.application.routes.draw do
   #   root to: 'advertisers#index', as: :authenticated_admin
   # end
 
-	devise_for :advertisers, path: "", controllers: {
-			                       registrations: "registrations",
-			                       sessions: "sessions",
-	                           confirmations: "confirmations",
-	                           passwords: "passwords"
-	                       }
+  scope(path: "app") do
+	  devise_for :advertisers, path: "", controllers: {
+			                         registrations: "registrations",
+			                         sessions: "sessions",
+			                         confirmations: "confirmations",
+			                         passwords: "passwords"
+	                         }
 
-  authenticated :advertiser do
-    root to: 'advertisers#show', as: :authenticated_advertiser
-
-    resource :advertiser, path: "account"
-    resource :subscription, only: [:new, :create]
-    resources :websites
-    resources :campaigns do
-	    resources :creatives
-    end
-    resources :creative_assets, path: "ad_library"
-
+	  authenticated :advertiser do
+		  root to: 'advertisers#show', as: :authenticated_advertiser
+		  get '/' => 'advertisers#show', as: :advertiser_root
+		  resource :advertiser, path: "account"
+		  resource :subscription, only: [:new, :create]
+		  resources :websites
+		  resources :campaigns do
+			  resources :creatives
+		  end
+		  resources :creative_assets, path: "ad_library"
+	  end
   end
 
 	get '/faq' => 'high_voltage/pages#show', id: 'faq'

@@ -13,8 +13,9 @@
     </ul>
     <hr>
     <%= select_tag "Plan", options_from_collection_for_select(@plans, "id", "name"),
-                   prompt: "Select a plan",
-                   onchange: "updateSelectedPlan()" %>
+                   prompt: "* Select a plan *",
+                   onchange: "updateSelectedPlan()",
+                   style: "width:300px;height:40px;" %>
   </div>
 </div>
 
@@ -32,7 +33,7 @@
   </div>
   <div class="content">
     <div class="row">
-      <%= form_tag('/subscription',
+      <%= form_tag('/app/subscription',
                    class: 'payola-onestep-subscription-form',
                    'data-payola-base-path' => '/payola',
                    'data-payola-plan-type' => SubscriptionPlan,
@@ -64,7 +65,7 @@
 
           <label for="">CVC</label>
           <input class="form-control" id="cvc" type="text" data-stripe="cvc" placeholder="***">
-          <button id="pay-subscription" class="btn btn-primary" type="submit">Activate Account</button>
+          <button id="pay-subscription" class="btn btn-primary" type="submit">Activate Subscription</button>
         </div>
 
         <div class="col-sm-6">
@@ -99,6 +100,14 @@
   function updateSelectedPlan() {
     $('form.payola-onestep-subscription-form').attr('data-payola-plan-id', $('select#Plan').val());
   };
+
+  $('.payola-onestep-subscription-form').submit(function(e) {
+    if($('.payola-onestep-subscription-form').attr('data-payola-plan-id') === undefined) {
+      e.preventDefault();
+      alert("Please select a plan");
+      return false;
+    }
+  });
 
 </script>
 
