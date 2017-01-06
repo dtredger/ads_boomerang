@@ -9,7 +9,9 @@ if defined? Rack::Cors
                 "https://adsboomerang.com",
                 "http://adsboomerang.com",
                 "https://ads-boomerang-staging.herokuapp.com",
-                "http://ads-boomerang-staging.herokuapp.com"
+                "http://ads-boomerang-staging.herokuapp.com",
+                "http://app.forestadmin.com",
+                "https://app.forestadmin.com"
             ]
 			resource '/assets/*'
 		end
