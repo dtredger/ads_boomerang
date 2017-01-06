@@ -1,6 +1,3 @@
-<div class="col-md-8">
-  <div class="card">
-    <div class="content">
 
       <%= form_for(campaign) do |f| %>
         <% if campaign.errors.any? %>
@@ -20,16 +17,17 @@
           <%= f.collection_select :website_id, current_advertiser.websites, :id, :domain_name,
                                   autofocus: true, class: "form-control", required: true %>
         </div>
-        <div class="form-group">
-          <%= f.label :campaign_name %>
-          <%= f.text_field :name, type: "text", placeholder: "site campaign",
-                           class: "form-control", required: true %>
-        </div>
+        <!--<div class="form-group">-->
+          <!--%= f.label :campaign_name %>-->
+          <!--%= f.text_field :name, type: "text", placeholder: "site campaign",-->
+                           <!--class: "form-control", required: true %>-->
+        <!--</div>-->
 
         <div class="form-group">
-          <%= f.label :clickthrough_url %>
+          Clickthrough URL
           <p class="category">
-            This is the location people are taken to when they click your ads.
+            This is where people are taken to when they click your ads.
+            <br>
             It must be a complete URL (which includes http:// or https://).
           </p>
           <%= f.text_field :clickthrough_url, type: "url", placeholder: "http://my-domain.com",
@@ -37,11 +35,9 @@
         </div>
 
         <div class="actions">
-          <%= f.submit "Save Campaign", class: "btn btn-primary" %>
+          <%= link_to "Back", website_path(campaign.website, anchor: "clickthrough-url"),
+                      class: "btn btn-danger" %>
+          <%= f.submit "Save Change", class: "btn btn-primary" %>
         </div>
       <% end %>
 
-
-    </div>
-  </div>
-</div>
