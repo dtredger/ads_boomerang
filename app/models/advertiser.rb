@@ -58,8 +58,28 @@ class Advertiser < ApplicationRecord
 	#          class_name: "Ahoy::Message",
 	#          foreign_key: "user_id"
 
+	def active_website_tag?
+		websites.each do |website|
+			if website.tag_placed?
+				return true
+			end
+		end
+		false
+	end
+
+	def checklist_complete?
+		if self.confirmed? && self.websites.any? \
+				&& self.active_website_tag? && self.creatives.any? \
+				&& self.campaigns.any? && self.subscription \
+				&& self.subscription.active?
+			true
+		else
+			false
+		end
+	end
+
 	def total_audience
-		segments.where(audience: "add").sum(:segment_count)
+		segments.where(audience: "add").sum(:audience_count)
   end
 
 	def name
