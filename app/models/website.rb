@@ -44,15 +44,15 @@ class Website < ApplicationRecord
 	end
 
 	def homepage
-		if pages && pages[0]
-			pages[0]
-		else
-			"#{protocol}//#{self.domain_name}"
-		end
+		"#{protocol}//#{self.domain_name}"
 	end
 
 	def tag_placed?
-		if self.pages.include?(self.homepage + "/?adsboomerangtest=verify")
+		return false unless self.pages
+		if self.pages.include?(self.homepage + "/?adsboomerangtest=verify") \
+			|| self.pages.include?(self.homepage+"?adsboomerangtest=verify") \
+			|| self.pages.include?(self.domain_name+"/?adsboomerangtest=verify") \
+			|| self.pages.include?(self.domain_name+"?adsboomerangtest=verify")
 			true
 		else
 			false
