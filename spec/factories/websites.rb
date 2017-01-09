@@ -16,6 +16,11 @@
 
 FactoryGirl.define do
   factory :website do
-    
+    name "test website"
+	  domain_name "http://test.com"
+    provider "other"
+    pages []
+
+	  advertiser
   end
 end

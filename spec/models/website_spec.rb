@@ -17,5 +17,30 @@
 require 'rails_helper'
 
 RSpec.describe Website, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+	let!(:website) { create(:website) }
+
+	describe "tag_placed?" do
+		it "fails by default" do
+			website
+			expect(website.tag_placed?).to eq(false)
+		end
+
+		describe "succeeds when query-string visited" do
+			it "works without trailing slash" do
+				website.pages.push(website.homepage+"?adsboomerangtest=verify")
+				website.save
+				website.reload
+				expect(website.tag_placed?).to eq(true)
+			end
+
+			it "works with trailing slash" do
+				website = create(:website, domain_name: 'http://www.test.com/')
+				website.pages.push(website.homepage+"?adsboomerangtest=verify")
+				website.save
+				website.reload
+				expect(website.tag_placed?).to eq(true)
+			end
+		end
+	end
 end
