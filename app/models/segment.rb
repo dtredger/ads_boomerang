@@ -2,16 +2,17 @@
 #
 # Table name: segments
 #
-#  id             :integer          not null, primary key
-#  beeswax_id     :integer
-#  segment_name   :string
-#  active         :boolean
-#  alternative_id :string
-#  campaign_id    :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  audience       :integer
-#  audience_count :integer
+#  id               :integer          not null, primary key
+#  beeswax_id       :integer
+#  segment_name     :string
+#  active           :boolean
+#  alternative_id   :string
+#  campaign_id      :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  audience         :integer
+#  audience_count   :integer
+#  manual_image_src :string
 #
 
 class Segment < ApplicationRecord
@@ -36,7 +37,11 @@ class Segment < ApplicationRecord
 	end
 
 	def retarget_src
-		"https://segment.prod.bidr.io/associate-segment?buzz_key=#{buzz_key}&segment_key=#{segment_key}&value=#{segment_value}"
+		if self.beeswax_id
+			beeswax_src
+		else
+			manual_image_src
+		end
 	end
 
 	def segment_value
@@ -47,5 +52,10 @@ class Segment < ApplicationRecord
 		"stingersbx"
 	end
 
+	private
+
+		def beeswax_src
+			"https://segment.prod.bidr.io/associate-segment?buzz_key=#{buzz_key}&segment_key=#{segment_key}&value=#{segment_value}"
+		end
 
 end
