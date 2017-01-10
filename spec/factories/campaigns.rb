@@ -30,8 +30,8 @@
 FactoryGirl.define do
   factory :campaign do
     sequence(:name) { |x| "campaign_#{x}" }
-
 	  advertiser
+    website
 
 	  factory :beeswax_campaign do
 		  beeswax_id 36718
