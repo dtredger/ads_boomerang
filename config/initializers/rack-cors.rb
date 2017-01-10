@@ -17,7 +17,7 @@ if defined? Rack::Cors
                 "http://app.forestadmin.com",
                 "https://app.forestadmin.com"
             ]
-			resource '/assets/*'
+			resource '*'
 		end
 	end
 end
