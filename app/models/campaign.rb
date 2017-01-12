@@ -47,8 +47,8 @@ class Campaign < ApplicationRecord
 	has_many :creatives
 	has_many :line_items
 	has_many :segments
-	has_one :include_segment, -> { where audience: 'add' }, class_name: Segment
-	has_one :exclude_segment, -> { where audience: 'exclude' }, class_name: Segment
+	has_one :include_segment, -> { where audience_type: 'add' }, class_name: Segment
+	has_one :exclude_segment, -> { where audience_type: 'exclude' }, class_name: Segment
 
 	before_create :set_default_clickthrough_url
 
@@ -101,7 +101,14 @@ class Campaign < ApplicationRecord
 	end
 
 	def last_week_labels
-		[
+		if include_segment
+			vals = []
+			include_segment.seven_day_history.keys.each do |k|
+				vals.push Date.parse(k).strftime("%b %d")
+			end
+			vals
+		else
+			[
 				6.days.ago.strftime("%b %d"),
 				5.days.ago.strftime("%b %d"),
 				4.days.ago.strftime("%b %d"),
@@ -109,7 +116,8 @@ class Campaign < ApplicationRecord
 				2.days.ago.strftime("%b %d"),
 				Date.yesterday.strftime("%b %d"),
 				Date.today.strftime("%b %d")
-		]
+			]
+		end
 	end
 
 
@@ -120,7 +128,8 @@ class Campaign < ApplicationRecord
 
 	# TODO - these numbers are used in weekly graph: should be real numbers
 	def addressable_audience_history
-		[ 0, 0, 0, 0, 0, 0, 0 ]
+		return [ 0, 0, 0, 0, 0, 0, 0 ] unless include_segment
+		include_segment.seven_day_history.values
 	end
 
 	def conversion_history

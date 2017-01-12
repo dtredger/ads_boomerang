@@ -28,4 +28,46 @@ RSpec.describe Segment, type: :model do
 			expect(segment.retarget_src).to eq("http://pixel.sitescout.com/iap/b2000000000ff")
 		end
 	end
+
+	describe "seven_day_history" do
+		it "returns max seven key/val pairs" do
+			segment.update(audience_history: {
+					               "#{(Date.today-8).to_s}":100,
+					               "#{(Date.today-7).to_s}":200,
+					               "#{(Date.today-6).to_s}":300,
+					               "#{(Date.today-5).to_s}":400,
+					               "#{(Date.today-4).to_s}":550,
+					               "#{(Date.today-3).to_s}":660,
+					               "#{(Date.today-2).to_s}":770,
+					               "#{(Date.today-1).to_s}":880,
+					               "#{Date.today.to_s}":992
+			               })
+			expect(segment.seven_day_history).to eq({"#{(Date.today-6).to_s}":300,
+			                                         "#{(Date.today-5).to_s}":400,
+			                                         "#{(Date.today-4).to_s}":550,
+			                                         "#{(Date.today-3).to_s}":660,
+			                                         "#{(Date.today-2).to_s}":770,
+			                                         "#{(Date.today-1).to_s}":880,
+			                                         "#{Date.today.to_s}":992}.as_json)
+		end
+
+		it "only returns those from last week" do
+			segment.update(audience_history: {
+					               "#{(Date.today-28).to_s}":100,
+					               "#{(Date.today-17).to_s}":200,
+					               "#{(Date.today-36).to_s}":300,
+					               "#{(Date.today-5).to_s}":400,
+					               "#{(Date.today-24).to_s}":550,
+					               "#{(Date.today-3).to_s}":660,
+					               "#{(Date.today-2).to_s}":770,
+					               "#{(Date.today-1).to_s}":880,
+					               "#{Date.today.to_s}":992
+			               })
+			expect(segment.seven_day_history).to eq({"#{(Date.today-5).to_s}":400,
+			                                         "#{(Date.today-3).to_s}":660,
+			                                         "#{(Date.today-2).to_s}":770,
+			                                         "#{(Date.today-1).to_s}":880,
+			                                         "#{Date.today.to_s}":992}.as_json)
+		end
+	end
 end

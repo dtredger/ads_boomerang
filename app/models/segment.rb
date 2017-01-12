@@ -10,20 +10,20 @@
 #  campaign_id      :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  audience         :integer
-#  audience_count   :integer
+#  audience_type    :integer
 #  manual_image_src :string
-#
+#  audience_history :json
+
 
 class Segment < ApplicationRecord
 	has_paper_trail
 
 	validates_associated :campaign
 	validates_presence_of :segment_name,
-	                      :audience
+	                      :audience_type
 	belongs_to :campaign
 
-	enum audience: {
+	enum audience_type: {
 			     add: 0,
 			     exclude: 1
 	     }
@@ -50,6 +50,18 @@ class Segment < ApplicationRecord
 
 	def buzz_key
 		"stingersbx"
+	end
+
+	def seven_day_history
+		audience_history.slice(
+				(Date.today - 6).to_s,
+				(Date.today - 5).to_s,
+				(Date.today - 4).to_s,
+				(Date.today - 3).to_s,
+				(Date.today - 2).to_s,
+				(Date.today - 1).to_s,
+				Date.today.to_s
+		).as_json
 	end
 
 	private
