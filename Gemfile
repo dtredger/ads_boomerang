@@ -56,6 +56,7 @@ gem 'money-rails'
 
 gem 'figaro'
 gem 'rollbar'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec'
