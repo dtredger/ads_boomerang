@@ -62,4 +62,10 @@ RSpec.describe Campaign, type: :model do
 		end
 	end
 
+	describe "last_week_labels" do
+		it "" do
+			
+		end
+	end
+
 end

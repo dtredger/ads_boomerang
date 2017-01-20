@@ -114,29 +114,29 @@ Main components
 
 -------------------------------- */
 
-header {
-  position: relative;
-  height: 180px;
-  line-height: 180px;
-  text-align: center;
-  background-color: $color-2;
-
-  h1 {
-    color: $color-5;
-    @include font-smoothing;
-    @include font-size(20px);
-  }
-
-  @include MQ(L) {
-    height: 240px;
-    line-height: 240px;
-
-    h1 {
-      @include font-size(36px);
-      font-weight: 300;
-    }
-  }
-}
+//header {
+//  position: relative;
+//  height: 180px;
+//  line-height: 180px;
+//  text-align: center;
+//  background-color: $color-2;
+//
+//  h1 {
+//    color: $color-5;
+//    @include font-smoothing;
+//    @include font-size(20px);
+//  }
+//
+//  @include MQ(L) {
+//    height: 240px;
+//    line-height: 240px;
+//
+//    h1 {
+//      @include font-size(36px);
+//      font-weight: 300;
+//    }
+//  }
+//}
 
 .cd-faq {
   width: 90%;
