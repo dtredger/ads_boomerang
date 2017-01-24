@@ -13,3 +13,5 @@ ForestLiana.integrations = {
 }
 
 # "Payola::Sale.stripe_id"
+
+Intercom = lambda { IntercomRails }
