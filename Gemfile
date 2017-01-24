@@ -37,6 +37,7 @@ gem 'sidekiq'
 gem 'clockwork'
 gem 'forest_liana'
 gem 'customerio'
+gem 'intercom'
 gem 'intercom-rails'
 gem 'hopscotch-rails'
 

@@ -320,6 +320,8 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
     inflecto (0.0.2)
+    intercom (3.5.10)
+      json (>= 1.8)
     intercom-rails (0.3.4)
       activesupport (> 3.0)
     ipaddress (0.8.3)
@@ -577,6 +579,7 @@ DEPENDENCIES
   hopscotch-rails
   httmultiparty
   httparty
+  intercom
   intercom-rails
   jquery-rails
   letsencrypt-rails-heroku
