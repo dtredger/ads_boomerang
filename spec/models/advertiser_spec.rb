@@ -47,4 +47,19 @@ RSpec.describe Advertiser, type: :model do
 		  expect(subject).to respond_to :campaigns
 	  end
   end
+
+  describe "#total_audience" do
+	  let(:advertiser) { create(:advertiser) }
+	  let(:segment_with_history) { create(:segment_with_history) }
+
+	  it "defaults to 0" do
+		  expect(advertiser.total_audience).to eq(0)
+	  end
+
+	  it "counts last day of audience" do
+		  create(:beeswax_segment_campaign, advertiser: advertiser, include_segment: segment_with_history)
+		  expect(advertiser.total_audience).to eq(992)
+	  end
+
+  end
 end

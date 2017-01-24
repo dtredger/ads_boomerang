@@ -41,11 +41,11 @@ FactoryGirl.define do
 				  campaign.segments.create(
 						  beeswax_id: 5528,
 						  segment_name:'test_include',
-						  audience: "include" )
+						  audience_type: "add" )
 				  campaign.segments.create(
 						  beeswax_id: 5528,
 						  segment_name:'test_exclude',
-						  audience: "exclude" )
+						  audience_type: "exclude" )
 			  end
 		  end
 	  end

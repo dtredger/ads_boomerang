@@ -28,14 +28,14 @@ class BeeswaxSegmentsJob < ApplicationJob
 
 
 	def handle_segment_response(campaign, response, segment_type)
-		if response[:id].present? && segment_type == :include
+		if response[:id].present? && segment_type == :add
 			campaign.segments.create(
-					audience: :include,
+					audience_type: :add,
 					beeswax_id: response[:id],
 					segment_name: "#{campaign.name}_include_segment" )
 		elsif response[:id].present? && segment_type == :exclude
 			campaign.segments.create(
-					audience: :exclude,
+					audience_type: :exclude,
 					beeswax_id: response[:id],
 					segment_name: "#{campaign.name}_exclude_segment" )
 		else
