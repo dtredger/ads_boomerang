@@ -79,7 +79,14 @@ class Advertiser < ApplicationRecord
 	end
 
 	def total_audience
-		segments.where(audience: "add").sum(:audience_count)
+		add_segs = segments.where(audience_type: "add")
+		total = 0
+		add_segs.each do |seg|
+			if seg.audience_history && seg.audience_history.keys.any?
+				total += seg.audience_history[seg.audience_history.keys.last].to_i
+			end
+		end
+		total
   end
 
 	def name
