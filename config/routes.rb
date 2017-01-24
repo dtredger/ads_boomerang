@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 	get '/faq' => 'high_voltage/pages#show', id: 'faq'
 	get '/pricing' => 'high_voltage/pages#show', id: 'pricing'
 
-	get '/.well-known/acme-challenge/TBaKrkn4Wa5Tcmy7VWJKbylJCBRY5uIlB_y2t1_TQMw' => 'pages#letsencrypt'
+	get '/.well-known/acme-challenge/H8oMhFnWgh6Zx2hXHTvk7ZWwNUPSAKl3GSGjnr0bQxo' => 'pages#letsencrypt'
 
 
 	get '/survey' => redirect { |params, req| ENV["SURVEY_URL"] }
