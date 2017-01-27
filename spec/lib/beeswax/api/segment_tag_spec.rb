@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::SegmentTag do
+RSpec.describe Beeswax::SegmentTag do
   describe :create do
     let(:tag) {
       "<!--BEGIN BEESWAX SEGMENT TAG, DO NOT REMOVE -->\n<img src=\"http://segment.prod.bidr.io/associate-segment?buzz_key=stingersbx&segment_key=stingertest-1&value=[VALUE]\" height=\"0\" width=\"0\">\n<!--END BEESWAX SEGMENT TAG, DO NOT REMOVE -->"

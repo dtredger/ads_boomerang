@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::TargetingTemplate do
+RSpec.describe Beeswax::TargetingTemplate do
   describe :create do
     let(:targeting) do
       {

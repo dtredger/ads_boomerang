@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::Segment do
+RSpec.describe Beeswax::Segment do
   describe :create do
 
     it "should return just the payload portion of the response" do
