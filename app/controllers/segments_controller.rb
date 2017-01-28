@@ -1,10 +1,12 @@
 class SegmentsController < ApplicationController #ActionController::Base
 	skip_before_action :verify_authenticity_token, only: :tag
+
 	before_action :allow_any_origin
+	before_action :allow_page_caching
 	before_action :find_website
 
 	def tag
-		if @website
+		if @website && @segment_tag
 			respond_to do |format|
 				format.html { head 204 }
 				format.js { render "segments/segment" }
@@ -18,11 +20,13 @@ class SegmentsController < ApplicationController #ActionController::Base
 	private
 
 		def find_website
-			refer_uri = URI.parse(segment_params[:d])
-			@website = Website.find_by(domain_name: refer_uri.host)
-			return unless @website
-			if @website.pages.exclude?(refer_uri.to_s)
-				@website.pages.push(refer_uri.to_s)
+			@website = Website.find_by(id: segment_params[:id])
+
+			return unless @website && segment_params[:s]
+
+			referrer_str = segment_params[:s]
+			if @website.pages.exclude?(referrer_str)
+				@website.pages.push(referrer_str)
 				@website.save
 			end
 
@@ -33,11 +37,16 @@ class SegmentsController < ApplicationController #ActionController::Base
 		end
 
 		def segment_params
-			params.permit(:d)
+			params.permit(:id, :s)
 		end
 
 		def allow_any_origin
 			headers["Access-Control-Allow-Origin"] = "*"
 		end
+
+		def allow_page_caching
+			expires_in(5.minutes)
+		end
+
 
 end
