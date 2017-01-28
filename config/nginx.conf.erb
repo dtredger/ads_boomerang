@@ -1,65 +1,45 @@
 daemon off;
+#Heroku dynos have at least 4 cores.
 worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
-pid /app/nginx.pid;
-error_log stderr;
 
 events {
-  use epoll;
-  accept_mutex on;
-  worker_connections 1024;
+	use epoll;
+	accept_mutex on;
+	worker_connections 1024;
 }
 
 http {
-  <% if ENV['NGINX_GZIP_ENABLED'] == '1' %>
-    gzip on;
-    gzip_disable msie6;
-    gzip_min_length 512;
-    gzip_proxied <%= ENV['NGINX_GZIP_PROXIED'] || 'any' %>;
-    gzip_types <%= ENV['NGINX_GZIP_TYPES'] %>;
-  <% end %>
+        gzip on;
+        gzip_comp_level 2;
+        gzip_min_length 512;
 
-  log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
-  access_log error l2met;
+      	server_tokens off;
 
-  include mime.types;
-  default_type application/octet-stream;
-  sendfile on;
+      	log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
+      	access_log logs/nginx/access.log l2met;
+      	error_log logs/nginx/error.log;
 
-  # Increase default upload size from 1M to allow uploading larger images.
-  client_max_body_size 10M;
+      	include mime.types;
+      	default_type application/octet-stream;
+      	sendfile on;
 
-  upstream app_server {
-    server unix:<%= ENV['PUMA_SOCKET'] %> fail_timeout=0;
-  }
+      	#Must read the body in 5 seconds.
+      	client_body_timeout 5;
 
-  server {
-    listen <%= ENV['PORT'] %>;
-    server_name adsboomerang.com ads-boomerang-staging.herokuapp.com;
-    keepalive_timeout 5;
+      	upstream app_server {
+      		    server unix:/tmp/nginx.socket fail_timeout=0;
+       	}
 
-    location ~* ^/assets/ {
-      gzip_static on;
+      	server {
+          		listen <%= ENV["PORT"] %>;
+          		server_name _;
+          		keepalive_timeout 5;
 
-      # Per RFC2616 - 1 year maximum expiry
-      expires 1y;
-      add_header Cache-Control public;
-
-      # Some browsers still send conditional-GET requests if there's a
-      # Last-Modified header or an ETag header even if they haven't
-      # reached the expiry date sent in the Expires header.
-      add_header Last-Modified "";
-      add_header ETag "";
-      break;
-    }
-
-    location / {
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header Host $http_host;
-      proxy_redirect off;
-      proxy_pass http://app_server;
-    }
-  }
-
-  # relative to location of nginx.conf
-  # include nginx-local*.conf;
+          		location / {
+              			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              			proxy_set_header Host $http_host;
+              			proxy_redirect off;
+              			proxy_pass http://app_server;
+          		}
+      	}
 }
