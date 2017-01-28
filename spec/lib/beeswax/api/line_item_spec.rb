@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::LineItem do
+RSpec.describe Beeswax::LineItem do
   describe :create do
     let(:bidding) do
       {"bidding_strategy": "cpm", "values": {"cpm_bid":1.12} }

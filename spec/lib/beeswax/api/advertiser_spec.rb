@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::Advertiser do
+RSpec.describe Beeswax::Advertiser do
   describe :create do
     it "should raise an error if :advertiser_name is not provided" do
       expect {

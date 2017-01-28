@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::ReportQueue do
+RSpec.describe Beeswax::ReportQueue do
   describe :find do
     # let(:bidding) do
     #   {"bidding_strategy": "cpm", "values": {"cpm_bid":1.12} }

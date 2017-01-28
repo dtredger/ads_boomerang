@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::Creative do
+RSpec.describe Beeswax::Creative do
   describe :create do
 
     it "should raise error if :advertiser_id is not present" do

@@ -63,6 +63,11 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+staging:
+  <<: *default
+  database: ads_dash_development
+
+
 production:
   <<: *default
   database: dc5gl9hj5il79i

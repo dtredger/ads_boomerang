@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::Campaign do
+RSpec.describe Beeswax::Campaign do
   describe :create do
     it "should raise error if :advertiser_id is not present" do
       expect {
