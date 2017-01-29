@@ -8,6 +8,7 @@ gem 'puma', '~> 3.0'
 gem 'puma-heroku'
 gem 'redis'
 gem 'dalli'
+gem "actionpack-action_caching"
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
