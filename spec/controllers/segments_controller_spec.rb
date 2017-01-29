@@ -28,13 +28,26 @@ RSpec.describe SegmentsController, type: :controller do
 		end
 
 		context "with wrong domain" do
-			subject { get :tag, params: {id: website.id, s: "something wrong"}, format: :js }
+			context "bad URL" do
+				subject { get :tag, params: {id: website.id, s: "something wrong"}, format: :js }
 
-			it("does not raise error") { expect { subject }.not_to raise_error }
+				it("does not raise error") { expect { subject }.not_to raise_error }
 
-			it "returns 204" do
-				subject
-				expect(response).to have_http_status(204)
+				it "returns 204" do
+					subject
+					expect(response).to have_http_status(204)
+				end
+			end
+
+			context "valid URL" do
+				subject { get :tag, params: {id: website.id, s: "http://ads-boomerang-staging.herokuapp.com"}, format: :js }
+
+				it("does not raise error") { expect { subject }.not_to raise_error }
+
+				it "returns 204" do
+					subject
+					expect(response).to have_http_status(204)
+				end
 			end
 		end
 
