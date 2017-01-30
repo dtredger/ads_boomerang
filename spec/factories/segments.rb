@@ -23,8 +23,10 @@ FactoryGirl.define do
     audience_type 0
     active true
     campaign
+    manual_image_src "https://retargetpixel.com/src.jpg"
 
 	  factory :beeswax_segment do
+		  manual_image_src nil
 		  beeswax_id 5528
 	  end
 

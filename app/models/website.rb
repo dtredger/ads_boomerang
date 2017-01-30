@@ -36,7 +36,7 @@ class Website < ApplicationRecord
 	     }
 
 	def website_tag
-		"<script>var s=document.createElement('script');var u=''+document.location;s.setAttribute('src','https://#{ENV['HOST']}/px.js?d='+u);document.head.appendChild(s);</script>"
+		"<script>var s=document.createElement('script');var u=''+document.location;s.setAttribute('src','https://#{ENV['HOST']}/px.js?id=#{self.id}&s='+u);document.head.appendChild(s);</script>"
 	end
 
 	def protocol

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::CreativeTemplate do
+RSpec.describe Beeswax::CreativeTemplate do
   describe :create do
     it "should raise error if :creative_template_name not present" do
       expect {

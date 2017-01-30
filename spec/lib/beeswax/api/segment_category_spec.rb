@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::SegmentCategory do
+RSpec.describe Beeswax::SegmentCategory do
   describe :create do
     it "should raise error when :segment_category_name is not present" do
       expect {

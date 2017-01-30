@@ -9,7 +9,8 @@ threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests, default is 3000.
 #
-port        ENV.fetch("PORT") { 3000 }
+# port        ENV.fetch("NGINX_SOCKET") { 3000 }
+bind        "unix:///tmp/nginx.socket"
 
 # Specifies the `environment` that Puma will run in.
 #
@@ -20,8 +21,8 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # the concurrency of the application would be max `threads` * `workers`.
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
-#
-# workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+
+workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
@@ -41,7 +42,14 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 #
 # on_worker_boot do
 #   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+#   FileUtils.touch('/tmp/app-initialized')
 # end
+
+# https://blog.codeship.com/how-to-deploy-nginx-on-heroku/
+on_worker_fork do
+	FileUtils.touch('/tmp/app-initialized')
+end
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+plugin :heroku

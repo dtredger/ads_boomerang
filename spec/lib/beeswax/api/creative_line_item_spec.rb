@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Beeswax::CreativeLineItem do
+RSpec.describe Beeswax::CreativeLineItem do
   describe :create do
     it "should raise error if :creative_id not present" do
       expect {

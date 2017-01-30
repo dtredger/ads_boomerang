@@ -40,20 +40,21 @@ Rails.application.routes.draw do
 	  end
   end
 
-	get '/faq' => 'high_voltage/pages#show', id: 'faq'
-	get '/pricing' => 'high_voltage/pages#show', id: 'pricing'
+	get '/faq' => 'pages#show', id: 'faq'
+	get '/pricing' => 'pages#show', id: 'pricing'
 
 	get '/.well-known/acme-challenge/H8oMhFnWgh6Zx2hXHTvk7ZWwNUPSAKl3GSGjnr0bQxo' => 'pages#letsencrypt'
 
 
 	get '/survey' => redirect { |params, req| ENV["SURVEY_URL"] }
-  # root to: 'pages#home' # set in initializers/high_voltage
-  # TODO - figure out subscriptions path before enabling below:
+  # root to: 'pages#home' # set in initializers/
+	# # TODO - figure out subscriptions path before enabling below:
   # explicitly mount mailkick engine?
 
 
   get '/px' => 'segments#tag', :constraints => { :format => 'js' }
 
+  get '/' => 'pages#show', id: 'home'
 
   if Rails.env.production?
 	  get '*path' => redirect('/')

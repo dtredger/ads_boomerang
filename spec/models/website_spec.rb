@@ -20,7 +20,15 @@ RSpec.describe Website, type: :model do
 
 	let!(:website) { create(:website) }
 
-	describe "tag_placed?" do
+	describe "#website_tag" do
+		it "returns script with website ID" do
+			website
+			expect(website.website_tag).to match(/px.js\?id\=#{website.id}\&s\=/)
+		end
+
+	end
+
+	describe "#tag_placed?" do
 		it "fails by default" do
 			website
 			expect(website.tag_placed?).to eq(false)

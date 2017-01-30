@@ -1,0 +1,4 @@
+# heroku errors fetching buildpacks, so set from CLI or UI
+
+#https://github.com/ryandotsmith/nginx-buildpack.git
+#https://github.com/heroku/heroku-buildpack-ruby.git
