@@ -19,8 +19,9 @@ FactoryGirl.define do
     name "test website"
 	  domain_name "http://test.com"
     provider "other"
-    pages []
+    pages {}
 
 	  advertiser
+	  # campaign #created through callback
   end
 end
