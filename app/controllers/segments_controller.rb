@@ -24,23 +24,11 @@ class SegmentsController < ApplicationController #ActionController::Base
 			params.permit(:id, :s, :format)
 		end
 
-
 		def find_website
 			params = segment_params
 			@website = Website.find_by(id: params[:id])
-
 			return unless @website && params[:s]
-
-			referrer_str = params[:s]
-			if @website.pages.exclude?(referrer_str)
-				@website.pages.push(referrer_str)
-				@website.save
-			end
-
-			# TODO - decisioning wrt include vs exclude segments, conversion tags
-			if @website.campaign && @website.campaign.include_segment
-				@segment_tag = @website.campaign.include_segment.retarget_src
-			end
+			@segment_tag = @website.get_segment(params[:s])
 		end
 
 		def allow_any_origin
