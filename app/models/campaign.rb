@@ -52,7 +52,7 @@ class Campaign < ApplicationRecord
 
 	before_create :set_default_clickthrough_url
 
-	after_create :create_campaign_line_items
+	after_create :create_campaign_line_items if beeswax_provider?
 
 	# enum budget_type: {
 	# 		     spend: 0,

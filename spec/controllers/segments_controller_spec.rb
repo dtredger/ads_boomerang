@@ -70,14 +70,30 @@ RSpec.describe SegmentsController, type: :controller do
 
 				before { create(:segment, campaign: campaign) }
 
-				it "returns 200" do
-					subject
-					expect(response).to have_http_status(200)
+				context "page not part of ADD pages" do
+					it("does not raise error") { expect { subject }.not_to raise_error }
+
+					it "returns 204" do
+						subject
+						expect(response).to have_http_status(204)
+					end
 				end
 
-				it "returns tags" do
-					subject
-					expect(response).to render_template(:segment)
+				context "page is ADD page" do
+					before do
+						website.pages["add"].push(website.domain_name)
+						website.save
+					end
+
+					it "returns 200" do
+						subject
+						expect(response).to have_http_status(200)
+					end
+
+					it "returns tags" do
+						subject
+						expect(response).to render_template(:segment)
+					end
 				end
 			end
 		end

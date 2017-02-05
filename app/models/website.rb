@@ -18,7 +18,8 @@ class Website < ApplicationRecord
 	belongs_to :advertiser
 	has_one :campaign
 
-	after_create :start_campaign_if_none
+	after_create :write_page_categories
+	after_create :start_campaign, if: :no_campaign?
 
 	validates_presence_of :advertiser
 	validate :sufficient_subscription
@@ -48,17 +49,33 @@ class Website < ApplicationRecord
 	end
 
 	def tag_placed?
-		return false unless self.pages
-		if self.pages.include?(self.homepage + "/?adsboomerangtest=verify") \
-			|| self.pages.include?(self.homepage+"?adsboomerangtest=verify") \
-			|| self.pages.include?(self.domain_name+"/?adsboomerangtest=verify") \
-			|| self.pages.include?(self.domain_name+"?adsboomerangtest=verify")
+		return false unless self.pages && self.pages["all"]
+		if self.pages["all"].include?(self.homepage + "/?adsboomerangtest=verify") \
+			|| self.pages["all"].include?(self.homepage+"?adsboomerangtest=verify") \
+			|| self.pages["all"].include?(self.domain_name+"/?adsboomerangtest=verify") \
+			|| self.pages["all"].include?(self.domain_name+"?adsboomerangtest=verify")
 			true
 		else
 			false
 		end
 	end
 
+	def get_segment(page_url)
+		write_page_categories
+
+		if self.pages["all"].exclude?(page_url)
+			self.pages["all"].push(page_url)
+			self.save
+		end
+
+		if self.pages["exclude"] && self.pages["exclude"].include?(page_url)
+			campaign.exclude_segment.retarget_src if campaign.exclude_segment
+		elsif self.pages["add"] && self.pages["add"].include?(page_url)
+			campaign.include_segment.retarget_src if campaign.include_segment
+		else
+			nil
+		end
+	end
 
 
 	private
@@ -69,10 +86,19 @@ class Website < ApplicationRecord
 			end
 		end
 
-		def start_campaign_if_none
+		def no_campaign?
+			self.campaign.nil?
+		end
+
+		def start_campaign
 			Campaign.create(advertiser: self.advertiser,
 			                website: self,
 			                name: "#{self.name} campaign")
 		end
 
+		def write_page_categories
+			if self.pages.nil?
+				self.update(pages: {all: [], add: [], exclude: []} )
+			end
+		end
 end
