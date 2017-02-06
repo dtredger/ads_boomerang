@@ -19,6 +19,17 @@ require 'rails_helper'
 RSpec.describe Website, type: :model do
 	let!(:website) { create(:website) }
 
+	context "callbacks" do
+		describe "#write_page_categories" do
+			let(:advertiser) { create(:advertiser) }
+
+			it "presets json page categories" do
+				website = advertiser.websites.create(name: 'test')
+				expect(website.pages).to match({"all"=>[], "add"=>[], "exclude"=>[]})
+			end
+		end
+	end
+
 	describe "#website_tag" do
 		it "returns script with website ID" do
 			website

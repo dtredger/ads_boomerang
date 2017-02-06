@@ -18,7 +18,8 @@ class Website < ApplicationRecord
 	belongs_to :advertiser
 	has_one :campaign
 
-	after_create :write_page_categories
+	before_create :write_page_categories
+
 	after_create :start_campaign, if: :no_campaign?
 
 	validates_presence_of :advertiser
@@ -98,7 +99,7 @@ class Website < ApplicationRecord
 
 		def write_page_categories
 			if self.pages.nil?
-				self.update(pages: {all: [], add: [], exclude: []} )
+				self.pages = {all: [], add: [], exclude: []}
 			end
 		end
 end
