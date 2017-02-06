@@ -2,7 +2,11 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+	namespace :forest do
+		post '/actions/create-segments' => 'websites#create_segments'
+	end
   mount ForestLiana::Engine => '/forest'
+
   mount Payola::Engine => '/payola', as: :payola
 
 	# mount ActionCable.server => '/cable'
