@@ -7,7 +7,7 @@ class SegmentsController < ApplicationController #ActionController::Base
 	caches_action :tag, :cache_path => Proc.new { |c| c.request.url }
 
 	def tag
-		if @website && @segment_tag
+		if @website && params[:s]
 			respond_to do |format|
 				format.html { head 204 }
 				format.js { render "segments/segment" }
@@ -17,7 +17,7 @@ class SegmentsController < ApplicationController #ActionController::Base
 		end
 	end
 
-	
+
 	private
 
 		def segment_params

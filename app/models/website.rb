@@ -99,7 +99,7 @@ class Website < ApplicationRecord
 
 		def write_page_categories
 			if self.pages.nil?
-				self.pages = {all: [], add: [], exclude: []}
+				self.pages = {"all": [], "add": [], "exclude": []}
 			end
 		end
 end

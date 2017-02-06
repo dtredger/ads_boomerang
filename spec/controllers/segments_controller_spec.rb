@@ -33,9 +33,14 @@ RSpec.describe SegmentsController, type: :controller do
 
 				it("does not raise error") { expect { subject }.not_to raise_error }
 
-				it "returns 204" do
+				it "returns 200" do
 					subject
-					expect(response).to have_http_status(204)
+					expect(response).to have_http_status(200)
+				end
+
+				it "does not return tag" do
+					subject
+					expect(assigns(:segment_tag)).to be_nil
 				end
 			end
 
@@ -44,9 +49,14 @@ RSpec.describe SegmentsController, type: :controller do
 
 				it("does not raise error") { expect { subject }.not_to raise_error }
 
-				it "returns 204" do
+				it "returns 200" do
 					subject
-					expect(response).to have_http_status(204)
+					expect(response).to have_http_status(200)
+				end
+
+				it "does not return tag" do
+					subject
+					expect(assigns(:segment_tag)).to be_nil
 				end
 			end
 		end
@@ -59,23 +69,36 @@ RSpec.describe SegmentsController, type: :controller do
 			context "when no segment exists" do
 				it("does not raise error") { expect { subject }.not_to raise_error }
 
-				it "returns 204" do
+				it "returns 200" do
 					subject
-					expect(response).to have_http_status(204)
+					expect(response).to have_http_status(200)
+				end
+
+				it "does not return tag" do
+					subject
+					expect(assigns(:segment_tag)).to be_nil
 				end
 			end
 
 			context "when segment exists" do
 				let(:campaign) { create(:campaign, website: website)}
 
-				before { create(:segment, campaign: campaign) }
+				before do
+					create(:segment, audience_type: "add", campaign: campaign)
+					create(:segment, audience_type: "exclude", campaign: campaign)
+				end
 
 				context "page not part of ADD pages" do
 					it("does not raise error") { expect { subject }.not_to raise_error }
 
-					it "returns 204" do
+					it "returns 200" do
 						subject
-						expect(response).to have_http_status(204)
+						expect(response).to have_http_status(200)
+					end
+
+					it "does not return tag" do
+						subject
+						expect(assigns(:segment_tag)).to be_nil
 					end
 				end
 
@@ -90,9 +113,26 @@ RSpec.describe SegmentsController, type: :controller do
 						expect(response).to have_http_status(200)
 					end
 
-					it "returns tags" do
+					it "returns include_segment tags" do
 						subject
-						expect(response).to render_template(:segment)
+						expect(assigns(:segment_tag)).to eq(campaign.include_segment.retarget_src)
+					end
+				end
+
+				context "page is EXCLUDE page" do
+					before do
+						website.pages["exclude"].push(website.domain_name)
+						website.save
+					end
+
+					it "returns 200" do
+						subject
+						expect(response).to have_http_status(200)
+					end
+
+					it "returns exclude_segment tags" do
+						subject
+						expect(assigns(:segment_tag)).to eq(campaign.exclude_segment.retarget_src)
 					end
 				end
 			end
