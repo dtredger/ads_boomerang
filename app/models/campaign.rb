@@ -101,7 +101,7 @@ class Campaign < ApplicationRecord
 	end
 
 	def last_week_labels
-		if include_segment
+		if include_segment && include_segment.seven_day_history
 			vals = []
 			include_segment.seven_day_history.keys.each do |k|
 				vals.push Date.parse(k).strftime("%b %d")
@@ -128,7 +128,7 @@ class Campaign < ApplicationRecord
 
 	# TODO - these numbers are used in weekly graph: should be real numbers
 	def addressable_audience_history
-		return [ 0, 0, 0, 0, 0, 0, 0 ] unless include_segment
+		return [ 0, 0, 0, 0, 0, 0, 0 ] unless include_segment && include_segment.seven_day_history
 		include_segment.seven_day_history.values
 	end
 
