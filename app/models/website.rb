@@ -22,7 +22,9 @@ class Website < ApplicationRecord
 
 	after_create :start_campaign, if: :no_campaign?
 
-	validates_presence_of :advertiser
+	validates_presence_of :advertiser,
+	                      :name,
+	                      :domain_name
 	validate :sufficient_subscription
 
 	enum hosting_provider: {
@@ -50,7 +52,8 @@ class Website < ApplicationRecord
 	end
 
 	def tag_placed?
-		return false unless self.pages && self.pages["all"]
+		return false unless self.pages && !self.pages.is_a?(Array)
+		return false unless self.pages["all"] && self.domain_name
 		if self.pages["all"].include?(self.homepage + "/?adsboomerangtest=verify") \
 			|| self.pages["all"].include?(self.homepage+"?adsboomerangtest=verify") \
 			|| self.pages["all"].include?(self.domain_name+"/?adsboomerangtest=verify") \
@@ -82,7 +85,7 @@ class Website < ApplicationRecord
 	private
 
 		def sufficient_subscription
-			if advertiser.websites.count > advertiser.max_websites
+			if advertiser && advertiser.websites.count > advertiser.max_websites
 				errors.add(:advertiser, "You need to upgrade your subscription to create more websites")
 			end
 		end
@@ -98,8 +101,7 @@ class Website < ApplicationRecord
 		end
 
 		def write_page_categories
-			if self.pages.nil?
-				self.pages = {"all": [], "add": [], "exclude": []}
-			end
+			return unless self.pages.nil?
+			self.pages = {"all": [], "add": [], "exclude": []}
 		end
 end

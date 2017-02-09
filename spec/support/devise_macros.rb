@@ -10,6 +10,15 @@ module DeviseMacros
 		end
 	end
 
+	def logout_advertiser
+		let(:advertiser) { FactoryGirl.create(:advertiser) }
+
+		before(:each) do
+			@request.env["devise.mapping"] = Devise.mappings[:advertiser]
+			sign_out advertiser
+		end
+	end
+
 
 	def sign_in(resource_or_scope, resource = nil)
 		resource ||= resource_or_scope
