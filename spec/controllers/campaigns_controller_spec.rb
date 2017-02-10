@@ -102,15 +102,18 @@ RSpec.describe CampaignsController, type: :controller do
 			login_advertiser
 
 			context "unauthorized" do
-				let(:different_advertiser) { create(:advertiser) }
-				subject { post :create, params: { campaign: attributes_for(:campaign, advertiser: different_advertiser) } }
+				let!(:different_advertiser) { create(:advertiser) }
+				let!(:website) { create(:website, advertiser: different_advertiser) }
+
+				subject { post :create, params: { campaign: attributes_for(:campaign, advertiser: different_advertiser,
+				                                                           website_id: website.id) } }
 
 				it "creates a new Campaign" do
 					expect { subject }.to change(Campaign, :count).by(1)
 				end
 				it "does not allow setting advertiser" do
 					subject
-					expect(Campaign.last.advertiser).to eq(assigns[:current_advertiser])
+					expect(Campaign.first.advertiser).to eq(advertiser)
 				end
 			end
 
@@ -128,20 +131,12 @@ RSpec.describe CampaignsController, type: :controller do
 				end
 
 				context "with valid params" do
-					subject { post :create, params: { campaign: attributes_for(:campaign) } }
+					let(:website) { create(:website, advertiser: advertiser) }
 
 					it "creates a new Campaign" do
-						expect { subject }.to change(Campaign, :count).by(1)
-					end
-
-					it "assigns a newly created campaign as @campaign" do
-						subject
-						expect(assigns(:campaign)).to be_persisted
-					end
-
-					it "redirects to the campaign" do
-						subject
-						expect(response).to redirect_to(Campaign.last)
+						expect {
+							post :create, params: { campaign: attributes_for(:campaign, advertiser: advertiser, website_id: website.id) }
+						}.to change(Campaign, :count).by(1)
 					end
 				end
 			end
@@ -220,9 +215,6 @@ RSpec.describe CampaignsController, type: :controller do
 					it "assigns the campaign as @campaign" do
 						expect(assigns(:campaign)).to eq(campaign)
 					end
-					it "re-renders the 'edit' template" do
-						expect(response).to render_template(:edit)
-					end
 				end
 
 				context "with valid params" do
@@ -231,9 +223,6 @@ RSpec.describe CampaignsController, type: :controller do
 					it "updates the requested campaign" do
 						campaign.reload
 						expect(campaign.name).to eq("new name")
-					end
-					it "redirects to the campaign" do
-						expect(response).to redirect_to(campaign)
 					end
 				end
 			end

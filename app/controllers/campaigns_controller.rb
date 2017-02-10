@@ -47,6 +47,6 @@ class CampaignsController < ApplicationController
     end
 
     def campaign_params
-      params.fetch(:campaign, {}).permit(:name, :website_id, :clickthrough_url)
+      params.fetch(:campaign, {}).permit(:name, :website_id, :clickthrough_url, :active)
     end
 end
