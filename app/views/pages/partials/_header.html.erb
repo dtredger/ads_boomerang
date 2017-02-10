@@ -20,7 +20,7 @@
         <% if controller_name == "registrations" || controller_name == "sessions" || controller_name == "pages" && params[:id] == "faq" %>
           <ul class="nav navbar-nav">
             <li><%= link_to "Pricing", root_path(anchor: "pricing"), class: "scroll-to" %></li>
-            <li><%= link_to "Integrations", root_path(anchor: "integrations"), class: "scroll-to" %></li>
+            <li><%= link_to "Guides", guides_path %></li>
             <li><%= link_to "FAQ", faq_path %></li>
 
             <!-- TODO - this makes it align (almost) with pages that have sign-in and sign-up buttons -->
@@ -32,8 +32,9 @@
         <% else %>
           <ul class="nav navbar-nav">
             <li><a href="#pricing" class="scroll-to">Pricing </a></li>
-            <li><a href="#integrations" class="scroll-to">Integrations</a></li>
             <li><%= link_to "FAQ", faq_path %></li>
+            <li><%= link_to "Guides", guides_path %></li>
+            <li><a style="border: 0"></a></li>
             <li>
               <a href="#" data-toggle="modal" data-target="#sign-in" class="signin">
                 Sign In <i class="glyphicon glyphicon-lock"></i>

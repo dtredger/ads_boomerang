@@ -44,8 +44,11 @@ Rails.application.routes.draw do
 	  end
   end
 
-	get '/faq' => 'pages#show', id: 'faq'
-	get '/pricing' => 'pages#show', id: 'pricing'
+	get '/faq'            => 'pages#show',  id: 'faq'
+	get '/guides'         => 'pages#show',  id: 'guides'
+	get '/guides/setup'   => 'pages#show',  id: 'guides/setup'
+	get '/guides/tagging' => 'pages#show',  id: 'guides/tagging'
+	get '/guides/shopify' => 'pages#show',  id: 'guides/shopify'
 
 	get '/.well-known/acme-challenge/H8oMhFnWgh6Zx2hXHTvk7ZWwNUPSAKl3GSGjnr0bQxo' => 'pages#letsencrypt'
 

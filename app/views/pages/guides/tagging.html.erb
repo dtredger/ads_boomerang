@@ -1,0 +1,137 @@
+<br><br><br><br><br>
+
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <h4>Adding your Tag to your Website</h4>
+    </div>
+  </div>
+  <hr>
+  <div class="row row-margin-bottom">
+    <div class="col-sm-10 col-sm-push-1 col-md-8 col-md-push-2">
+
+      <div class="row light-card">
+        <div class="col-sm-5">
+          <h4>
+            1) Retrieve your Website Tag
+          </h4>
+          <hr>
+          <p class="larger-font">
+            The first step is to log into your Ads Boomerang dashboard and retrieve your <b>Website Tag</b>. Copy it
+            from the text field by clicking the "Copy" button.
+          </p>
+          <p class="larger-font">
+            If you don't have a website set up, do that now. Click the <b>NEW WEBSITE</b> link in the sidebar
+            to create one.
+          </p>
+          <p><i>
+            Check the Ads Boomerang <%= link_to "basic guide", guides_setup_path %> if you need more
+            information on setting up your first website.
+          </i></p>
+        </div>
+        <div class="col-sm-7">
+          <%= image_tag "guides/basic/website-show-tag.jpg", class: "img-responsive" %>
+        </div>
+      </div>
+      <br>
+
+      <div class="row light-card">
+        <div class="col-sm-5">
+          <h4>
+            2) Open your Website's HTML
+          </h4>
+          <hr>
+          <p class="larger-font">
+            Open your website's files in an HTML text editor. If your site is a single HTML file (for example <i>index.html</i>), open that. If your site is compiled from multiple files, find your primary layout file.
+          </p>
+          <p><i>
+            If your website builder has a guide on inserting analytics tags, that may help you identify where to
+            insert your tag. Searching your whole site for the <b>&lt;/body&gt;</b> tag should reveal your layout file.
+          </i></p>
+        </div>
+        <div class="col-sm-7">
+          <%= image_tag "guides/tagging/html-footer.jpg", class: "img-responsive" %>
+        </div>
+      </div>
+      <br>
+
+      <div class="row light-card">
+        <div class="col-sm-5">
+          <h4>
+            3) Insert the Tag
+          </h4>
+          <hr>
+          <p class="larger-font">
+            Scroll down to the bottom of the HTML file, and make a new line before the <b>&lt;/body&gt;</b> tag. Insert the Ads Boomerang tag there. It should create a long line that begins with <b>&lt;script&gt;</b> and ends with <b>&lt;/script&gt;</b>.
+          </p>
+
+        </div>
+        <div class="col-sm-7">
+          <%= image_tag "guides/tagging/html-footer-inserted.jpg", class: "img-responsive" %>
+        </div>
+      </div>
+      <br>
+
+      <div class="row light-card">
+        <div class="col-sm-5">
+          <h4>
+            4) Verify your Website Tag
+          </h4>
+          <hr>
+          <p class="larger-font">
+            After you've pushed your changes up to your website, return to your Ads Boomerang dashboard. On the website
+            page, beneath your Website Tag, you should see a verification button.
+          </p>
+          <p class="larger-font">
+            Clicking the Button should take you to your site's homepage. If you see an alert, your tag is set up
+            correctly.
+          </p>
+          <p><i>
+            If your verification link does not take you to your website, please update your website's domain
+            name in your website's settings. If your setup still does not verify, please <a
+          href="mailto:hello@adsboomerang.com?subject=Website Tag issue">Contact Us</a>.</i>
+          </p>
+        </div>
+        <div class="col-sm-7">
+          <%= image_tag "guides/shopify/verification-link.jpg", class: "img-responsive" %>
+          <br>
+          <%= image_tag "guides/shopify/verification-popup.jpg", class: "img-responsive" %>
+        </div>
+      </div>
+      <br>
+
+      <div class="row light-card">
+        <div class="col-sm-12">
+          <h4>
+            Finished configuring your Website?
+          </h4>
+          <hr>
+          <p class="larger-font">
+            If you haven't finished configuring your website, return to your dashboard to complete the rest of the
+            steps. The <%= link_to "Website setup guide", guides_setup_path(anchor: "website-configure") %> can help
+            you.
+          </p>
+        </div>
+      </div>
+
+      <br><br>
+
+    </div>
+  </div>
+</div>
+
+  <style>
+    body {
+      background: #efefef;
+    }
+    .light-card {
+      background: #fff;
+      padding: 5px;
+      -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+      box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+
+    }
+    .larger-font {
+      font-size: larger;
+    }
+  </style>
