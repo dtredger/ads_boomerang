@@ -53,6 +53,7 @@ class Segment < ApplicationRecord
 	end
 
 	def seven_day_history
+		return unless audience_history
 		audience_history.slice(
 				(Date.today - 6).to_s,
 				(Date.today - 5).to_s,

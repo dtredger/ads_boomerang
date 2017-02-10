@@ -1,4 +1,5 @@
 class WebsitesController < ApplicationController
+	before_action :authenticate_advertiser!
 	before_action :set_website, only: [:show, :edit, :update, :destroy]
 
 
@@ -19,7 +20,7 @@ class WebsitesController < ApplicationController
   def create
     @website = Website.new(website_params)
     @website.advertiser = current_advertiser
-    @website.pages = [website_params[:domain_name]]
+    @website.pages = {all: [website_params[:domain_name]], add: [], exclude:[]}
     @website.domain_name = URI.parse(website_params[:domain_name]).host
     @website.hosting_provider = params[:website][:hosting_provider].to_i
     if @website.save

@@ -1,0 +1,162 @@
+
+<br><br><br><br><br>
+
+<div class="container">
+  <h3>Basics</h3>
+  <hr>
+  <div class="row row-margin-bottom">
+
+    <!-- Website Setup Guide -->
+    <div class="col-xs-10 col-xs-push-1 col-sm-5 col-sm-push-0 no-padding lib-item" data-category="view">
+      <%= link_to guides_setup_path do %>
+        <div class="lib-panel">
+          <div class="row box-shadow">
+            <div class="col-sm-6">
+              <%= image_tag "guides/ads-boomerang.jpg", class: "lib-img-show" %>
+            </div>
+            <div class="col-sm-6">
+              <div class="lib-row lib-header">
+                Set up your first Website
+                <div class="lib-header-seperator"></div>
+              </div>
+              <div class="lib-row lib-desc">
+                <p class="larger-font">
+                  Use this guide to help setting up your website for use with Ads Boomerang.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+  <h3>Tagging your Website</h3>
+  <hr>
+  <div class="row row-margin-bottom">
+
+    <!-- Basic Tag Guide -->
+    <div class="col-xs-10 col-xs-push-1 col-sm-5 col-sm-push-0 no-padding lib-item" data-category="view">
+      <%= link_to guides_tagging_path do %>
+        <div class="lib-panel">
+          <div class="row box-shadow">
+            <div class="col-sm-6">
+              <%= image_tag "guides/html.jpg", class: "lib-img-show" %>
+            </div>
+            <div class="col-sm-6">
+              <div class="lib-row lib-header">
+                Basic Website Tag Installation
+                <div class="lib-header-seperator"></div>
+              </div>
+              <div class="lib-row lib-desc">
+                <p class="larger-font">
+                  This guide will help you install your Ads Boomerang tag into a standard HTML page.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Shopify Tag Guide -->
+    <div class="col-xs-10 col-xs-push-1 col-sm-5 col-sm-push-1 no-padding lib-item" data-category="view">
+      <%= link_to guides_shopify_path do %>
+        <div class="lib-panel">
+          <div class="row box-shadow">
+            <div class="col-sm-6">
+              <%= image_tag "guides/shopify.jpg", class: "lib-img-show" %>
+            </div>
+            <div class="col-sm-6">
+              <div class="lib-row lib-header">
+                Shopify Installation
+                <div class="lib-header-seperator"></div>
+              </div>
+              <div class="lib-row lib-desc">
+                <p class="larger-font">
+                  This guide will show you how to create audiences, as well as how to track conversions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f7f7f7;
+  }
+
+  .lib-panel {
+    margin-bottom: 20Px;
+  }
+  .lib-panel img {
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .lib-panel .row,
+  .lib-panel .col-sm-6 {
+    padding: 0;
+    background-color: #FFFFFF;
+  }
+
+  .lib-panel .lib-row {
+    padding: 0 20px 0 20px;
+  }
+  .lib-header {
+    color: #090909;
+    font-weight: bold;
+  }
+
+  .lib-panel .lib-row.lib-header {
+    background-color: #FFFFFF;
+    font-size: 20px;
+    padding: 10px 20px 0 20px;
+  }
+
+  .lib-panel .lib-row.lib-header .lib-header-seperator {
+    height: 2px;
+    width: 26px;
+    background-color: #d9d9d9;
+    margin: 7px 0 7px 0;
+  }
+
+  .lib-panel .lib-row.lib-desc {
+    position: relative;
+    height: 100%;
+    display: block;
+    font-size: 13px;
+  }
+  .lib-panel .lib-row.lib-desc a{
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    left: 20px;
+  }
+
+  .row-margin-bottom {
+    margin-bottom: 20px;
+  }
+
+  .box-shadow {
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+  }
+
+  .no-padding {
+    padding: 0;
+  }
+  .lib-img-show {
+    border-right: 1px solid #ccc;
+  }
+  .larger-font {
+    font-size: larger;
+  }
+</style>

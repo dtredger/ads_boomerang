@@ -24,7 +24,7 @@ RSpec.describe Website, type: :model do
 			let(:advertiser) { create(:advertiser) }
 
 			it "presets json page categories" do
-				website = advertiser.websites.create(name: 'test')
+				website = advertiser.websites.create(name: 'test', domain_name: 'http://test.com')
 				expect(website.pages).to match({"all"=>[], "add"=>[], "exclude"=>[]})
 			end
 		end
@@ -121,4 +121,46 @@ RSpec.describe Website, type: :model do
 		end
 	end
 
+	describe "#ready_to_launch?" do
+		let(:campaign) { create(:campaign, website: website, advertiser: website.advertiser) }
+
+		subject do
+			website.pages["all"].push(website.homepage + "/?adsboomerangtest=verify")
+			website.save
+			campaign.update(active:true)
+			create(:creative, campaign: campaign)
+		end
+
+		context "no tag visits" do
+			it "returns false" do
+				subject
+				website.pages["all"] = []
+				website.save
+				expect(website.ready_to_launch?).to eq(false)
+			end
+		end
+
+		context "no creatives" do
+			it "returns false" do
+				subject
+				Creative.destroy_all
+				expect(website.ready_to_launch?).to eq(false)
+			end
+		end
+
+		context "no campaign active" do
+			it "returns false" do
+				subject
+				website.campaign.update(active: false)
+				expect(website.ready_to_launch?).to eq(false)
+			end
+		end
+
+		context "three steps complete" do
+			it "returns true" do
+				subject
+				expect(website.ready_to_launch?).to eq(true)
+			end
+		end
+	end
 end
