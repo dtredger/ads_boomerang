@@ -33,7 +33,6 @@ Rails.application.routes.draw do
 
 	  authenticated :advertiser do
 		  root to: 'advertisers#show', as: :authenticated_advertiser
-		  get '/' => 'advertisers#show', as: :advertiser_root
 		  resource :advertiser, path: "account"
 		  resource :subscription, only: [:new, :create]
 		  resources :websites
@@ -42,6 +41,7 @@ Rails.application.routes.draw do
 		  end
 		  resources :creative_assets, path: "ad_library"
 	  end
+	  get '/' => 'advertisers#show', as: :advertiser_root
   end
 
 	get '/faq'            => 'pages#show',  id: 'faq'

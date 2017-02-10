@@ -61,7 +61,7 @@
       <div class="footer">
         <hr>
         <div class="stats">
-          <i class="fa fa-check"></i> Data up-to-date as of <%= Time.now.to_s %>
+          Last Changed <%= current_advertiser.updated_at.to_formatted_s(:long_ordinal) %>
         </div>
       </div>
     </div>
