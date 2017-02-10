@@ -47,6 +47,7 @@ class Website < ApplicationRecord
 		"http:"
 	end
 
+	# TODO - domain-name saves with protocol, so potential for 'http://http://...'
 	def homepage
 		"#{protocol}//#{self.domain_name}"
 	end
@@ -81,6 +82,13 @@ class Website < ApplicationRecord
 		end
 	end
 
+	def ready_to_launch?
+		if self.tag_placed? && self.campaign && self.campaign.active? && self.campaign.creatives.any?
+			true
+		else
+			false
+		end
+	end
 
 	private
 
