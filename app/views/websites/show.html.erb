@@ -31,38 +31,57 @@
 
         To start your campaign, a few things are required:
         <br><br>
-        <ol>
-          <li>Verify your <b>Clickthrough URL</b> (where people are taken when they click your ads)</li>
-          <li>Place your <b>Website Tag</b> on your site.</li>
-          <li>Upload some different <b>ad sizes</b> (or ask us to create some for you)</li>
-        </ol>
-      </div>
-    </div>
-  </div>
+        <div class="table">
+          <table class="table">
+            <tbody>
+              <% if @website.tag_placed? %>
+                <tr class="checklist-complete">
+                  <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                  <td>Website Tag Activated</td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
+                  <td><%= link_to "Place your Website Tag on your site",  anchor: "website-tag" %></td>
+                </tr>
+              <% end %>
 
-  <div class="col-md-8">
-    <div class="card">
-      <div class="content">
-        <div id="clickthrough-url">
-          <b>1) Clickthrough URL</b>
-          <br><br>
-          <% if @website.campaign %>
-            <div class="col-xs-10">
-              When clicked, your ads will go to:
-              <a href="<%= @website.campaign.clickthrough_url %>">
-                <%= @website.campaign.clickthrough_url %>
-              </a>
-            </div>
-            <div class="col-xs-2">
-              <%= link_to "Change", edit_campaign_path(@website.campaign),
-                          class: "btn btn-primary btn-sm" %>
-            </div>
-            <br>
-          <% else %>
-            <p>Create a campaign to set your Clickthrough URL</p>
+              <% if @website.campaign.active? %>
+                <tr class="checklist-complete">
+                  <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                  <td>Ad Click Url Verified</td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td><label class="checkbox"><i class="fa fa-square-o"></i></label></td>
+                  <td><%= link_to "Verify your Ad Click URL", anchor: "clickthrough-url" %></td>
+                </tr>
+              <% end %>
+
+              <% if @website.campaign.creatives.any? %>
+                <tr class="checklist-complete">
+                  <td><label class="checkbox"><i class="fa fa-check-square-o"></i></label></td>
+                  <td>Ads Uploaded</td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td><label class="checkbox"> <i class="fa fa-square-o"></i></label></td>
+                  <td><%= link_to "Upload Ads", anchor: "upload-ads" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <hr>
+          <% if @website.ready_to_launch? %>
+            <% if current_advertiser.subscription && current_advertiser.subscription.active? %>
+              Your campaign is ready to begin. Nothing more for you to do. (We will update you about performance)
+            <% else %>
+              Your campaign can start as soon as you
+              <%= link_to "Activate your Subscription", new_subscription_path %>.
+            <% end %>
           <% end %>
-          <br><br>
         </div>
+
       </div>
     </div>
   </div>
@@ -71,7 +90,7 @@
     <div class="card">
       <div class="content">
         <div id="website-tag">
-          <b>2) Website Tag</b>
+          <b>1) Website Tag</b>
           <br><br>
           <p class="">Place this tag on every page of your website</p>
           <div class="input-group">
@@ -88,13 +107,51 @@
             <br>
             <p>Have you placed your tag on your website? Visit the following test link to check:
               <br>
-              <%= link_to @website.homepage, (url_for(@website.homepage) + "?adsboomerangtest=verify"),
-                          target: "_blank" %>
+            <hr>
+              <%= link_to (@website.homepage + "?adsboomerangtest=verify"), (url_for(@website.homepage) + "?adsboomerangtest=verify"),
+                          target: "_blank", class: "btn btn-primary" %>
             </p>
             <p class="category">
               (Don't worry, the Ads Boomerang alert is not visible to regular visitors)
             </p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card">
+      <div class="content">
+        <div id="clickthrough-url">
+          <b>2) Ad Click URL</b>
+          <br><br>
+          <% if @website.campaign %>
+            <div class="row">
+              <div class="col-sm-8">
+                When clicked, your ads will take people to:
+                <%= link_to @website.campaign.clickthrough_url, @website.campaign.clickthrough_url, class: "btn
+                btn-default" %>
+              </div>
+              <div class="col-sm-2 col-xs-4">
+                <% if !@website.campaign.active? %>
+                  <div style="float: right;">
+                    <%= button_to "Verify", campaign_path(@website.campaign, {campaign:{active: true}}),
+                                method: :patch, class: "btn btn-success" %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="col-sm-2 col-xs-4">
+                <%= link_to "Change", edit_campaign_path(@website.campaign),
+                            class: "btn btn-primary" %>
+              </div>
+            </div>
+
+            <br>
+          <% else %>
+            <p>Create a campaign to set your Ad Click URL</p>
+          <% end %>
+          <br><br>
         </div>
       </div>
     </div>
@@ -126,11 +183,11 @@
 
           <br><br>
           <div class="row">
-            <div class="col-xs-10">
+            <div class="col-xs-9">
               <p>If you don't have any ads, we can create some for you. Simply send us an email with the brand assets you'd like us to use, as well as a tagline or slogan.</p>
             </div>
-            <div class="col-xs-2">
-              <a href="mailto:hello@adsboomerang.com?subject=new ads" class="btn btn-primary btn-sm">
+            <div class="col-xs-3">
+              <a href="mailto:hello@adsboomerang.com?subject=new ads" class="btn btn-primary">
                 Request Ads
               </a>
             </div>
