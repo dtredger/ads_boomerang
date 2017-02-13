@@ -119,6 +119,50 @@ RSpec.describe Website, type: :model do
 				end
 			end
 		end
+
+		context "pages as array" do
+			describe "empty array" do
+				before { website.update(pages: []) }
+
+				it "does not raise error" do
+					expect{
+						website.get_segment("http://test.com/include")
+					}.not_to raise_error
+				end
+
+				it "returns nil" do
+					expect(website.get_segment("http://test.com/exclude")).to eq(nil)
+				end
+			end
+
+			describe "array with URLs" do
+				before { website.update(pages: ["http://test.com/exclude", "http://test.com/include"]) }
+
+				it "does not raise error" do
+					expect{
+						website.get_segment("http://test.com/include")
+					}.not_to raise_error
+				end
+
+				it "returns nil" do
+					expect(website.get_segment("http://test.com/exclude")).to eq(nil)
+				end
+			end
+		end
+
+		context "pages as empty obj" do
+			before { website.update(pages: {}) }
+
+			it "does not raise error" do
+				expect{
+					website.get_segment("http://test.com/include")
+				}.not_to raise_error
+			end
+
+			it "returns nil" do
+				expect(website.get_segment("http://test.com/exclude")).to eq(nil)
+			end
+		end
 	end
 
 	describe "#ready_to_launch?" do
