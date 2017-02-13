@@ -2,7 +2,11 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+	namespace :forest do
+		post '/actions/create-segments' => 'websites#create_segments'
+	end
   mount ForestLiana::Engine => '/forest'
+
   mount Payola::Engine => '/payola', as: :payola
 
 	# mount ActionCable.server => '/cable'
@@ -29,7 +33,6 @@ Rails.application.routes.draw do
 
 	  authenticated :advertiser do
 		  root to: 'advertisers#show', as: :authenticated_advertiser
-		  get '/' => 'advertisers#show', as: :advertiser_root
 		  resource :advertiser, path: "account"
 		  resource :subscription, only: [:new, :create]
 		  resources :websites
@@ -38,10 +41,14 @@ Rails.application.routes.draw do
 		  end
 		  resources :creative_assets, path: "ad_library"
 	  end
+	  get '/' => 'advertisers#show', as: :advertiser_root
   end
 
-	get '/faq' => 'pages#show', id: 'faq'
-	get '/pricing' => 'pages#show', id: 'pricing'
+	get '/faq'            => 'pages#show',  id: 'faq'
+	get '/guides'         => 'pages#show',  id: 'guides'
+	get '/guides/setup'   => 'pages#show',  id: 'guides/setup'
+	get '/guides/tagging' => 'pages#show',  id: 'guides/tagging'
+	get '/guides/shopify' => 'pages#show',  id: 'guides/shopify'
 
 	get '/.well-known/acme-challenge/H8oMhFnWgh6Zx2hXHTvk7ZWwNUPSAKl3GSGjnr0bQxo' => 'pages#letsencrypt'
 

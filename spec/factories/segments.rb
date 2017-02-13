@@ -10,9 +10,9 @@
 #  campaign_id      :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  audience         :integer
-#  audience_count   :integer
+#  audience_type    :integer
 #  manual_image_src :string
+#  audience_history :json
 #
 
 FactoryGirl.define do

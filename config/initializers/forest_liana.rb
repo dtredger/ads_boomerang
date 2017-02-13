@@ -11,5 +11,3 @@ ForestLiana.integrations = {
 				mapping: 'Advertiser'
 		}
 }
-
-# "Payola::Sale.stripe_id"
