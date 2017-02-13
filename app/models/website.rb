@@ -66,8 +66,7 @@ class Website < ApplicationRecord
 	end
 
 	def get_segment(page_url)
-		write_page_categories
-
+		return if self.pages.is_a?(Array) || self.pages["all"].nil?
 		if self.pages["all"].exclude?(page_url)
 			self.pages["all"].push(page_url)
 			self.save
