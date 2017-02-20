@@ -2,11 +2,13 @@ class SegmentsController < ApplicationController #ActionController::Base
 	skip_before_action :verify_authenticity_token, only: :tag
 
 	before_action :allow_any_origin
-	before_action :find_website
 
-	caches_action :tag, :cache_path => Proc.new { |c| c.request.url }
+	caches_action :tag, :if => Proc.new { |c| ENV["CACHE_TAGS"] == 'true' },
+	              :cache_path => Proc.new { |c| c.request.url },
+	              :expire_in => 1.hour
 
 	def tag
+		find_website
 		if @website && params[:s]
 			respond_to do |format|
 				format.html { head 204 }
