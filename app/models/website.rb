@@ -44,12 +44,12 @@ class Website < ApplicationRecord
 	end
 
 	def protocol
-		"http:"
+		# TODO - domain_name should strip protocol
 	end
 
 	# TODO - domain-name saves with protocol, so potential for 'http://http://...'
 	def homepage
-		"#{protocol}//#{self.domain_name}"
+		"#{self.domain_name}"
 	end
 
 	def tag_placed?
