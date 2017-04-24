@@ -50,8 +50,8 @@ Rails.application.routes.draw do
 	get '/guides/tagging' => 'pages#show',  id: 'guides/tagging'
 	get '/guides/shopify' => 'pages#show',  id: 'guides/shopify'
 
-	get '/.well-known/acme-challenge/H8oMhFnWgh6Zx2hXHTvk7ZWwNUPSAKl3GSGjnr0bQxo' => 'pages#letsencrypt'
-
+	# get '/.well-known/acme-challenge/H8oMhFnWgh6Zx2hXHTvk7ZWwNUPSAKl3GSGjnr0bQxo' => 'pages#letsencrypt'
+	get '/.well-known/acme-challenge/iDoVXjt0WnN6nPJVAmCmdfYZuxXbe70TmoBhEbEgXVM' => 'pages#letsencrypt'
 
 	get '/survey' => redirect { |params, req| ENV["SURVEY_URL"] }
   # root to: 'pages#home' # set in initializers/
