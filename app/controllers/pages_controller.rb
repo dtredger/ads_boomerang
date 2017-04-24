@@ -5,8 +5,8 @@ class PagesController < ApplicationController
 
 
 	def letsencrypt
-		# use your code here, not mine
-		render text: "H8oMhFnWgh6Zx2hXHTvk7ZWwNUPSAKl3GSGjnr0bQxo.Dhcr_HFPDeEhbERa2Q6_yQ5DRHZk1xQtL-nTzew111c"
+		# old - render text: "H8oMhFnWgh6Zx2hXHTvk7ZWwNUPSAKl3GSGjnr0bQxo.Dhcr_HFPDeEhbERa2Q6_yQ5DRHZk1xQtL-nTzew111c"
+		render text: "iDoVXjt0WnN6nPJVAmCmdfYZuxXbe70TmoBhEbEgXVM.Dhcr_HFPDeEhbERa2Q6_yQ5DRHZk1xQtL-nTzew111c"
 	end
 
 	private
