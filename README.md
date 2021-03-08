@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ads Boomerang was an idea for a self-service SaaS platform for small ecommerce stores that would deliver advertising focused on driving more sales. This included a script to be inserted onto the client's store, a dashboard to upload ads, an integration with an ad-providing platform (Beeswax), and reporting.
 
-Things you may want to cover:
+#### What went well
+From a technical perspective, most of the bits worked as expected; specifically:
 
-* Ruby version
+* Integration with Shopify made setup easy
 
-* System dependencies
+* Integration with Beeswax PaaS provided the ability to buy ads on a variety of ad exchanges
 
-* Configuration
+* Dashboard accepted uploads for most standard image formats (300x250, 728x90, 160x600, etc.)
 
-* Database creation
+#### Why didn't it work?
+The main issue is that there was too much support and explanation required versus the target client's budget:
 
-* Database initialization
+* most small store owners weren't very tech-savvy, so had to be explained the benefits of retargeting.
 
-* How to run the test suite
+* Store owners needed ads designed.
 
-* Services (job queues, cache servers, search engines, etc.)
+* some store owners were skeptical of online ads generally: many small sellers didn't want to be the type of business that advertised.
 
-* Deployment instructions
+* Retargeted ads are cheap, but limited to a site's existing pool of users. This capped the amount that a given client could spend on retargeted ads.
 
-* ...
+* Non-retargeted ads are totally ineffective without huge amounts of data. Given the amount of fraud/non-viewable ad inventory on most ad-exchanges, buying without extensive data brings zero return.
